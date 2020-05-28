@@ -123,6 +123,195 @@ Progetto2Gruppo25/fast:
 	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/build
 .PHONY : Progetto2Gruppo25/fast
 
+BST/tree.o: BST/tree.c.o
+
+.PHONY : BST/tree.o
+
+# target to build an object file
+BST/tree.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o
+.PHONY : BST/tree.c.o
+
+BST/tree.i: BST/tree.c.i
+
+.PHONY : BST/tree.i
+
+# target to preprocess a source file
+BST/tree.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.i
+.PHONY : BST/tree.c.i
+
+BST/tree.s: BST/tree.c.s
+
+.PHONY : BST/tree.s
+
+# target to generate assembly for a file
+BST/tree.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.s
+.PHONY : BST/tree.c.s
+
+DoubleList/doubleList.o: DoubleList/doubleList.c.o
+
+.PHONY : DoubleList/doubleList.o
+
+# target to build an object file
+DoubleList/doubleList.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o
+.PHONY : DoubleList/doubleList.c.o
+
+DoubleList/doubleList.i: DoubleList/doubleList.c.i
+
+.PHONY : DoubleList/doubleList.i
+
+# target to preprocess a source file
+DoubleList/doubleList.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.i
+.PHONY : DoubleList/doubleList.c.i
+
+DoubleList/doubleList.s: DoubleList/doubleList.c.s
+
+.PHONY : DoubleList/doubleList.s
+
+# target to generate assembly for a file
+DoubleList/doubleList.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.s
+.PHONY : DoubleList/doubleList.c.s
+
+Graph/graph.o: Graph/graph.c.o
+
+.PHONY : Graph/graph.o
+
+# target to build an object file
+Graph/graph.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o
+.PHONY : Graph/graph.c.o
+
+Graph/graph.i: Graph/graph.c.i
+
+.PHONY : Graph/graph.i
+
+# target to preprocess a source file
+Graph/graph.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.i
+.PHONY : Graph/graph.c.i
+
+Graph/graph.s: Graph/graph.c.s
+
+.PHONY : Graph/graph.s
+
+# target to generate assembly for a file
+Graph/graph.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.s
+.PHONY : Graph/graph.c.s
+
+Input/inputReader.o: Input/inputReader.c.o
+
+.PHONY : Input/inputReader.o
+
+# target to build an object file
+Input/inputReader.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o
+.PHONY : Input/inputReader.c.o
+
+Input/inputReader.i: Input/inputReader.c.i
+
+.PHONY : Input/inputReader.i
+
+# target to preprocess a source file
+Input/inputReader.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.i
+.PHONY : Input/inputReader.c.i
+
+Input/inputReader.s: Input/inputReader.c.s
+
+.PHONY : Input/inputReader.s
+
+# target to generate assembly for a file
+Input/inputReader.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.s
+.PHONY : Input/inputReader.c.s
+
+List/list.o: List/list.c.o
+
+.PHONY : List/list.o
+
+# target to build an object file
+List/list.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/List/list.c.o
+.PHONY : List/list.c.o
+
+List/list.i: List/list.c.i
+
+.PHONY : List/list.i
+
+# target to preprocess a source file
+List/list.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/List/list.c.i
+.PHONY : List/list.c.i
+
+List/list.s: List/list.c.s
+
+.PHONY : List/list.s
+
+# target to generate assembly for a file
+List/list.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/List/list.c.s
+.PHONY : List/list.c.s
+
+Queue/queue.o: Queue/queue.c.o
+
+.PHONY : Queue/queue.o
+
+# target to build an object file
+Queue/queue.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Queue/queue.c.o
+.PHONY : Queue/queue.c.o
+
+Queue/queue.i: Queue/queue.c.i
+
+.PHONY : Queue/queue.i
+
+# target to preprocess a source file
+Queue/queue.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Queue/queue.c.i
+.PHONY : Queue/queue.c.i
+
+Queue/queue.s: Queue/queue.c.s
+
+.PHONY : Queue/queue.s
+
+# target to generate assembly for a file
+Queue/queue.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Queue/queue.c.s
+.PHONY : Queue/queue.c.s
+
+Stack/stack.o: Stack/stack.c.o
+
+.PHONY : Stack/stack.o
+
+# target to build an object file
+Stack/stack.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.o
+.PHONY : Stack/stack.c.o
+
+Stack/stack.i: Stack/stack.c.i
+
+.PHONY : Stack/stack.i
+
+# target to preprocess a source file
+Stack/stack.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.i
+.PHONY : Stack/stack.c.i
+
+Stack/stack.s: Stack/stack.c.s
+
+.PHONY : Stack/stack.s
+
+# target to generate assembly for a file
+Stack/stack.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.s
+.PHONY : Stack/stack.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -159,6 +348,27 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... Progetto2Gruppo25"
+	@echo "... BST/tree.o"
+	@echo "... BST/tree.i"
+	@echo "... BST/tree.s"
+	@echo "... DoubleList/doubleList.o"
+	@echo "... DoubleList/doubleList.i"
+	@echo "... DoubleList/doubleList.s"
+	@echo "... Graph/graph.o"
+	@echo "... Graph/graph.i"
+	@echo "... Graph/graph.s"
+	@echo "... Input/inputReader.o"
+	@echo "... Input/inputReader.i"
+	@echo "... Input/inputReader.s"
+	@echo "... List/list.o"
+	@echo "... List/list.i"
+	@echo "... List/list.s"
+	@echo "... Queue/queue.o"
+	@echo "... Queue/queue.i"
+	@echo "... Queue/queue.s"
+	@echo "... Stack/stack.o"
+	@echo "... Stack/stack.i"
+	@echo "... Stack/stack.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

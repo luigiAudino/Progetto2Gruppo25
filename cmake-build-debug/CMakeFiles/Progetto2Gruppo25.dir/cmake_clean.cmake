@@ -1,4 +1,11 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/List/list.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/Queue/queue.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.o"
   "CMakeFiles/Progetto2Gruppo25.dir/main.c.o"
   "Progetto2Gruppo25"
   "Progetto2Gruppo25.pdb"

@@ -78,6 +78,48 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/BST/tree.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/BST/tree.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Graph/graph.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Graph/graph.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Input/inputReader.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Input/inputReader.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/List/list.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/List/list.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Queue/queue.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Queue/queue.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Stack/stack.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Stack/stack.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
 		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/main.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
