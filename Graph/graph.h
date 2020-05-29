@@ -12,22 +12,18 @@ struct TGraph {
 typedef struct TGraph* Graph;
 
 
-// Dealloca l'intero grafo
-void freeGraph(Graph G);
-
-// Inizializza un nuovo grafo vuoto specificando in ingresso quanti nodi saranno nel grafo ed in contemporanea il vettore dei nomi delle città associate ai nodi
-Graph initGraph(int nodes_count);
+Graph initGraph(int nodes_count);// Inizializza un nuovo grafo vuoto specificando in ingresso quanti nodi ci saranno nel grafo ed in contemporanea il vettore dei nomi delle città associate ai nodi
 
 Graph setGraph(Graph G); //inizializza null i puntatori del vettore delle liste d'adiacenza e del vettore parallelo che contiene i nomi dei vertici
 
-// Stampa il grafo
-void printGraph(Graph G);
+void freeGraph(Graph G); // Dealloca l'intero grafo
+
+void printGraph(Graph G);// Stampa il grafo
 
 
 void removeNameFromVector(Graph G,int n); //rimuove il nome di un vertice dal vettore
 void setNameVertexInVector(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
 void printGraphWithNames(Graph G);// stampa il grafo coi nomi associati ai vertici numerici
-
 
 
 /*funzioni degli archi*/
@@ -56,7 +52,7 @@ void addNode(Graph G);
 // Rimuovi un nodo dal grafo, sistemando gli indici e riallocando la memoria,E RIMUOVE ANCHE IL NOME ASSOCIATO AD ESSO NEL VETTORE DI NOMI
 void removeNode(Graph G, int node_to_remove);
 
-List checkListRemoval(List L, int node_to_remove);
+List checkListRemoval(List L, int node_to_remove);//rimuove il nodo contentente l'intero 'node_to_remove' dalla lista L e restituisce il puntatore alla lista
 
 /*
 // Crea un nuovo grafo e lo popola in base alla scelta effettuata dal menu

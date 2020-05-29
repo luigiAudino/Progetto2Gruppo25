@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <assert.h>
+#include <string.h>
 #include "graph.h"
 #include "../Input/inputReader.h"
 
@@ -165,7 +165,7 @@ void removeNameFromVector(Graph G,int n){
             x++;
         }
         /*else{
-        free(old[i]);
+            free(old[i]);
         }*/
     }
     //free(old);
@@ -201,8 +201,6 @@ void printGraphWithNames(Graph G){
             puts("Il grafo è vuoto");
         }
 }
-
-
 
 
 /*funzioni degli archi*/
