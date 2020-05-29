@@ -3,6 +3,7 @@
 #include "../List/list.h"
 
 struct TGraph {
+    int* cityPoints; //vettore dei punteggi per la meta 'gettonata' associati ad ogni nodo
     char** vectorNames; //vettore dei nomi dei vertici parallelo al vettore di vertici
     List *adj; //vettore di vertici
     int nodes_count;

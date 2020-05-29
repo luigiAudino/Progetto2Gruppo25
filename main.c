@@ -3,8 +3,12 @@
 #include <stdlib.h>
 #include "Graph/graph.h"
 #include "List/list.h"
+#define MAX 50
 
 int main() {
+
+
+    char cities[50][MAX] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
 
     Graph g = initGraph(6); //allochiamo le variabili del grafo
@@ -12,10 +16,7 @@ int main() {
     g = setGraph(g); //assegnamo i vertici
     printf("\n\nil grafo e' %d\n\n\n\n",isEmpty(g));
 
-    char* arr = malloc(50*sizeof(char));
-
-
-    addEdge(g,0,1,10,100);
+    addEdge(g,0,1,10,100); //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
     addEdge(g,0,3,1,100);
     addEdge(g,1,2,1,100);
     addEdge(g,3,0,1,100);
@@ -24,15 +25,20 @@ int main() {
     addEdge(g,4,2,1,100);
     addEdge(g,2,5,1,100);
     printGraph(g);
+    addNode(g);
+    addNode(g);
+
+    for(int i=0;i<MAX;i++) {
+        setNameVertexInVector(g, i, cities[i]);
+    }
+
+    for(int i=0;i<g->nodes_count;i++) {
+        printf("punteggio di %d = %d \n",i,g->cityPoints[i]);
+    }
 
 
-    setNameVertexInVector(g,0,"napoli");
-    setNameVertexInVector(g,1,"milano");
-    setNameVertexInVector(g,2,"berlino");
-    setNameVertexInVector(g,3,"roma");
-    setNameVertexInVector(g,4,"palermo");
-    setNameVertexInVector(g,5,"londra");
-
+    addEdge(g,6,0,1,1);
+    removeNode(g,3);
     printGraphWithNames(g);
 
 

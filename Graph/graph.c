@@ -94,9 +94,9 @@ Graph graphCreationMenu(int n) {
 
 
 
-Graph initGraph(int nodes_count) {
+Graph initGraph(int nodes_count) { //crea un grafo vuoto
     Graph G = (Graph)malloc(sizeof(struct TGraph));
-    if (G==NULL) {
+    if (G==NULL){
         puts("Impossibile allocare memoria per il grafo.\n");
     }else{
         G->adj = (List *)calloc(nodes_count, sizeof(List));
@@ -106,8 +106,9 @@ Graph initGraph(int nodes_count) {
             G=NULL;
             }
             else{
-                G->vectorNames = (char**)malloc(sizeof(char*));
+                G->cityPoints = (int*)malloc((nodes_count)*sizeof(int));
                 G->nodes_count = nodes_count;
+                G->vectorNames = (char**)malloc((nodes_count)*sizeof(char*));
             }
     }
     return G;
@@ -115,10 +116,11 @@ Graph initGraph(int nodes_count) {
 
 
 
-Graph setGraph(Graph G){
+Graph setGraph(Graph G){ //settaggio a NULL della lista d'adiacenza e del vettore di nomi
     for(int i=0;i<G->nodes_count;i++){
         G->adj[i]=NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
         G->vectorNames[i]=(char*)malloc(50*sizeof(char));
+        G->cityPoints[i]=0;
     }
     return G;
 }
@@ -238,7 +240,7 @@ void addEdge(Graph G, int source, int target, int price, int km) { //
             printf("L'arco (%d,%d) e' già presente nel grafo.\n",source,target);
             }
             else{
-                if (source != target) {
+                if (source != target) { //evita archi ciclici
                 G->adj[source] = appendNodeList(G->adj[source], target, price,km);
                 }
             }
