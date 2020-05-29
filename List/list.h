@@ -1,36 +1,31 @@
 #ifndef Graph_List_h
 #define Graph_List_h
 
+//Lista = Arco
 struct TList {
-    int target;
-    int peso;
-    struct TList* next;
+    int target; //città del nodo
+    int price; //peso1
+    int km; //peso2
+    struct TList* next; //prossimo vertice nella di adiacenza del vertice 'x'
 };
 
 typedef struct TList* List;
 
-// Inizializza un nuovo nodo
-List initNodeList(int info, int peso);
-
-// Crea una lista random, per mod si
-// puo' specificare il modulo utilizzato la funzione rand()
-// La funzione ritorna sempre la testa della lista
-List randomList(int index, int mod);
-
 // Aggiunge un nodo alla fine della lista
 // controllandone l'esistenza
 // La funzione ritorna sempre la testa della lista
-List appendNodeList(List L, int target, int peso);
+List appendNodeList(List L, int target, int price, int km); //aggiunge un vertice 'taget' alla lista L del vertice d'origine designato
 
-// Aggiunge un nodo in testa alla lista
-// senza controllare l'esistenza
+// Rimuove solo un occorrenza di un nodo con il target specificato dalla lista
 // La funzione ritorna sempre la testa della lista
-List addNodeList(List L, int target, int peso);
+List removeNodeList(List L, int target); //Rimuove il nodo con vertice 'target' dalla lista del vertice L che vogliamo
 
-// Rimuove solo un occorrenza di un nodo con il target specificato
-// dalla lista
-// La funzione ritorna sempre la testa della lista
-List removeNodeList(List L, int target);
+// Inizializza un nuovo nodo
+List initNodeList(int target, int price, int km);
+
+
+
+
 
 // Dealloca la lista interamente
 void freeList(List L);
