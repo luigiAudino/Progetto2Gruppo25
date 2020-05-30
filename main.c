@@ -33,7 +33,7 @@ int main() {
     }
 
     for(int i=0;i<g->nodes_count;i++) {
-        printf("punteggio di %d = %d \n",i,g->cityPoints[i]);
+        printf("punteggio di %d = %d \n",i,g->cityPopularPoints[i]);
     }
 
 

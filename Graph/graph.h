@@ -3,7 +3,7 @@
 #include "../List/list.h"
 
 struct TGraph {
-    int* cityPoints; //vettore dei punteggi per la meta 'gettonata' associati ad ogni nodo
+    int* cityPopularPoints; //vettore dei punteggi per la meta 'gettonata' associati ad ogni nodo
     char** vectorNames; //vettore dei nomi dei vertici parallelo al vettore di vertici
     List *adj; //vettore di vertici
     int nodes_count;
@@ -22,9 +22,15 @@ void freeGraph(Graph G); // Dealloca l'intero grafo
 void printGraph(Graph G);// Stampa il grafo
 
 
+
+/*funzioni del vettore di nomi*/
 void removeNameFromVector(Graph G,int n); //rimuove il nome di un vertice dal vettore
 void setNameVertexInVector(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
 void printGraphWithNames(Graph G);// stampa il grafo coi nomi associati ai vertici numerici
+
+
+
+
 
 
 /*funzioni degli archi*/

@@ -107,7 +107,7 @@ Graph initGraph(int nodes_count) { //crea un grafo vuoto
             G=NULL;
             }
             else{
-                G->cityPoints = (int*)malloc((nodes_count)*sizeof(int));
+                G->cityPopularPoints = (int*)malloc((nodes_count)*sizeof(int));
                 G->nodes_count = nodes_count;
                 G->vectorNames = (char**)malloc((nodes_count)*sizeof(char*));
             }
@@ -121,7 +121,7 @@ Graph setGraph(Graph G){ //settaggio a NULL della lista d'adiacenza e del vettor
     for(int i=0;i<G->nodes_count;i++){
         G->adj[i]=NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
         G->vectorNames[i]=(char*)malloc(50*sizeof(char));
-        G->cityPoints[i]=0;
+        G->cityPopularPoints[i]=0;
     }
     return G;
 }
@@ -155,8 +155,22 @@ void printGraph(Graph G) {
 }
 
 /*______________________________________________________________________*/
+//aggiunge una posizione vuota nel vettore dei nomi, è usata nell'addNode
+void addNameInVector(Graph G){
+    if (G != NULL) {
+        char** old=G->vectorNames;
+        int i=0;
+        //G->adj = (List *)realloc(G->adj, (G->nodes_count+1) * sizeof(List));
+        G->vectorNames = (char**)malloc((G->nodes_count+1) * sizeof(char*));
+        for(i=0;i<G->nodes_count;i++)
+            G->vectorNames[i]=old[i];
+        G->nodes_count += 1;
+        G->vectorNames[G->nodes_count-1] = NULL;
+    }
+}
 
-//non mi fa deallocare 'old', free con gli array non funziona
+
+//rimuove una posizione nel vettore dei nomi, è usata nel removeNodo
 void removeNameFromVector(Graph G,int n){
     int i = 0;
     int x = 0;
@@ -164,14 +178,20 @@ void removeNameFromVector(Graph G,int n){
     G->vectorNames = (char** )calloc(G->nodes_count-1, sizeof(char*));
     for(i=0;i<G->nodes_count;i++){
         if (i != n) {
-            G->vectorNames[x] = old[i];
+            //char prova[50];
+            //printf("\nprova %s\n",prova);
+            //printf("old %s\n",old[i]);
+            //printf("vectorname %s\n",G->vectorNames[x]);
+            //strcpy(prova,old[i]);
+            G->vectorNames[x]=malloc(50*sizeof(char));
+            strcpy(G->vectorNames[x],prova);
             x++;
         }
-        /*else{
+        else{
             free(old[i]);
-        }*/
+        }
     }
-    //free(old);
+    free(old);
 }
 
 //NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile di 'name' alla variabile di 'vectorNames', NON AVVIENE LA COPIA
@@ -183,6 +203,7 @@ void setNameVertexInVector(Graph G,int nVertex, char name[]){ //associa il nome 
         printf("il vertice %d non appartiene al grafo, impossibile associare il nominativo.\n",nVertex);
     }
 }
+
 
 void printGraphWithNames(Graph G){
     int ne = 0;//numero totale degli archi
@@ -322,6 +343,8 @@ void addNode(Graph G) {
             G->adj[i]=old[i];
         G->nodes_count += 1;
         G->adj[G->nodes_count-1] = NULL;
+        addNameInVector(G);
+        //addPosizioneNelVettoreDeiPunteggiGettonati
     }
 }
 
