@@ -7,6 +7,7 @@
 
 #define EDGE_SUCC 0.33 //indica la percentuale di successo di creazione di un arco
 
+
 /*
 void graphEditorMenu(Graph G) { //Effettua modifiche varie nel grafo G, chiamabile anche se il grafo era preesistente
     while(1) {
@@ -173,14 +174,14 @@ void removeNameFromVector(Graph G,int n){
     //free(old);
 }
 
+//NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile di 'name' alla variabile di 'vectorNames', NON AVVIENE LA COPIA
 void setNameVertexInVector(Graph G,int nVertex, char name[]){ //associa il nome al vertice dato in ingresso
     if((nVertex>=0)&&(nVertex<=G->nodes_count)){
-    G->vectorNames[nVertex] = name;
+    strcpy(G->vectorNames[nVertex],name);
     }
     else{
         printf("il vertice %d non appartiene al grafo, impossibile associare il nominativo.\n",nVertex);
     }
-
 }
 
 void printGraphWithNames(Graph G){

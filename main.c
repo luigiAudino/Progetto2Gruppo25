@@ -25,10 +25,10 @@ int main() {
     addEdge(g,4,2,1,100);
     addEdge(g,2,5,1,100);
     printGraph(g);
-    addNode(g);
-    addNode(g);
+    //addNode(g);
+    //addNode(g);
 
-    for(int i=0;i<MAX;i++) {
+    for(int i=0;i<g->nodes_count;i++) {
         setNameVertexInVector(g, i, cities[i]);
     }
 
