@@ -1,5 +1,6 @@
 #ifndef ABR_Tree_h
 #define ABR_Tree_h
+#import "../User/user.h"
 
 struct TTree {
     int info;

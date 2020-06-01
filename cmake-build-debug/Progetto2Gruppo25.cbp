@@ -120,6 +120,18 @@
 		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Stack/stack.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
 		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/main.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>

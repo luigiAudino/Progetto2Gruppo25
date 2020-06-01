@@ -312,6 +312,60 @@ Stack/stack.c.s:
 	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.s
 .PHONY : Stack/stack.c.s
 
+User/user.o: User/user.c.o
+
+.PHONY : User/user.o
+
+# target to build an object file
+User/user.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o
+.PHONY : User/user.c.o
+
+User/user.i: User/user.c.i
+
+.PHONY : User/user.i
+
+# target to preprocess a source file
+User/user.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/User/user.c.i
+.PHONY : User/user.c.i
+
+User/user.s: User/user.c.s
+
+.PHONY : User/user.s
+
+# target to generate assembly for a file
+User/user.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/User/user.c.s
+.PHONY : User/user.c.s
+
+Util/util.o: Util/util.c.o
+
+.PHONY : Util/util.o
+
+# target to build an object file
+Util/util.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o
+.PHONY : Util/util.c.o
+
+Util/util.i: Util/util.c.i
+
+.PHONY : Util/util.i
+
+# target to preprocess a source file
+Util/util.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.i
+.PHONY : Util/util.c.i
+
+Util/util.s: Util/util.c.s
+
+.PHONY : Util/util.s
+
+# target to generate assembly for a file
+Util/util.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.s
+.PHONY : Util/util.c.s
+
 main.o: main.c.o
 
 .PHONY : main.o
@@ -369,6 +423,12 @@ help:
 	@echo "... Stack/stack.o"
 	@echo "... Stack/stack.i"
 	@echo "... Stack/stack.s"
+	@echo "... User/user.o"
+	@echo "... User/user.i"
+	@echo "... User/user.s"
+	@echo "... Util/util.o"
+	@echo "... Util/util.i"
+	@echo "... Util/util.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"

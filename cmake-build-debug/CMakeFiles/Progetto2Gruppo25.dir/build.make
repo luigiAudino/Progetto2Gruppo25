@@ -161,6 +161,32 @@ CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/BST/tree.c -o CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.s
 
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: CMakeFiles/Progetto2Gruppo25.dir/flags.make
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../User/user.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building C object CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o   -c /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.c
+
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Progetto2Gruppo25.dir/User/user.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.c > CMakeFiles/Progetto2Gruppo25.dir/User/user.c.i
+
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Progetto2Gruppo25.dir/User/user.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.c -o CMakeFiles/Progetto2Gruppo25.dir/User/user.c.s
+
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o: CMakeFiles/Progetto2Gruppo25.dir/flags.make
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o: ../Util/util.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building C object CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o   -c /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.c
+
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.c > CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.i
+
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.c -o CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.s
+
 # Object files for target Progetto2Gruppo25
 Progetto2Gruppo25_OBJECTS = \
 "CMakeFiles/Progetto2Gruppo25.dir/main.c.o" \
@@ -170,7 +196,9 @@ Progetto2Gruppo25_OBJECTS = \
 "CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o" \
 "CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o" \
 "CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o" \
-"CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o"
+"CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o" \
+"CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o" \
+"CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o"
 
 # External object files for target Progetto2Gruppo25
 Progetto2Gruppo25_EXTERNAL_OBJECTS =
@@ -183,9 +211,11 @@ Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o
 Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o
 Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o
 Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o
+Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o
+Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o
 Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/build.make
 Progetto2Gruppo25: CMakeFiles/Progetto2Gruppo25.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Linking C executable Progetto2Gruppo25"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking C executable Progetto2Gruppo25"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Progetto2Gruppo25.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

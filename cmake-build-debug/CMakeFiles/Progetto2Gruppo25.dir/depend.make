@@ -4,6 +4,7 @@
 CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o: ../BST/tree.c
 CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o: ../BST/tree.h
 CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o: ../Input/inputReader.h
+CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o: ../User/user.h
 
 CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o: ../DoubleList/doubleList.c
 CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o: ../DoubleList/doubleList.h
@@ -27,6 +28,11 @@ CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.o: ../Input/inputReader.h
 CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.o: ../Stack/stack.c
 CMakeFiles/Progetto2Gruppo25.dir/Stack/stack.c.o: ../Stack/stack.h
 
-CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../List/list.h
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../BST/tree.h
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../User/user.c
+CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../User/user.h
+
+CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../BST/tree.h
+CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../User/user.h
 CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../main.c
 

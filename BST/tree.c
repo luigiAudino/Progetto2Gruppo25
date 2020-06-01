@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "tree.h"
 #include "../Input/inputReader.h"
 
@@ -69,7 +70,6 @@ Tree insertNodeTree(Tree T, int info) {
     return T;
 }
 
-
 void inOrder(Tree T) {
     if (T != NULL) {
         inOrder(T->sx);
@@ -77,6 +77,7 @@ void inOrder(Tree T) {
         inOrder(T->dx);
     }
 }
+
 void inOrderPrint(Tree T) {
     inOrder(T);
     printf("\n\n");
@@ -89,6 +90,7 @@ void preOrder(Tree T) {
         preOrder(T->dx);
     }
 }
+
 void preOrderPrint(Tree T) {
     preOrder(T);
     printf("\n\n");
@@ -101,6 +103,7 @@ void postOrder(Tree T) {
         printf("%d ", T->info);
     }
 }
+
 void postOrderPrint(Tree T) {
     postOrder(T);
     printf("\n\n");
@@ -136,7 +139,6 @@ void graphicPrint(Tree T) { //Stampa graficamente in preorder l'albero
     graphic(T, "", 0);
 }
 
-
 void freeTree(Tree T) {
     if(T) {
         freeTree(T->sx);
@@ -144,3 +146,4 @@ void freeTree(Tree T) {
         free(T);
     }
 }
+
