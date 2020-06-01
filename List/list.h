@@ -1,7 +1,7 @@
 #ifndef Graph_List_h
 #define Graph_List_h
 
-//Lista = Arco
+//Lista = Arco = Edge
 struct TList {
     int target; //città del nodo
     int price; //peso1

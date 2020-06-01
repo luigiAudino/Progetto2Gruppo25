@@ -107,9 +107,8 @@ Graph initGraph(int nodes_count) { //crea un grafo vuoto
             G=NULL;
             }
             else{
-                G->cityPopularPoints = (int*)malloc((nodes_count)*sizeof(int));
+                G->infoVertex = (Vertex*)calloc(nodes_count,sizeof(struct vertex));
                 G->nodes_count = nodes_count;
-                G->vectorNames = (char**)malloc((nodes_count)*sizeof(char*));
             }
     }
     return G;
@@ -120,8 +119,7 @@ Graph initGraph(int nodes_count) { //crea un grafo vuoto
 Graph setGraph(Graph G){ //settaggio a NULL della lista d'adiacenza e del vettore di nomi
     for(int i=0;i<G->nodes_count;i++){
         G->adj[i]=NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
-        G->vectorNames[i]=(char*)malloc(50*sizeof(char));
-        G->cityPopularPoints[i]=0;
+        G->infoVertex[i].cityPopularPoints = 0;
     }
     return G;
 }
@@ -156,6 +154,7 @@ void printGraph(Graph G) {
 
 /*______________________________________________________________________*/
 //aggiunge una posizione vuota nel vettore dei nomi, è usata nell'addNode
+/*
 void addNameInVector(Graph G){
     if (G != NULL) {
         char** old=G->vectorNames;
@@ -163,7 +162,7 @@ void addNameInVector(Graph G){
         //G->adj = (List *)realloc(G->adj, (G->nodes_count+1) * sizeof(List));
         G->vectorNames = (char**)malloc((G->nodes_count+1) * sizeof(char*));
         for(i=0;i<G->nodes_count;i++)
-            G->vectorNames[i]=old[i];
+            G->infoVertex[i].name=old[i];
         G->nodes_count += 1;
         G->vectorNames[G->nodes_count-1] = NULL;
     }
@@ -184,7 +183,7 @@ void removeNameFromVector(Graph G,int n){
             //printf("vectorname %s\n",G->vectorNames[x]);
             //strcpy(prova,old[i]);
             G->vectorNames[x]=malloc(50*sizeof(char));
-            strcpy(G->vectorNames[x],prova);
+            strcpy(G->vectorNames[x],old[i]);
             x++;
         }
         else{
@@ -203,17 +202,17 @@ void setNameVertexInVector(Graph G,int nVertex, char name[]){ //associa il nome 
         printf("il vertice %d non appartiene al grafo, impossibile associare il nominativo.\n",nVertex);
     }
 }
-
+*/
 
 void printGraphWithNames(Graph G){
     int ne = 0;//numero totale degli archi
     if(G!=NULL){
         printf("Il grafo ha %d vertici\n",G->nodes_count);
         for(int i = 0;i<G->nodes_count;i++){
-            printf("Vertice: [%s] -> ",G->vectorNames[i]);
+            printf("Vertice: [%s] -> ",G->infoVertex[i].name);
             List e = G->adj[i];
             while(e!=NULL){//adesso qui scorriamo la lista puntata da 'e', cioè una lista di Edge, 'e' è un EdgePtr
-                        printf("[V:%s PREZZO:%d KM:%d]; ",G->vectorNames[e->target],e->price,e->km);
+                        printf("[V:%s PREZZO:%d KM:%d]; ",G->infoVertex[e->target].name,e->price,e->km);
                         ne=ne+1; //Numero di elementi, cioè numero totale di archi
                         e= e->next; //procediamo al prossimo puntatore nella lista
                     }
@@ -343,7 +342,7 @@ void addNode(Graph G) {
             G->adj[i]=old[i];
         G->nodes_count += 1;
         G->adj[G->nodes_count-1] = NULL;
-        addNameInVector(G);
+        //addNameInVector(G);
         //addPosizioneNelVettoreDeiPunteggiGettonati
     }
 }
@@ -366,7 +365,7 @@ void removeNode(Graph G, int node_to_remove) {
             }
         }
         free(tmp);
-        removeNameFromVector(G,node_to_remove);/**/
+//        removeNameFromVector(G,node_to_remove);/**/
         G->nodes_count -= 1;
         printf("Rimozione nodo %d completata.\n",node_to_remove);
     }

@@ -2,11 +2,20 @@
 #define Graph_Graph_h
 #include "../List/list.h"
 
+struct vertex{
+    int key;
+    char name[50];
+    int cityPopularPoints;
+    //cose di dijkstra
+};
+typedef struct vertex Vertex;
+
 struct TGraph {
-    int* cityPopularPoints; //vettore dei punteggi per la meta 'gettonata' associati ad ogni nodo
-    char** vectorNames; //vettore dei nomi dei vertici parallelo al vettore di vertici
-    List *adj; //vettore di vertici
+    //int* cityPopularPoints; //vettore dei punteggi per la meta 'gettonata' associati ad ogni nodo
+    //char** vectorNames; //vettore dei nomi dei vertici parallelo al vettore di vertici
     int nodes_count;
+    Vertex* infoVertex; //info su ogni vertice appartenente al grafo
+    List *adj; //vettore di vertici
 };
 
 
