@@ -1,4 +1,8 @@
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include "Graph/graph.h"
+#include "List/list.h"
 #include "User/user.h"
 
 void menu();
