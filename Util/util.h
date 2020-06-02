@@ -1,8 +1,9 @@
-//
-// Created by Luigi Audino on 01/06/2020.
-//
-
 #ifndef PROGETTO2GRUPPO25_UTIL_H
 #define PROGETTO2GRUPPO25_UTIL_H
+
+// converte la stringa di input in caratteri minuscoli nella stringa di output;
+void strtolower(char input[] , char output[]);
+
+
 
 #endif //PROGETTO2GRUPPO25_UTIL_H

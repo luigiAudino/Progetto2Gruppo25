@@ -1,7 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <malloc.h>
+#include <ctype.h>
 #include <string.h>
+#include "../Util/util.h"
 #include "graph.h"
 #include "../Input/inputReader.h"
 
@@ -95,6 +98,8 @@ Graph graphCreationMenu(int n) {
 
 
 
+
+
 Graph initGraph(int nodes_count) { //crea un grafo vuoto
     Graph G = (Graph)malloc(sizeof(struct TGraph));
     if (G==NULL){
@@ -174,7 +179,7 @@ void addInfoVertex(Graph G){
     }
 }
 
-//rimuove le informazioni del nodo cioe' una posizione nel vettore dei nomi corrispondente al nodo 'n' in input
+//rimuove le informazioni del nodo cioe' una posizione la posizione 'n' del vettore infoVertex del grafo.
 //e' richiamata in removeNodo
 void removeInfoVertex(Graph G,int n){
     int i = 0;
@@ -208,6 +213,50 @@ void setNodeName(Graph G,int nVertex, char name[]){ //associa il nome al vertice
     }
 }
 
+//Ritorna il nome corrispondente al nodo numerico
+char* getNodeName(Graph G,int nVertex){
+    return G->infoVertex[nVertex].name;
+}
+
+//Ritorna il corrispettivo numerico al nodo dato in input come nome
+int getNodeFromName(Graph G,char name[]){
+    int trovato = 0;
+    int i=0;
+    int result = -1;
+    char nameVertex[50];
+    char nameToFind[50];
+    //printf("%s\n",name);
+    //funzione che converte la stringa name tutta in caratteri minuscoli nella stringa nameTofind
+    strtolower(name,nameToFind);
+    //printf("%s\n",nameToFind);
+
+    while((i<G->nodes_count)&&(trovato==0)){
+        strtolower(G->infoVertex[i].name,nameVertex);
+        //printf("%s\n",nameVertex);
+        if((strcmp(nameVertex,nameToFind))==0){
+            trovato = 1;
+            result = i;
+        }else{
+        i++;
+        }
+    }
+    if (trovato==0){
+        puts("non esiste un corrispondente numerico del nome inserito");
+    }
+    return result;
+}
+
+//Setta i punti 'gettonati' al nodo dato in ingresso
+void setNodeCityPopularPoints(Graph G,int nVertex,int points){
+    G->infoVertex[nVertex].cityPopularPoints = points;
+}
+
+//Ritorna i punti 'gettonati' per quel nodo
+int getNodeCityPopularPoints(Graph G, int nVertex){
+    return G->infoVertex[nVertex].cityPopularPoints;
+}
+
+
 //stampa del grafo coi nomi
 void printGraphWithNames(Graph G){
     int ne = 0;//numero totale degli archi
@@ -233,6 +282,92 @@ void printGraphWithNames(Graph G){
 
 
 /*funzioni degli archi------------------------------*/
+
+void setKm(Graph G, int v1, int v2,int km){//Assegna il peso 'km' all'arco (v1,v2) appartenente al grafo G
+    if(!isEmpty(G)){
+        if(containsEdge(G,v1,v2)){
+            List e = G->adj[v1];
+            int trovato = 0;
+            while((e!=NULL)&&(trovato==0)){
+                if(e->target==v2){ //vuol dire che ho trovato il vertice nella lista d'adiacenza di v1 e quindi l'arco (v1,v2);
+                    e->km=km;
+                    trovato = 1;
+                }
+                else{
+                    e = e->next;
+                }
+            }
+        }else{
+            puts("L'arco non e' contenuto nel grafo, impossibile assegnare peso.\n");
+        }
+    }
+}
+
+int getKm(Graph G, int v1, int v2){//Restituisce i km dell'arco (v1,v2) appartenente al grafo G, -1 altrimenti
+    int km = 0;
+    if(!isEmpty(G)){
+        if(containsEdge(G,v1,v2)){
+            List e = G->adj[v1];
+            int trovato = 0;
+            while((e!=NULL)&&(trovato==0)){
+                if(e->target==v2){ //vuol dire che ho trovato il vertice nella lista d'adiacenza di v1 e quindi l'arco (v1,v2);
+                    km = e->km;
+                    trovato = 1;
+                }
+                else{
+                    e = e->next;
+                }
+            }
+        }else{
+            puts("L'arco non e' contenuto nel grafo, impossibile ottenere peso,sara' restituito 0.\n");
+        }
+    }
+    return km;
+}
+
+void setPrice(Graph G, int v1, int v2,int price){//Assegna il peso 'price' all'arco (v1,v2) appartenente al grafo G, 0 altrimenti
+    if(!isEmpty(G)){
+        if(containsEdge(G,v1,v2)){
+            List e = G->adj[v1];
+            int trovato = 0;
+            while((e!=NULL)&&(trovato==0)){
+                if(e->target==v2){ //vuol dire che ho trovato il vertice nella lista d'adiacenza di v1 e quindi l'arco (v1,v2);
+                    e->price=price;
+                    trovato = 1;
+                }
+                else{
+                    e = e->next;
+                }
+            }
+        }else{
+            puts("L'arco non e' contenuto nel grafo, impossibile assegnare peso.\n");
+        }
+    }
+}
+
+int getPrice(Graph G, int v1, int v2){//Restituisce il peso dell'arco (v1,v2) appartenente al grafo G, 0 altrimenti
+    int price = 0;
+    if(!isEmpty(G)){
+        if(containsEdge(G,v1,v2)){
+            List e = G->adj[v1];
+            int trovato = 0;
+            while((e!=NULL)&&(trovato==0)){
+                if(e->target==v2){ //vuol dire che ho trovato il vertice nella lista d'adiacenza di v1 e quindi l'arco (v1,v2);
+                    price = e->price;
+                    trovato = 1;
+                }
+                else{
+                    e = e->next;
+                }
+            }
+        }else{
+            puts("L'arco non e' contenuto nel grafo, impossibile ottenere peso,sara' restituito 0.\n");
+        }
+    }
+    return price;
+}
+
+
 //magari farlo a void
 List removeEdge(Graph G, int source, int target) {
     printf("\nInizio rimozione Arco (%d,%d).\n",source,target);
