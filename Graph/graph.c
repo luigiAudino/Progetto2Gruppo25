@@ -115,7 +115,6 @@ Graph initGraph(int nodes_count) { //crea un grafo vuoto
 }
 
 
-
 Graph setGraph(Graph G){ //settaggio a NULL della lista d'adiacenza e del vettore di nomi
     for(int i=0;i<G->nodes_count;i++){
         G->adj[i]=NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
@@ -151,10 +150,14 @@ void printGraph(Graph G) {
     printGraphAux(G);
     printf("\n\n");
 }
+
+
+int isEmpty(Graph G){ // Se il puntatore al grafo e' NULL, quindi il grafo e' VUOTO (non e' allocato nulla) restituisce 1, 0 altrimenti
+    return (G==NULL);
+}
 /*______________________________________________________________________*/
 
-///Funzioni del vettore che contiene le informazioni associate ad ogni vertice del grafo
-
+/*Funzioni del vettore che contiene le informazioni associate ad ogni vertice del grafo---------------------------------------------------------*/
 //aggiunge una posizione vuota nel vettore delle infoVertex, da usare quando si aggiunge un vertice/nodo al grafo
 void addInfoVertex(Graph G){
     if (G != NULL) {
@@ -168,25 +171,22 @@ void addInfoVertex(Graph G){
             G->infoVertex[i].cityPopularPoints=old[i].cityPopularPoints;
         }
         G->nodes_count += 1;
-        //G->infoVertex[G->nodes_count-1] = NULL;
     }
 }
 
-
-//rimuove una posizione nel vettore dei nomi, è usata nel removeNodo
+//rimuove le informazioni del nodo cioe' una posizione nel vettore dei nomi corrispondente al nodo 'n' in input
+//e' richiamata in removeNodo
 void removeInfoVertex(Graph G,int n){
     int i = 0;
     int x = 0;
+    printf("Nome corrispondente al nodo %d e' %s\n",n,G->infoVertex[n].name);
     Vertex* old = G->infoVertex;
-    G->infoVertex = (Vertex*)calloc(G->nodes_count-1, sizeof(Vertex));
+    G->infoVertex = (Vertex*)malloc((G->nodes_count-1)* sizeof(Vertex));
     for(i=0;i<G->nodes_count;i++){
         if (i != n) {
-            //char prova[50];
-            //printf("\nprova %s\n",prova);
-            //printf("old %s\n",old[i]);
-            //printf("vectorname %s\n",G->vectorNames[x]);
-            //strcpy(prova,old[i]);
+            //printf("\nx=%d i=%d\nIl valore vecchio di %d e' %s\n",x,i,i,old[i].name);
             strcpy(G->infoVertex[x].name,old[i].name);
+            //printf("infoVertex[%d] NUOVO = %s\n\n",x,G->infoVertex[x].name);
             G->infoVertex[x].key=old[i].key;
             G->infoVertex[x].cityPopularPoints=old[i].cityPopularPoints;
             x++;
@@ -198,7 +198,7 @@ void removeInfoVertex(Graph G,int n){
     free(old);
 }
 
-//NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile di 'name' alla variabile di 'vectorNames', NON AVVIENE LA COPIA
+//NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile, NON AVVIENE LA COPIA del contenuto
 void setNodeName(Graph G,int nVertex, char name[]){ //associa il nome al vertice dato in ingresso
     if((nVertex>=0)&&(nVertex<=G->nodes_count)){
         strcpy(G->infoVertex[nVertex].name,name);
@@ -212,33 +212,32 @@ void setNodeName(Graph G,int nVertex, char name[]){ //associa il nome al vertice
 void printGraphWithNames(Graph G){
     int ne = 0;//numero totale degli archi
     if(G!=NULL){
-        printf("Il grafo ha %d vertici\n",G->nodes_count);
+        printf("[INIZIO STAMPA GRAFO]\nIl grafo ha %d vertici\n\n",G->nodes_count);
         for(int i = 0;i<G->nodes_count;i++){
-            printf("Vertice: [%s] -> ",G->infoVertex[i].name);
+            printf("Vertice: [%d/%s] -> ",i,G->infoVertex[i].name);
             List e = G->adj[i];
-            while(e!=NULL){//adesso qui scorriamo la lista puntata da 'e', cioè una lista di Edge, 'e' è un EdgePtr
-                        printf("[V:%s PREZZO:%d KM:%d]; ",G->infoVertex[e->target].name,e->price,e->km);
-                        ne=ne+1; //Numero di elementi, cioè numero totale di archi
+            while(e!=NULL){//adesso qui scorriamo la lista puntata da 'e', cioe' una lista di Archi
+                        printf("[V:%d/%s  PREZZO:%d   KM:%d]; ",e->target,G->infoVertex[e->target].name,e->price,e->km);
+                        ne=ne+1; //Numero di elementi, cioe' numero totale di archi
                         e= e->next; //procediamo al prossimo puntatore nella lista
                     }
                     puts("\n");
             }
-            printf("++++Il grafo PESATO ha %d archi++++\n\n",ne);
+            printf("Il grafo ha %d archi\n[FINE STAMPA GRAFO]\n",ne);
         }
         else {
-            puts("Il grafo è vuoto");
+            puts("Il grafo e' vuoto");
         }
 }
 
 
 
-
 /*funzioni degli archi------------------------------*/
-//farlo a void
+//magari farlo a void
 List removeEdge(Graph G, int source, int target) {
     printf("\nInizio rimozione Arco (%d,%d).\n",source,target);
-    if (G==NULL){ //Se G!=NULL il grafo è allocato e punta a qualcosa, pure se vuoto, si va avanti
-            puts("Il grafo non è allocato, impossibile aggiungere un arco.");//Se G==NULL esisterebbe solo il puntatore a grafo che punta a NULL,
+    if (G==NULL){ //Se G!=NULL il grafo e' allocato e punta a qualcosa, pure se vuoto, si va avanti
+            puts("Il grafo non e' allocato, impossibile aggiungere un arco.");//Se G==NULL esisterebbe solo il puntatore a grafo che punta a NULL,
             //return;                                                                //quindi dovremmo creare(quindi allocare in mem) un nuovo grafo da far puntare a G
     }else if(existVertici(G,source,target)==1){ //I vertici che passiamo alla funzione devono esistere nel grafo
             if(containsEdge(G,source,target)==0){ //se NON contiene l'arco allora return
@@ -257,15 +256,16 @@ List removeEdge(Graph G, int source, int target) {
     return G->adj[source];
 }
 
-void addEdge(Graph G, int source, int target, int price, int km) { //
+//Aggiunge un arco al grafo coi rispettivi controlli
+void addEdge(Graph G, int source, int target, int price, int km) {
     printf("Inizio inserimento arco (%d,%d) con prezzo:%d e km:%d nel grafo PESATO.\n",source,target,price,km);
-    if (G==NULL){ //Se G!=NULL il grafo è allocato e punta a qualcosa, pur se vuoto, si va avanti
-            puts("Il grafo non è allocato, impossibile aggiungere un arco.");
+    if (G==NULL){ //Se G!=NULL il grafo e' allocato e punta a qualcosa, pur se vuoto, si va avanti
+            puts("Il grafo non e' allocato, impossibile aggiungere un arco.");
             return;     //Se G==NULL esisterebbe solo il puntatore a grafo che punta a NULL, quindi dovremmo creare(quindi allocare in mem) un nuovo grafo da far puntare a G
     }
     if((existVertici(G,source,target)==1)){
-        if(containsEdge(G,source,target)==1){ //se contiene già l'arco
-            printf("L'arco (%d,%d) e' già presente nel grafo.\n",source,target);
+        if(containsEdge(G,source,target)==1){ //se contiene gia' l'arco
+            printf("L'arco (%d,%d) e' gia' presente nel grafo.\n",source,target);
             }
             else{
                 if (source != target) { //evita archi ciclici
@@ -279,23 +279,22 @@ void addEdge(Graph G, int source, int target, int price, int km) { //
     }
 }
 
-
-//Ritorna 1 se l'arco(vertice1,vertice2) è presente(contenuto) nel grafo, 0 altrimenti, E CONTROLLA CHE I VERTICI SIANO COMPRESI NEL GRAFO (cioè >0 e <n-1)
+//Ritorna 1 se l'arco(vertice1,vertice2) e' presente(contenuto) nel grafo, 0 altrimenti, E CONTROLLA CHE I VERTICI SIANO COMPRESI NEL GRAFO (cioe' >0 e <n-1)
 int containsEdge(Graph G, int vertice1, int vertice2){
         int trovato = 0;
         List e; //puntatore ad un arco/nodo
-        if (isEmpty(G)){ // se è vuoto vale 1 e ritorna 0 perchè sicuramente l'arco non è presente
+        if (isEmpty(G)){ // se e' vuoto vale 1 e ritorna 0 perche' sicuramente l'arco non e' presente
                 puts("grafo vuoto");
         }
         else if((existVertici(G,vertice1,vertice2))==0) {
                 puts("CONTROLLO DEI VERTICI DEL CONTAINSEDGE NON SUPERATO,non esiste un arco di vertici non del grafo\n");
                 return trovato;
         }
-        else if(G->adj[vertice1]!=NULL){ //Se il puntatore contenuto nella pos. 'vertice1' punta a NULL, vuol dire che la sua lista è vuota e non esiste l'arco tra v1 e v2
-                                       //Se DIVERSO da NULL, il puntatore punta ad almeno un nodo e quindi possiamo andare a controllare se c'è il vertice v2
-               e = G->adj[vertice1];//copiamo il puntatore che è puntato alla posizione i
+        else if(G->adj[vertice1]!=NULL){ //Se il puntatore contenuto nella pos. 'vertice1' punta a NULL, vuol dire che la sua lista e' vuota e non esiste l'arco tra v1 e v2
+                                       //Se DIVERSO da NULL, il puntatore punta ad almeno un nodo e quindi possiamo andare a controllare se c'e' il vertice v2
+               e = G->adj[vertice1];//copiamo il puntatore che e' puntato alla posizione i
 
-                    while((e!=NULL)&&(trovato==0)){//adesso qui scorriamo la lista puntata da 'e', cioè una lista di Edge, 'e' è un EdgePtr = LIST
+                    while((e!=NULL)&&(trovato==0)){//adesso qui scorriamo la lista puntata da 'e', cioe' una lista di Edge, 'e' e' un EdgePtr = LIST
                         if(e->target==vertice2){
                             trovato = 1;
                         }
@@ -321,24 +320,7 @@ int existVertici(Graph G, int v1,int v2){
 /*fine funzioni archi*/
 
 
-int isEmpty(Graph G){ // Se il puntatore al grafo è NULL, quindi il grafo è VUOTO (non è allocato nulla) restituisce 1, 0 altrimenti
-    return (G==NULL);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*Funzioni dei nodi/vertici---------------------------*/
 void addNode(Graph G) {
     if (G != NULL) {
         List * old=G->adj;
@@ -350,11 +332,10 @@ void addNode(Graph G) {
         G->nodes_count += 1;
         G->adj[G->nodes_count-1] = NULL;
         addInfoVertex(G); //aggiunta di un nuovo nodo nel vettore di informazioni
-        //addPosizioneNelVettoreDeiPunteggiGettonati
     }
 }
 
-
+//rimuove il nodo corrispondente alla posizione del nodo da rimuovere, es: nodo da rimuovere = 3, rimuove il nodo di posizione 3
 void removeNode(Graph G, int node_to_remove) {
     if (G != NULL) {
         printf("Inizio rimozione nodo %d dal grafo.\n",node_to_remove);
@@ -372,12 +353,9 @@ void removeNode(Graph G, int node_to_remove) {
             }
         }
         free(tmp);
-        printf("%d")
         removeInfoVertex(G,node_to_remove); //rimozione del nodo anche dal vettore di informazioni
-        G->nodes_count -= 1;
-
-
-        printf("Rimozione nodo %d completata.\n",node_to_remove);
+        G->nodes_count = G->nodes_count - 1;
+        printf("Rimozione nodo %d completata.\n\n",node_to_remove);
     }
 }
 
@@ -395,5 +373,5 @@ List checkListRemoval(List L, int node_to_remove) {
     }
     return L;
 }
-
+/*fine funzioni dei nodi/vertici*/
 
