@@ -33,8 +33,9 @@ void printGraph(Graph G);// Stampa il grafo
 
 
 /*funzioni del vettore di nomi*/
-void removeNameFromVector(Graph G,int n); //rimuove il nome di un vertice dal vettore
-void setNameVertexInVector(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
+void addInfoVertex(Graph G); //aggiunge un rigo al vettore di informazioni sul vertice
+void removeInfoVertex(Graph G,int n); //rimuove il nome di un vertice dal vettore
+void setNodeName(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
 void printGraphWithNames(Graph G);// stampa il grafo coi nomi associati ai vertici numerici
 
 

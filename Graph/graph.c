@@ -151,30 +151,34 @@ void printGraph(Graph G) {
     printGraphAux(G);
     printf("\n\n");
 }
-
 /*______________________________________________________________________*/
-//aggiunge una posizione vuota nel vettore dei nomi, è usata nell'addNode
-/*
-void addNameInVector(Graph G){
+
+///Funzioni del vettore che contiene le informazioni associate ad ogni vertice del grafo
+
+//aggiunge una posizione vuota nel vettore delle infoVertex, da usare quando si aggiunge un vertice/nodo al grafo
+void addInfoVertex(Graph G){
     if (G != NULL) {
-        char** old=G->vectorNames;
+        Vertex* old = G->infoVertex;
         int i=0;
         //G->adj = (List *)realloc(G->adj, (G->nodes_count+1) * sizeof(List));
-        G->vectorNames = (char**)malloc((G->nodes_count+1) * sizeof(char*));
-        for(i=0;i<G->nodes_count;i++)
-            G->infoVertex[i].name=old[i];
+        G->infoVertex = (Vertex*)malloc((G->nodes_count+1)*sizeof(Vertex));
+        for(i=0;i<G->nodes_count;i++){ //per ogni campo nuovo del vettore aggiungiamo i vecchi valori
+            strcpy(G->infoVertex[i].name,old[i].name);
+            G->infoVertex[i].key=old[i].key;
+            G->infoVertex[i].cityPopularPoints=old[i].cityPopularPoints;
+        }
         G->nodes_count += 1;
-        G->vectorNames[G->nodes_count-1] = NULL;
+        //G->infoVertex[G->nodes_count-1] = NULL;
     }
 }
 
 
 //rimuove una posizione nel vettore dei nomi, è usata nel removeNodo
-void removeNameFromVector(Graph G,int n){
+void removeInfoVertex(Graph G,int n){
     int i = 0;
     int x = 0;
-    char** old = G->vectorNames;
-    G->vectorNames = (char** )calloc(G->nodes_count-1, sizeof(char*));
+    Vertex* old = G->infoVertex;
+    G->infoVertex = (Vertex*)calloc(G->nodes_count-1, sizeof(Vertex));
     for(i=0;i<G->nodes_count;i++){
         if (i != n) {
             //char prova[50];
@@ -182,28 +186,29 @@ void removeNameFromVector(Graph G,int n){
             //printf("old %s\n",old[i]);
             //printf("vectorname %s\n",G->vectorNames[x]);
             //strcpy(prova,old[i]);
-            G->vectorNames[x]=malloc(50*sizeof(char));
-            strcpy(G->vectorNames[x],old[i]);
+            strcpy(G->infoVertex[x].name,old[i].name);
+            G->infoVertex[x].key=old[i].key;
+            G->infoVertex[x].cityPopularPoints=old[i].cityPopularPoints;
             x++;
         }
-        else{
-            free(old[i]);
-        }
+        /*else{
+            //free(old);
+        }*/
     }
     free(old);
 }
 
 //NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile di 'name' alla variabile di 'vectorNames', NON AVVIENE LA COPIA
-void setNameVertexInVector(Graph G,int nVertex, char name[]){ //associa il nome al vertice dato in ingresso
+void setNodeName(Graph G,int nVertex, char name[]){ //associa il nome al vertice dato in ingresso
     if((nVertex>=0)&&(nVertex<=G->nodes_count)){
-    strcpy(G->vectorNames[nVertex],name);
+        strcpy(G->infoVertex[nVertex].name,name);
     }
     else{
         printf("il vertice %d non appartiene al grafo, impossibile associare il nominativo.\n",nVertex);
     }
 }
-*/
 
+//stampa del grafo coi nomi
 void printGraphWithNames(Graph G){
     int ne = 0;//numero totale degli archi
     if(G!=NULL){
@@ -226,7 +231,9 @@ void printGraphWithNames(Graph G){
 }
 
 
-/*funzioni degli archi*/
+
+
+/*funzioni degli archi------------------------------*/
 //farlo a void
 List removeEdge(Graph G, int source, int target) {
     printf("\nInizio rimozione Arco (%d,%d).\n",source,target);
@@ -342,7 +349,7 @@ void addNode(Graph G) {
             G->adj[i]=old[i];
         G->nodes_count += 1;
         G->adj[G->nodes_count-1] = NULL;
-        //addNameInVector(G);
+        addInfoVertex(G); //aggiunta di un nuovo nodo nel vettore di informazioni
         //addPosizioneNelVettoreDeiPunteggiGettonati
     }
 }
@@ -365,8 +372,11 @@ void removeNode(Graph G, int node_to_remove) {
             }
         }
         free(tmp);
-//        removeNameFromVector(G,node_to_remove);/**/
+        printf("%d")
+        removeInfoVertex(G,node_to_remove); //rimozione del nodo anche dal vettore di informazioni
         G->nodes_count -= 1;
+
+
         printf("Rimozione nodo %d completata.\n",node_to_remove);
     }
 }
