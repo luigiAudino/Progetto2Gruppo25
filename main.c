@@ -63,7 +63,7 @@ void menu() {
 
                 case 3: {
                     if (countUser(userTree) == 0)
-                        printf("Non è presente alcun user!\n");
+                        printf("Non e' presente alcun user!\n");
                     else
                         getAllUserPrint(userTree);
 
@@ -72,7 +72,7 @@ void menu() {
 
                 case 4: {
                     if (countAdmin(userTree) == 0)
-                        printf("Non è presente alcun admin!\n");
+                        printf("Non e' presente alcun admin!\n");
                     else
                         getAllAdminPrint(userTree);
 
@@ -114,7 +114,7 @@ void menu() {
 
         case 3: {
             if(countUser(userTree) == 0)
-                printf("Non è presente alcun user!\n");
+                printf("Non e' presente alcun user!\n");
             else
                 getAllUserPrint(userTree);
 
@@ -123,7 +123,7 @@ void menu() {
 
         case 4: {
             if(countAdmin(userTree) == 0)
-                printf("Non è presente alcun admin!\n");
+                printf("Non e' presente alcun admin!\n");
             else
                 getAllAdminPrint(userTree);
 
