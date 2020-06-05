@@ -1,5 +1,6 @@
 #ifndef Graph_Graph_h
 #define Graph_Graph_h
+#include "stdbool.h"
 #include "../List/list.h"
 
 struct vertex{
@@ -66,7 +67,8 @@ void addEdge(Graph G, int source, int target, int price, int km); // Aggiunge al
 
 int containsEdge(Graph G, int vertice1, int vertice2); // ritorna 1 se l'arco formato dai 2 vertici è contenuto nel grafo
 
-int existVertici(Graph G, int v1,int v2); //Ritorna 1 se i due vertici sono compresi tra i vertici del grafo, 0 altr.
+bool existVertici(Graph G, int v1,int v2); //Ritorna 1 se i due vertici sono compresi tra i vertici del grafo, 0 altr.
+
 /*-----------------------------------*/
 
 
