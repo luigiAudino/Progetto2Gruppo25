@@ -8,14 +8,14 @@
 
 /* Macros for defining messages and other practical abbriviations */
 #ifdef DEBUG
-    #define DEBUG_MSG(var,val) printf("[DEBUG_MSG] %s = %d\n",var,val);
+#define DEBUG_MSG(var,val) printf("[DEBUG_MSG] %s = %d\n",var,val);
     #define PtrToChar(t,fun) \
             char t = *(data->str + data->pos);\
             data->pos++;\
             printf("%s -> \t\tt = %c\n",fun, t);
 #else
-    #define DEBUG_MSG(var,val)
-    #define PtrToChar(t,fun) \
+#define DEBUG_MSG(var,val)
+#define PtrToChar(t,fun) \
             char t = *(data->str + data->pos);\
             data->pos++;
 #endif /* ifndef DEBUG */
@@ -24,7 +24,7 @@
 #define MAX_STATES 10
 
 
- typedef enum _states_t {
+typedef enum _states_t {
     st_init = 0,
     st_local_part= 1,
     st_local_part_dot= 2,
@@ -34,7 +34,7 @@
     st_sub_domain = 6,
     st_allok = 7,
     st_error = 8,
- }states_t ;
+}states_t ;
 
 
 typedef struct checkMail {
@@ -78,17 +78,17 @@ int isEmail(char *str)
     typedef void (*fptr)(checkMail *data );
     /* Init the struct with initial data */
     checkMail data = {
-        .state = st_init,
-        .str = str,
-        .pos = 0,
-        .length = strlen(str),
-        .domain_chars = strlen(str),
-        /* .local_part_ok = 0, */
-        /* .domain_ok = 0, */
+            .state = st_init,
+            .str = str,
+            .pos = 0,
+            .length = strlen(str),
+            .domain_chars = strlen(str),
+            /* .local_part_ok = 0, */
+            /* .domain_ok = 0, */
     };
-    #ifdef DEBUG
-        printf("data.str = %s length = %li\n",data.str, data.length);
-    #endif
+#ifdef DEBUG
+    printf("data.str = %s length = %li\n",data.str, data.length);
+#endif
 
     /* Create an function pointer array. */
     fptr stateMachine[MAX_STATES];
@@ -108,9 +108,9 @@ int isEmail(char *str)
         stateMachine[data.state](&data);
         if (data.state == st_error)
         {
-            #ifdef DEBUG
-                printf("There was an ERROR %d\n", data.state);
-            #endif
+#ifdef DEBUG
+            printf("There was an ERROR %d\n", data.state);
+#endif
             return 0;
         }
 
@@ -285,9 +285,9 @@ void em_domain_dot(checkMail *data)
     PtrToChar(t, "em_domain_dot")
     DEBUG_MSG("data->domain_chars=",(int)data->domain_chars)
     unsigned long int len = data->pos - data->domain_chars - 1;
-    #ifdef DEBUG
-        int test = (2 <= len)&&( len <= 4);
-    #endif
+#ifdef DEBUG
+    int test = (2 <= len)&&( len <= 4);
+#endif
     DEBUG_MSG("Len ",(int)len)
     DEBUG_MSG("is the subdomain between 2 and 4 characters ",test)
     if (4 < len) {
