@@ -13,6 +13,7 @@ CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o: ../Graph/graph.c
 CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o: ../Graph/graph.h
 CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o: ../Input/inputReader.h
 CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o: ../List/list.h
+CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o: ../Util/util.h
 
 CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o: ../Input/inputReader.c
 CMakeFiles/Progetto2Gruppo25.dir/Input/inputReader.c.o: ../Input/inputReader.h
@@ -32,7 +33,12 @@ CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../BST/tree.h
 CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../User/user.c
 CMakeFiles/Progetto2Gruppo25.dir/User/user.c.o: ../User/user.h
 
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o: ../Util/util.c
+CMakeFiles/Progetto2Gruppo25.dir/Util/util.c.o: ../Util/util.h
+
 CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../BST/tree.h
+CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../Graph/graph.h
+CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../List/list.h
 CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../User/user.h
 CMakeFiles/Progetto2Gruppo25.dir/main.c.o: ../main.c
 

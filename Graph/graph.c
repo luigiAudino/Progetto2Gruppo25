@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include <malloc.h>
+//#include <malloc.h>
 #include <ctype.h>
 #include <string.h>
 #include "../Util/util.h"
