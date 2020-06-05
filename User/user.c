@@ -1,9 +1,11 @@
 #include "user.h"
+#include "../CheckMail/checkMail.h"
 
 User signIn(UserTree userTree) {
     int roleChoised;
     bool isRight = true, isPresent = false;
     char confirmPassword[MAX_WORDS];
+    int checkMailRes = -1;
 
     User user = (User) malloc(sizeof(struct usr));
 
@@ -36,16 +38,21 @@ User signIn(UserTree userTree) {
 
     do {
         if (!isRight)
-            printf("Esiste già un %s registrato con %s\n", user->role, user->email);
+            if (checkMailRes == 1) {
+                printf("Esiste già un %s registrato con %s\n", user->role, user->email);
+            } if (checkMailRes == 0){
+                printf("La mail inserita non è accettabile a causa di caratteri non idonei\n");
+            }
 
         printf("Inserisci email\n");
         fflush(stdin);
         scanf("%s", user->email);
 
         isPresent = emailIsPresent(userTree, user);
+        checkMailRes = isEmail(user->email);
 
         isRight = false;
-    } while (isPresent);
+    } while (isPresent || checkMailRes == 0);
 
     isRight = true;
 
@@ -75,7 +82,7 @@ void printUser(User user) {
     printf("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n");
 }
 
-void login(UserTree userTree) {
+void login(UserTree userTree, int *ptrRole) {
     bool isRight = true;
     int roleChoised;
     User user = NULL;
@@ -102,13 +109,17 @@ void login(UserTree userTree) {
     scanf("%s", user->password);
 
     if (roleChoised == 1) {
-        if (searchUser(userTree, user) == true)
+        if (searchUser(userTree, user) == true) {
             printf("Login OK\n");
+            *ptrRole = roleChoised;
+        }
         else
             printf("Login KO\n");
     } else {
-        if (searchAdmin(userTree, user) == true)
+        if (searchAdmin(userTree, user) == true){
             printf("Login OK\n");
+            *ptrRole = roleChoised;
+    }
         else
             printf("Login KO\n");
     }

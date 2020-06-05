@@ -4,6 +4,7 @@
 #include "stdio.h"
 #include "../BST/tree.h"
 
+
 #define MAX_WORDS 256
 #define USER "user"
 #define ADMIN "admin"
@@ -27,7 +28,7 @@ struct TTreeUser {
 typedef struct TTreeUser* UserTree;
 
 //Login
-void login(UserTree userTree);
+void login(UserTree userTree, int *ptrRole);
 
 //Registrazione
 User signIn(UserTree userTree);
