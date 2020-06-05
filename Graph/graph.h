@@ -22,6 +22,7 @@ struct TGraph {
 typedef struct TGraph* Graph;
 
 
+
 Graph initGraph(int nodes_count);// Inizializza un nuovo grafo vuoto specificando in ingresso quanti nodi ci saranno nel grafo ed in contemporanea il vettore dei nomi delle città associate ai nodi
 
 Graph setGraph(Graph G); //inizializza null i puntatori del vettore delle liste d'adiacenza e del vettore parallelo che contiene i nomi dei vertici
@@ -30,19 +31,34 @@ void freeGraph(Graph G); // Dealloca l'intero grafo
 
 void printGraph(Graph G);// Stampa il grafo
 
+int isEmpty(Graph G); //ritorna 1 se il grafo e' VUOTO quindi punta a NULL, 0 altrimenti
 
 
-/*funzioni del vettore di nomi*/
-void removeNameFromVector(Graph G,int n); //rimuove il nome di un vertice dal vettore
-void setNameVertexInVector(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
+
+/*funzioni (infoVertex) del vettore contenente le info dei vertici*/
+void addInfoVertex(Graph G); //aggiunge un rigo al vettore di informazioni sul vertice
+void removeInfoVertex(Graph G,int n); //rimuove le informazioni di un vertice dal vettore
+
+void setNodeName(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
+char* getNodeName(Graph G,int nVertex);//Ritorna il nome del nodo(vertice/citta') dato in input
+int getNodeFromName(Graph G,char name[]);//Ritorna il corrispettivo numerico del nodo(vertice/citta') dato in input come nome
+
+void setNodeCityPopularPoints(Graph G,int nVertex,int points);//Assegna i punti 'gettonati' al nodo(vertice/citta') dato in input
+int getNodeCityPopularPoints(Graph G, int nVertex);//Ritorna i punti 'gettonati' del nodo(vertice/citta') dato in input
+
 void printGraphWithNames(Graph G);// stampa il grafo coi nomi associati ai vertici numerici
 
 
 
 
-
-
 /*funzioni degli archi*/
+void setKm(Graph G, int v1, int v2,int km);//Assegna il peso 'km' all'arco (v1,v2) appartenente al grafo G, 0 altrimenti
+
+int getKm(Graph G, int v1, int v2);//Restituisce i km dell'arco (v1,v2) appartenente al grafo G, 0 altrimenti
+
+void setPrice(Graph G, int v1, int v2,int price);//Assegna il peso 'price' all'arco (v1,v2) appartenente al grafo G, 0 altrimenti
+
+int getPrice(Graph G, int v1, int v2);//Restituisce il peso dell'arco (v1,v2) appartenente al grafo G, 0 altrimenti
 
 List removeEdge(Graph G, int source, int target);// Rimuove un arco specificando sorgente e target,restituisce la lista degli archi modifcata
 
@@ -53,22 +69,18 @@ int containsEdge(Graph G, int vertice1, int vertice2); // ritorna 1 se l'arco fo
 int existVertici(Graph G, int v1,int v2); //Ritorna 1 se i due vertici sono compresi tra i vertici del grafo, 0 altr.
 /*-----------------------------------*/
 
-int isEmpty(Graph G); //ritorna 1 se il grafo e' VUOTO quindi punta a NULL, 0 altrimenti
 
 
 
-
-
-
-
-
-// Aggiungi un nodo
+/*Funzioni dei nodi/vertici*/
+// Aggiungi un nodo al grafo, e richiama addInfoVertex che aggiunge una posizione al vettore di informazioni associate al nuovo nodo
 void addNode(Graph G);
 
-// Rimuovi un nodo dal grafo, sistemando gli indici e riallocando la memoria,E RIMUOVE ANCHE IL NOME ASSOCIATO AD ESSO NEL VETTORE DI NOMI
+// Rimuovi un nodo dal grafo, sistemando gli indici e riallocando la memoria,e richiama removeInfoVertex per rimuovere le info del nodo rimosso
 void removeNode(Graph G, int node_to_remove);
 
 List checkListRemoval(List L, int node_to_remove);//rimuove il nodo contentente l'intero 'node_to_remove' dalla lista L e restituisce il puntatore alla lista
+
 
 /*
 // Crea un nuovo grafo e lo popola in base alla scelta effettuata dal menu
