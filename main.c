@@ -22,8 +22,6 @@ int main() {
     g = initGraph(6); //allochiamo la memoria per le variabili del grafo
     g = setGraph(g); //assegnamo i valori ai vertici ecc..
 
-    addNode(g);
-
     //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
@@ -49,6 +47,26 @@ int main() {
 
     printGraphWithNames(g);
     /*fine main grafi*/
+
+/*
+
+    setNodeCityPopularPoints(g,2,100);
+    setNodeCityPopularPoints(g,3,100000);
+    setNodeCityPopularPoints(g,5,100);
+
+    printCityPopularPoints(g);
+    printNodeLinks(g,3);
+
+    int gett = mostPopularCityFrom(g,3);
+
+    printf("\nScelto nodo piu' gettonato %d=%s",gett,g->infoVertex[gett].name);
+
+    printGraphWithNames(g);
+
+*/
+
+
+
     userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
     menu();
@@ -98,7 +116,7 @@ void menu() {
             printf("\nNon ci sono operazioni possibili attualmente, ma ti trovi nel menu' dedicato all'utente\n");
         } else {
             //ADMIN
-            printf("\nSeleziona:\n1 - Aggiungi Localita'\n2 - Aggiungi tratta\n3 - Visualizza Utenti\n4 - Visualizza Admin\n5 - Upload users\n6 - Upload admins\n7 - Exit\n");
+            printf("\nSeleziona:\n3 - Visualizza Utenti\n4 - Visualizza Admin\n5 - Upload users\n6 - Upload admins\n7 - Exit\n");
             scanf("%d", &choice);
 
             switch (choice) {
