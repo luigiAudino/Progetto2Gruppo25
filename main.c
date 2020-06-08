@@ -5,6 +5,7 @@
 #include "List/list.h"
 #include "User/user.h"
 #include "CheckMail/checkMail.h"
+#include "Booking/booking.h"
 
 void menu();
 void backToMenu();
@@ -16,7 +17,7 @@ Graph g = NULL ; //allochiamo la memoria per le variabili del grafo
 
 int main() {
 
-   /*inizio main grafi*/
+    /*inizio main grafi*/
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
     g = initGraph(6); //allochiamo la memoria per le variabili del grafo
@@ -91,12 +92,13 @@ void menu() {
 
     switch (choice) {
         case 1: {
-            login(userTree,ptrRole);
+            user = login(userTree);
             break;
         }
 
         case 2: {
-            userTree = insertUserNodeTree(userTree, signIn(userTree));
+            user = signIn(userTree);
+            userTree = insertUserNodeTree(userTree, user);
             break;
         }
         case 7: {
@@ -109,6 +111,16 @@ void menu() {
             break;
         }
     }
+
+    City city = NULL;
+
+    char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
+
+    for(int i=0; i<7; i++) {
+        city = enqueueCity(city, cities[i]);
+    }
+
+    printBooking(city);
 
     if (roleChoised == 1 || roleChoised == 2) {
         if (roleChoised == 1) {

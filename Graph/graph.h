@@ -46,7 +46,7 @@ int mostPopularCityFrom(Graph G,int nodeDepartureCity);//[META PIU' GETTONATA]Ri
 
 void printNodeLinks(Graph G, int node);//Stampa tutti i nodi con cui e' collegato/ha una tratta il nodo in ingresso
 int existLinkDfs(Graph G,int v1,int v2);//Ritorna 1 se e' possibile raggiungere un vertice v2 partendo da v1 pur passando da altri vertici (quindi nelle loro liste d'adiacenza)
-void existLinkDfsDfs1(Graph G, int i, int* aux,int verticeDiDestinazione,int* val);
+void existLinkDfs1(Graph G, int i, int* aux,int verticeDiDestinazione,int* val);
 int listContainsVertex(Graph G,int v1,int v2);//Restituisce 1 se nella lista d'adiacenza del vertice v1 e' presente un nodo che ha come target=v2, 0 altrimenti
 
 /*Fine FUNZIONI ALGORITMI PRINCIPALI-----------------------------*/

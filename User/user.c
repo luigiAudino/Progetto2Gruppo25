@@ -41,8 +41,8 @@ User signIn(UserTree userTree) {
             if (checkMailRes == 1) {
                 printf("Esiste già un %s registrato con %s\n", user->role, user->email);
             } if (checkMailRes == 0){
-                printf("La mail inserita non è accettabile a causa di caratteri non idonei\n");
-            }
+            printf("La mail inserita non è accettabile a causa di caratteri non idonei\n");
+        }
 
         printf("Inserisci email\n");
         fflush(stdin);
@@ -82,7 +82,7 @@ void printUser(User user) {
     printf("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n");
 }
 
-void login(UserTree userTree, int *ptrRole) {
+User login(UserTree userTree) {//, int *ptrRole) {
     bool isRight = true;
     int roleChoised;
     User user = NULL;
@@ -109,20 +109,22 @@ void login(UserTree userTree, int *ptrRole) {
     scanf("%s", user->password);
 
     if (roleChoised == 1) {
-        if (searchUser(userTree, user) == true) {
+        if (searchUser(userTree, &user) == true) {
             printf("Login OK\n");
-            *ptrRole = roleChoised;
+            //*ptrRole = roleChoised;
         }
         else
             printf("Login KO\n");
     } else {
-        if (searchAdmin(userTree, user) == true){
+        if (searchAdmin(userTree, &user) == true){
             printf("Login OK\n");
-            *ptrRole = roleChoised;
-    }
+            //*ptrRole = roleChoised;
+        }
         else
             printf("Login KO\n");
     }
+
+    return user;
 }
 
 bool search(UserTree userTree, User user) {
@@ -136,14 +138,16 @@ bool search(UserTree userTree, User user) {
     return foundIt;
 }
 
-bool searchUser(UserTree userTree, User user) {
+bool searchUser(UserTree userTree, User *user) {
     bool isPresent = false;
 
     if (userTree != NULL) {
-        if (strcmp(userTree->user->role, USER) == 0 && userEquals(userTree->user, user))
+        if (strcmp(userTree->user->role, USER) == 0 && userEquals(userTree->user, *user)) {
             isPresent = true;
+            copyUser(userTree->user, &(*user));
+        }
         else
-            isPresent = searchUser(userTree->sx, user);
+            isPresent = searchUser(userTree->sx, &(*user));
     }
 
     return isPresent;
@@ -374,4 +378,14 @@ UserTree uploadAdmins(UserTree userTree) {
     }
 
     return userTree;
+}
+
+void copyUser(User source, User *target) {
+    if(source != NULL && target != NULL) {
+        strcpy((*target)->name, source->name);
+        strcpy((*target)->surname, source->surname);
+        strcpy((*target)->role, source->role);
+        strcpy((*target)->email, source->email);
+        strcpy((*target)->password, source->password);
+    }
 }
