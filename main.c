@@ -21,7 +21,7 @@ int main() {
     Graph g = initGraph(6); //allochiamo la memoria per le variabili del grafo
     g = setGraph(g); //assegnamo i valori ai vertici ecc..
 
-    //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
+    //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM ARCO);
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
 
@@ -46,12 +46,29 @@ int main() {
 
     printGraphWithNames(g);
     /*fine main grafi*/
+
+/*
+
+    setNodeCityPopularPoints(g,2,100);
+    setNodeCityPopularPoints(g,3,100000);
+    setNodeCityPopularPoints(g,5,100);
+
+    printCityPopularPoints(g);
+    printNodeLinks(g,3);
+
+    int gett = mostPopularCityFrom(g,3);
+
+    printf("\nScelto nodo piu' gettonato %d=%s",gett,g->infoVertex[gett].name);
+
+    printGraphWithNames(g);
+
+*/
+
+
+
     userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
     menu();
-
-
-
     return 0;
 }
 
