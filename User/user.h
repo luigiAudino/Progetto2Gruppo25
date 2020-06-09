@@ -28,7 +28,7 @@ struct TTreeUser {
 typedef struct TTreeUser* UserTree;
 
 //Login
-void login(UserTree userTree, int *ptrRole);
+User login(UserTree userTree);//, int *ptrRole);
 
 //Registrazione
 User signIn(UserTree userTree);
@@ -46,7 +46,7 @@ bool userEquals(User u1, User u2);
 bool  searchAdmin(UserTree userTree, User user);
 
 //Controlla se lo user è presente nella lista degli users
-bool searchUser(UserTree userTree, User user);
+bool searchUser(UserTree userTree, User *user);
 
 //Stampa a video tutti gli users
 void getAllUserPrint(UserTree T);
@@ -104,3 +104,6 @@ UserTree uploadUsers(UserTree userTree);
 
 //Carica una lista di admins
 UserTree uploadAdmins(UserTree userTree);
+
+//Copia l'utente source in target
+void copyUser(User source, User *target);

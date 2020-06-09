@@ -196,7 +196,6 @@ Graph presetGraph(Graph G){
     return G;
 }
 
-
 Graph initGraph(int nodes_count) { //crea un grafo vuoto
     Graph G = (Graph) malloc(sizeof(struct TGraph));
     if (G == NULL) {

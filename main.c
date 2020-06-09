@@ -15,13 +15,10 @@ int *ptrRole = &roleChoised;
 
 int main() {
 
-   /*inizio main grafi*/
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
-    Graph g = initGraph(6); //allochiamo la memoria per le variabili del grafo
     g = setGraph(g); //assegnamo i valori ai vertici ecc..
 
-    //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM ARCO);
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
 
@@ -153,12 +150,10 @@ void menu() {
 
     switch (choice) {
         case 1: {
-            login(userTree,ptrRole);
             break;
         }
 
         case 2: {
-            userTree = insertUserNodeTree(userTree, signIn(userTree));
             break;
         }
         case 7: {
