@@ -5,6 +5,7 @@
 #include "List/list.h"
 #include "User/user.h"
 #include "CheckMail/checkMail.h"
+#include "Booking/booking.h"
 
 void menu();
 void backToMenu();
@@ -12,13 +13,17 @@ void backToMenu();
 UserTree userTree = NULL;
 int roleChoised;
 int *ptrRole = &roleChoised;
+Graph g = NULL ; //allochiamo la memoria per le variabili del grafo
 
 int main() {
 
+    /*inizio main grafi*/
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
+    g = initGraph(6); //allochiamo la memoria per le variabili del grafo
     g = setGraph(g); //assegnamo i valori ai vertici ecc..
 
+    //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
 
@@ -132,7 +137,11 @@ int main() {
 
     /*userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
+
     menu();*/
+
+    //menu();
+
     return 0;
 }
 
@@ -143,6 +152,7 @@ void menu() {
     int choice;
     User user = NULL;
     roleChoised = -1;
+    char newCity [MAX_WORDS];
     //UserTree userTree = NULL;
 
     printf("\nSeleziona:\n1 - Login\n2 - Registrazione\n7 - Exit\n");
@@ -150,10 +160,13 @@ void menu() {
 
     switch (choice) {
         case 1: {
+            user = login(userTree);
             break;
         }
 
         case 2: {
+            user = signIn(userTree);
+            userTree = insertUserNodeTree(userTree, user);
             break;
         }
         case 7: {
@@ -167,6 +180,16 @@ void menu() {
         }
     }
 
+    City city = NULL;
+
+    char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
+
+    for(int i=0; i<7; i++) {
+        city = enqueueCity(city, cities[i]);
+    }
+
+    printBooking(city);
+
     if (roleChoised == 1 || roleChoised == 2) {
         if (roleChoised == 1) {
             //USER
@@ -177,6 +200,41 @@ void menu() {
             scanf("%d", &choice);
 
             switch (choice) {
+
+                case 1: {
+
+                    addNode(g);
+                    printf ("- - - - - -\nInserisci il nome della nuova località da aggiungere -> ");
+                    //fgets(newCity, MAX_WORDS, stdin);
+                    scanf("%s",newCity);
+                    setNodeName(g,g->nodes_count -1,newCity);
+                    printf("\n\n- - - -\n - - - -\n");
+                    printGraphWithNames(g);
+
+                    break;
+                }
+
+                case 2: {
+                    //appositamente nomi differenti
+                    int departure;
+                    int destination;
+                    int distance;
+                    int rate;
+
+                    printGraphWithNames(g);
+                    printf("Inserisci il numero relativo alla località di PARTENZA \n-> ");
+                    scanf ("%d", &departure);
+                    printf("\nInserisci il numero relativo alla località di ARRIVO \n-> ");
+                    scanf ("%d", &destination);
+                    printf("Inserisci la distanza in km della tratta tra le due località \n-> ");
+                    scanf ("%d", &distance);
+                    printf("\nInserisci il prezzo di tale tratta \n-> ");
+                    scanf ("%d", &rate);
+                    addEdge(g,departure,destination,distance,rate);
+                    printGraphWithNames(g);
+
+                    break;
+                }
 
                 case 3: {
                     if (countUser(userTree) == 0)
