@@ -5,7 +5,7 @@
 #include "List/list.h"
 #include "User/user.h"
 #include "CheckMail/checkMail.h"
-#include "Booking/booking.h"
+//#include "Booking/booking.h" //commentata poiche' aggiunta alla libreria del grafo
 
 void menu();
 void backToMenu();
@@ -17,7 +17,7 @@ Graph g = NULL ; //allochiamo la memoria per le variabili del grafo
 
 int main() {
 
-    /*inizio main grafi*/
+    //Inizio MAIN Grafo
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
     g = initGraph(6); //allochiamo la memoria per le variabili del grafo
@@ -47,95 +47,32 @@ int main() {
     }
 
     printGraphWithNames(g);
-    /*fine main grafi*/
+
+    //Fine MAIN Grafo
 
 
-    setNodeCityPopularPoints(g,2,100);
-    setNodeCityPopularPoints(g,3,100000);
-    setNodeCityPopularPoints(g,5,100);
-
-    printCityPopularPoints(g);
-    printNodeLinks(g,3);
-
-    //int gett = mostPopularCityFrom(g,3);
-
-    //printf("\nScelto nodo piu' gettonato %d=%s",gett,g->infoVertex[gett].name);
-
-    //printGraphWithNames(g);
-
-
-
-    /*RILASSAMENTO -------------------------------------------------------------*/
-    /*prove dijkstra*/
-
-    int m=1000;
-    for(int i=0;i<g->nodes_count;i++) {
-        g->infoVertex[i].d = m;
-        g->infoVertex[i].pi = 0;
-        m++;
-    }
-
-
-    puts("  DISTANZA   - PREDECESSORI  ");
-    for(int i=0;i<g->nodes_count;i++) {
-        printf("- d[%d] = %d ; ",i,g->infoVertex[i].d); //distanza del vertice 'i' dall origine
-        printf("pi[%d] = %d\n",i,g->infoVertex[i].pi);
-    }
-
-    printGraph(g);
-
-
-
-    //RILASSAMENTO DI OGNI VERTICE
-    puts("RILASSAMENTO");
-    for(int i=0;i<6;i++){
-        List e = g->adj[i];
-        printf("\nGiro sulla lista del vertice [%d]\n",i);
-        while(e!=NULL){
-          relaxKm(g,i,e->target);
-          e = e->next;
-        }
-    }
-
-    puts("STAMPA POST RILASSAMENTO");
-    puts("  DISTANZA   - PREDECESSORI  ");
-    for(int i=0;i<g->nodes_count;i++) {
-        printf("- d[%d] = %d ; ",i,g->infoVertex[i].d); //distanza del vertice 'i' dall origine
-        printf("pi[%d] = %d\n",i,g->infoVertex[i].pi);
-    }
+    //Esempio 2.1
+    char p[50];
+    puts("\n\n\n\n\ninserisci la partenza");
+    gets(p);
+    int p1 = getNodeFromName(g,p);
+    int m = mostPopularCityFrom(g,p1);
+    printf("la meta piu' gettonata da %d e': %d",p1,m);
+    printf("Hai scelto la tratta piu' breve da %d a %d\n",p1,m);
+    dijkstraShortestDistance(g,p1);
+    City path = getSP(g,p1,m);
+    printf("\n\nIl costo del volo e' di %d, confermi l'acquisto?\n",getFlyCost(g,p1,m));
+    char ok[50];
+    gets(ok);
+    printf("\nStampa del viaggio prenotato da %s a %s :\n",getDepartureCity(path),getDestinationCity(path));
+    printBooking(path);
 
 
 
 
-    Queue q = initQueue();
-    for(int i=3;i<g->nodes_count;i++){ //parte da (source+1) poiche' il percorso non puo' andare indietro se non ripassandoci
-            enqueue(q,i); //inserisce nella coda il vertice del grafo di cui poi il d[] (infinito nell'algoritmo) della distanza iniziale di ogni vertice
-            g->infoVertex[i].d = i;
-            //distanzaEprecedenti[i][1] = 0; //come se fosse NULL;
-        }
 
-    printf("Min coda %d\n\n\n\n",extractMinDijkstra(g,q));
-
-
-    Graph k = NULL;
-    k = presetGraph(k);
-    printGraphWithNames(k);
-    printCityPopularPoints(k);
-    int gett = mostPopularCityFrom(k,10);
-
-    printf("\nScelto nodo piu' gettonato %d=%s",gett,k->infoVertex[gett].name);
-
-    //printGraphWithNames(g);
-
-    dijkstraCheaper(k,0);
-    printSP(k,0,10);
-
-    int dest = destinationCheaper(k,10);
-
-    printf("\nmeta piu' economica = %d\n",dest);
-
-
-    /*userTree = uploadUsers(userTree);
+/*
+    userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
 
     menu();*/

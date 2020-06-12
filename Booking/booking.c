@@ -67,3 +67,18 @@ void printBooking(City city) {
         printBooking(city->next);
     }
 }
+
+char* getDepartureCity(City cities){
+    if (cities!=NULL){
+        return cities->name;
+    }
+}
+
+char* getDestinationCity(City cities){
+    if (cities!=NULL){
+        while(cities->next!=NULL){
+        cities = cities->next;
+        }
+    }
+    return cities->name;
+}

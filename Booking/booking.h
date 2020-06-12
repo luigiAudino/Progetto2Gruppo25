@@ -41,3 +41,9 @@ Booking removeLastBooking(Booking booking, char *nameCity);
 
 //Stampa tutte le citta'
 void printBooking(City city);
+
+//Ritorna la prima citta' della lista in ingresso
+char* getDepartureCity(City cities);
+
+//Ritorna l'ultima citta' della lista in ingresso
+char* getDestinationCity(City cities);
