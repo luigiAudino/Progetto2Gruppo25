@@ -3,6 +3,7 @@
 #include "stdbool.h"
 #include "../List/list.h"
 #include"../Queue/queue.h"
+#include "../Booking/booking.h"
 
 struct vertex{
     int key;
@@ -138,5 +139,9 @@ Graph graphCreationMenu(int n);
 
 // Menu per la modifica e gestione dei grafi
 void graphEditorMenu(Graph);*/
+
+City getAllCityFromGraph(Graph G);
+
+int getKeyVertexFromGraph(Graph g, City city);
 
 #endif

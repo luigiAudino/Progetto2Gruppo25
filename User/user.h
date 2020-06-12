@@ -43,7 +43,7 @@ bool search(UserTree userTree, User user);
 bool userEquals(User u1, User u2);
 
 //Controlla se l'adimn è presente nella lista degli admins
-bool  searchAdmin(UserTree userTree, User user);
+bool  searchAdmin(UserTree userTree, User *user);
 
 //Controlla se lo user è presente nella lista degli users
 bool searchUser(UserTree userTree, User *user);

@@ -494,7 +494,7 @@ int destinationCheaper(Graph G, int nodeDeparture){
 /*Algoritmi principali*/
 
 /*CRITERIO meta piu' gettonata:
-//In base ad una citta' data in ingresso(città di partenza) restituisce la meta/nodo piu' gettonata
+//In base ad una citta' data in ingresso(cittï¿½ di partenza) restituisce la meta/nodo piu' gettonata
 //Ovvero "la meta piu' gettonata per una citta' " e' quella la quale puo' essere raggiunta dalla citta' di partenza
 //Quindi esiste una tratta/collegamento tra la citta' di partenza e la citta' d'arrivo
 //e che tra tutte quelle cui esiste una tratta
@@ -638,7 +638,7 @@ void existLinkDfs1(Graph G, int i, int* aux,int verticeDiDestinazione,int* val){
 
                 /*printf("Vertice visitato in dfs1: %d che e' contenuto nella lista di %d\n",e->target,i);*/
                 existLinkDfs1(G,e->target,aux,verticeDiDestinazione,val);// qui richiamiamo dfs1 per andare a visitare la lista del vertice del (primo) elemento della lista di 'e' che e' uguale ad adj[i] passato da dfs,
-                //così scendiamo in profondita' e quando una lista sara' NULL risaliremo ricorsivamente visitando tutti i vertici (nel ciclo while)
+                //cosï¿½ scendiamo in profondita' e quando una lista sara' NULL risaliremo ricorsivamente visitando tutti i vertici (nel ciclo while)
                 //col quale si creerebbe un ciclo dato che esiste un arco col verticeDiPartenza in questa lista d'adiacenza che stiamo visitando
                 e = e->next;
             }
@@ -820,6 +820,19 @@ void printGraphWithNames(Graph G) {
     } else {
         puts("Il grafo e' vuoto");
     }
+}
+
+City getAllCityFromGraph(Graph G) {
+    City city = NULL;
+
+    if (G != NULL) {
+        for (int i = 0; i < G->nodes_count; i++) {
+            city = enqueueCity(city, G->infoVertex[i].name);
+        }
+    } else
+        puts("Il grafo e' vuoto");
+
+    return city;
 }
 
 
@@ -1070,3 +1083,14 @@ List checkListRemoval(List L, int node_to_remove) {
 }
 /*fine funzioni dei nodi/vertici*/
 
+int getKeyVertexFromGraph(Graph g, City city) {
+    int key = -1;
+
+    for (int i=0; i<g->nodes_count; i++) {
+        if(strcmp(g->infoVertex[i].name, city->name) == 0) {
+            key = g->infoVertex[i].key;
+        }
+    }
+
+    return key;
+}

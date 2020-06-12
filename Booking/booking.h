@@ -17,15 +17,31 @@ struct city {
 typedef struct city *City;
 
 struct booking {
-    User user;
-    //TODO List<City>
     City city;
+    float price;
+    struct booking *next;
 };
 
 typedef struct booking *Booking;
 
+struct userBooking {
+    User user;
+    Booking booking;
+};
+
+typedef struct userBooking *UserBooking;
+
+struct listUserBooking {
+    UserBooking userBooking;
+    struct listUserBooking *next;
+};
+
+typedef struct listUserBooking *ListUserBooking;
+
 //Istanzia struttura prenotazione (Un booking per ogni user)
-Booking createBooking(User user, char *nameCity);
+Booking createBooking(int price, char *nameCity);
+
+Booking enqueueBooking(Booking booking, int price, City city);
 
 //InCoda una citta'
 City enqueueCity(City cities, char *nameCity);
@@ -41,3 +57,15 @@ Booking removeLastBooking(Booking booking, char *nameCity);
 
 //Stampa tutte le citta'
 void printBooking(City city);
+
+City choiceCity(City city, char *message);
+
+bool cityIsEqual(City city1, City city2);
+
+UserBooking createUserBooking(User user, Booking booking);
+
+void enqueueUserBooking(UserBooking userBooking, int price, City city);
+
+ListUserBooking createListUserBooking(UserBooking userBooking);
+
+ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBooking userBooking);

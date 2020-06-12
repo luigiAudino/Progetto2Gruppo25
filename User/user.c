@@ -153,14 +153,14 @@ bool searchUser(UserTree userTree, User *user) {
     return isPresent;
 }
 
-bool searchAdmin(UserTree userTree, User user) {
+bool searchAdmin(UserTree userTree, User *user) {
     bool isPresent = false;
 
     if (userTree != NULL) {
         if (strcmp(userTree->user->role, ADMIN) == 0 && userEquals(userTree->user, user))
             isPresent = true;
         else
-            isPresent = searchAdmin(userTree->dx, user);
+            isPresent = searchAdmin(userTree->dx, &(*user));
     }
 
     return isPresent;

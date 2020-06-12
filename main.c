@@ -5,19 +5,23 @@
 #include "List/list.h"
 #include "User/user.h"
 #include "CheckMail/checkMail.h"
-#include "Booking/booking.h"
+//#include "Booking/booking.h"
 
 void menu();
+void menuBooking();
 void backToMenu();
 
 UserTree userTree = NULL;
+ListUserBooking listUserBooking = NULL;
 int roleChoised;
 int *ptrRole = &roleChoised;
 Graph g = NULL ; //allochiamo la memoria per le variabili del grafo
+User user = NULL;
 
 int main() {
 
-    /*inizio main grafi*/
+
+    //inizio main grafi
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
     g = initGraph(6); //allochiamo la memoria per le variabili del grafo
@@ -47,7 +51,10 @@ int main() {
     }
 
     printGraphWithNames(g);
-    /*fine main grafi*/
+
+
+
+    //fine main grafi
 
 
     setNodeCityPopularPoints(g,2,100);
@@ -65,8 +72,8 @@ int main() {
 
 
 
-    /*RILASSAMENTO -------------------------------------------------------------*/
-    /*prove dijkstra*/
+    //RILASSAMENTO -------------------------------------------------------------
+    //prove dijkstra
 
     int m=1000;
     for(int i=0;i<g->nodes_count;i++) {
@@ -134,13 +141,12 @@ int main() {
 
     printf("\nmeta piu' economica = %d\n",dest);
 
-
-    /*userTree = uploadUsers(userTree);
+    userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
 
-    menu();*/
 
-    //menu();
+
+    menu();
 
     return 0;
 }
@@ -150,7 +156,6 @@ int main() {
 /*menu' piero e gigi*/
 void menu() {
     int choice;
-    User user = NULL;
     roleChoised = -1;
     char newCity [MAX_WORDS];
     //UserTree userTree = NULL;
@@ -161,12 +166,24 @@ void menu() {
     switch (choice) {
         case 1: {
             user = login(userTree);
+
+            if(user == NULL || strcmp(user->name,"") == 0 || strcmp(user->surname,"") == 0) {
+                menu();
+                break;
+            }
+
+            menuBooking();
+
             break;
         }
 
         case 2: {
             user = signIn(userTree);
+            enqueueListUserBooking(listUserBooking, createUserBooking(user, NULL));
             userTree = insertUserNodeTree(userTree, user);
+
+            menuBooking();
+
             break;
         }
         case 7: {
@@ -180,6 +197,8 @@ void menu() {
         }
     }
 
+
+/*
     City city = NULL;
 
     char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
@@ -328,8 +347,9 @@ void menu() {
         }
 
     }
+        backToMenu();
+
 */
-    backToMenu();
 }
 
 void backToMenu() {
@@ -346,4 +366,78 @@ void backToMenu() {
     //printf("\nArrivederci!");
 }
 
+void menuBooking() {
+
+    bool isRight = true;
+
+    int choice;
+
+    City city = getAllCityFromGraph(g);
+    City departure, destination;
+    printf("Seleziona la citta' di partenza\n");
+
+    departure = choiceCity(city, "Seleziona la citta' di partenza");
+    printf("Hai scelto %s\n", departure->name);
+    do {
+        if (!isRight)
+            printf("Scelta errata, per favore riprova!\n");
+
+        printf("Seleziona:\n1 - Cita' di destinazione\n2 - Meta più economica\n3 - Meta piu' gettonata\n");
+        fflush(stdin);
+        scanf("%d", &choice);
+
+        isRight = false;
+    } while (choice != 1 && choice != 2 && choice !=3);
+
+    switch (choice) {
+        case 1: {
+            destination = choiceCity(city, "Seleziona la citta' di destinazione");
+            printf("Hai scelto %s\n", destination->name);
+
+            while (cityIsEqual(departure, destination)) {
+                printf("\nErrore - la citta' di partenza e destinazione devono essere diverse!\n");
+                destination = choiceCity(city, "Seleziona la citta' di destinazione");
+            }
+
+            int departureKey = getKeyVertexFromGraph(g, departure);
+            int destinationKey = getKeyVertexFromGraph(g, destination);
+
+            //controllo se esiste la tratta
+            if(existLinkDfs(g, departureKey, destinationKey) != 1) {
+                printf("Errore");
+            }
+            else {
+                City cityTravel = NULL;
+                cityTravel = enqueueCity(cityTravel, departure);
+                cityTravel = enqueueCity(cityTravel, destination);
+
+                Booking bookingTravel = enqueueBooking(NULL, 1000, cityTravel);
+
+                UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
+                listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
+                printf("OK");
+
+                //Aggiungo prenotazione dell'utente
+            }
+
+
+
+            break;
+        }
+        case 2: {
+            printf("Hai scelto 2\n");
+            break;
+        }
+
+        case 3: {
+            printf("Hai scelto 3\n");
+            break;
+        }
+        default: {
+            printf("Errore\n");
+            break;
+        }
+    }
+
+}
 
