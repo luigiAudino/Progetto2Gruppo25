@@ -69,3 +69,9 @@ void enqueueUserBooking(UserBooking userBooking, int price, City city);
 ListUserBooking createListUserBooking(UserBooking userBooking);
 
 ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBooking userBooking);
+
+//Ritorna la prima citta' della lista in ingresso
+char* getDepartureCity(City cities);
+
+//Ritorna l'ultima citta' della lista in ingresso
+char* getDestinationCity(City cities);

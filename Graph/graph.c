@@ -263,8 +263,64 @@ isEmpty(Graph G) { // Se il puntatore al grafo e' NULL, quindi il grafo e' VUOTO
 
 /*DIJKSTRA*/
 
-void dijkstraCheaper(Graph G,int s){
 
+/*Passa il grafo ed il viaggio associato all'utente
+int getFlyCostByBooking(Graph G, Booking B){
+
+
+}*/
+
+
+
+//Si potrebbe fare passandogli direttamente il 'booking'
+int getFlyCost(Graph G,int s, int t){//Ritorna il costo totale del volo in base al percorso di cui sara' composto
+
+    int cost = 0; //puntatore a city
+    printf("\ns = %d, t=%d\n",s,t);
+
+    if(s!=t){
+            cost = getPrice(G,G->infoVertex[t].pi,t);
+            printf("t = %d == %s ; pi[%d] = %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
+            printf("costo arco (%d,%d) = %d",G->infoVertex[t].pi,t,cost);
+
+            cost = cost + getFlyCost(G,s,G->infoVertex[t].pi);
+            //inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
+        }/*
+        else{
+            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
+            printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
+        }*/
+
+    return cost;
+}
+
+
+//Necessita di un controllo sull'esistenza della tratta da s a t
+//Ritorna una Lista(Coda) di citta' che contiene il percorso piu' breve da 's' a 't' calcolato da dijkstra
+City getSP(Graph G,int s, int t){
+
+    City inizioPercorso = NULL; //puntatore a city
+    printf("\ns = %d, t=%d\n",s,t);
+
+    if(s!=t){
+            printf("t = %d == %s ; pi[%d]= %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
+
+            inizioPercorso = getSP(G,s,G->infoVertex[t].pi);
+            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
+        }
+        else{
+            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
+            printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
+        }
+
+    return inizioPercorso;
+}
+
+
+
+
+void dijkstraCheaper(Graph G,int s){
+    puts("Esecuzione di dijkstra per la tratta piu' economica");
     Queue S = initQueue();
     Queue Q = initQueue();
     int min; //vertice minimo estratto dalla coda Q
@@ -292,13 +348,13 @@ void dijkstraCheaper(Graph G,int s){
 }
 
 void dijkstraShortestDistance(Graph G,int s){
-
+    puts("Esecuzione di dijkstra per la tratta piu' breve");
     Queue S = initQueue();
     Queue Q = initQueue();
     int min; //vertice minimo estratto dalla coda Q
 
     for(int i=0;i<G->nodes_count;i++){
-        enqueue(Q,i);
+        enqueue(Q,i); //ho inserito gli indici dei vertici,non i vertici stessi
         G->infoVertex[i].d = (INT_MAX/2);
         G->infoVertex[i].pi = -1;
     }
@@ -318,8 +374,6 @@ void dijkstraShortestDistance(Graph G,int s){
     }
 
 }
-
-
 
 
 
@@ -392,10 +446,10 @@ void relaxKm(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso i km
                 //G->infoVertex[v].d == d[v] == distanza del vertice v dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'v'
                 //G->infoVertex[u].d == d[u] == distanza del vertice u dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'u'
                 int pesoArco = getKm(G,u,v); //peso dell'arco da 'u' a 'v'
-                printf("Vertice Part: Attuale d[%d] = %d\n",u,G->infoVertex[u].d);
+                /*printf("Vertice Part: Attuale d[%d] = %d\n",u,G->infoVertex[u].d);
                 printf("Vertice Dest: Attuale d[%d] = %d\n",v,G->infoVertex[v].d);
                 printf("Peso arco (%d,%d) = %d  \n",u,v,pesoArco);
-                printf("d[%d] = %d > (d[%d] = %d + pesoArco = %d) ?\n",v,G->infoVertex[v].d,u,G->infoVertex[u].d,pesoArco);
+                printf("d[%d] = %d > (d[%d] = %d + pesoArco = %d) ?\n",v,G->infoVertex[v].d,u,G->infoVertex[u].d,pesoArco);*/
                 //Se d[v] ATTUALE > d[u] + pesoArco(u,v) allora RILASSO, poiche' posso raggiungere il vertice v passando da u con un peso/distanza minore
                 if(G->infoVertex[v].d > ((G->infoVertex[u].d)+ pesoArco) ){
                     printf("\n[VIA]rilassamento dal vertice attuale %d al vertice di destinazione %d \n",u,v);
@@ -439,27 +493,6 @@ void printSP(Graph G,int s, int t){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Meta piu' economica
 /*Criterio meta piu' economica:
 Per la scelta della meta piu' economica restituiamo uno dei nodi adiacenti al nodo d'ingresso
@@ -468,6 +501,7 @@ il prezzo minimo possibile, siccome con degli scali, i prezzi degli archi sarebb
 la meta successiva avra' un prezzo sempre superiore.*/
 
 int destinationCheaper(Graph G, int nodeDeparture){
+    printf("Inizio calcolo meta piu' economica da %d/%s\n",nodeDeparture,G->infoVertex[nodeDeparture].name);
     int node = -1;
     int min = INT_MAX;
     if(G!=NULL){
@@ -480,7 +514,7 @@ int destinationCheaper(Graph G, int nodeDeparture){
             if(e->price < min){
                 node = e->target;
                 min = e->price;
-                printf("MIN = %d , NODO = %d",min,node);
+                //printf("MIN = %d , NODO = %d",min,node);
                 }
                 e = e->next;
           }
@@ -527,10 +561,12 @@ int mostPopularCityFrom(Graph G,int nodeDepartureCity){
     int indexTrovati=0;
     for(int i=0;i<G->nodes_count;i++){
         if(existLinkDfs(G,nodeDepartureCity,i)==1){
+            if(i!=nodeDepartureCity){//la citta' di partenza e' esclusa tra quelle di destinazione
             if(max==G->infoVertex[i].cityPopularPoints){//se il punteggio e' uguale a quello massimo, mi salvo i nodi trovati
                     nodiTrovati[indexTrovati]= G->infoVertex[i].key;
                     indexTrovati++;
             }
+         }
         }
     }
 
@@ -543,9 +579,11 @@ int mostPopularCityFrom(Graph G,int nodeDepartureCity){
         int scelta;
         puts("Inserisci il numero del vertice che vuoi tra quelli visualizzati:");
         scanf("%d",&scelta);
+        getchar();
         while((scelta<0)||(scelta>indexTrovati)){//controllo sulla scelta in input
             puts("SCELTA NON CONSENTITA,Inserisci il numero del vertice che vuoi tra quelli visualizzati:");
             scanf("%d",&scelta);
+            getchar();
         }
         result = nodiTrovati[scelta];
         printf("Scelto nodo  %d come destinazione piu' gettonata\n",result);
@@ -676,11 +714,11 @@ int listContainsVertex(Graph G,int v1,int v2){//Restituisce 1 se nella lista d'a
 
 
 /*Funzioni del vettore che contiene le informazioni associate ad ogni vertice del grafo---------------------------------------------------------*/
-
+/*Funzioni dei nodi/vertici---------------------------*/
 
 
 //aggiunge una posizione vuota nel vettore delle infoVertex, da usare quando si aggiunge un vertice/nodo al grafo
-void addInfoVertex(Graph G) {
+void addInfoVertex(Graph G){
     if (G != NULL) {
         Vertex *old = G->infoVertex;
         int i = 0;
@@ -690,8 +728,14 @@ void addInfoVertex(Graph G) {
             strcpy(G->infoVertex[i].name, old[i].name);
             G->infoVertex[i].key = old[i].key;
             G->infoVertex[i].cityPopularPoints = old[i].cityPopularPoints;
+            G->infoVertex[i].d = old[i].d;
+            G->infoVertex[i].pi = old[i].pi;
         }
-        G->nodes_count += 1;
+        G->infoVertex[G->nodes_count].key = G->nodes_count;
+        strcpy(G->infoVertex[G->nodes_count].name,"NO_NAME");
+        G->infoVertex[G->nodes_count].cityPopularPoints = 0;
+        G->infoVertex[G->nodes_count].d = -1;
+        G->infoVertex[G->nodes_count].pi = -1;
     }
 }
 
@@ -708,8 +752,20 @@ void removeInfoVertex(Graph G, int n) {
             //printf("\nx=%d i=%d\nIl valore vecchio di %d e' %s\n",x,i,i,old[i].name);
             strcpy(G->infoVertex[x].name, old[i].name);
             //printf("infoVertex[%d] NUOVO = %s\n\n",x,G->infoVertex[x].name);
-            G->infoVertex[x].key = old[i].key;
+            //G->infoVertex[x].key = old[i].key;
+            /**/G->infoVertex[x].key = x;
             G->infoVertex[x].cityPopularPoints = old[i].cityPopularPoints;
+
+            /*--*/
+            if(old[i].pi!=n){//se il predecessore non e' uguale al nodo rimosso
+                G->infoVertex[x].d = old[i].d;
+                G->infoVertex[x].pi = old[i].pi;
+            }else{
+                G->infoVertex[x].d = -1;
+                G->infoVertex[x].pi = -1;
+            }
+            /*--*/
+
             x++;
         }
         /*else{
@@ -719,25 +775,18 @@ void removeInfoVertex(Graph G, int n) {
     free(old);
 }
 
-//Ritorna un puntatore a struttura Vertex poiche' stiamo modificando il puntatore di infoVertex
-Vertex* removeInfoVertexWithArray(Vertex infoVertex[], int node_to_remove, int nodes_count){
-    int i = 0;
-    int x = 0;
-    printf("Nome corrispondente al nodo %d e' %s\n", node_to_remove, infoVertex[node_to_remove].name);
-    Vertex *old = infoVertex;
-    infoVertex = (Vertex *) malloc((nodes_count - 1)*sizeof(Vertex));
-    for (i = 0; i < nodes_count; i++) {
-        if (i != node_to_remove) {
-            printf("\nx=%d i=%d\nIl valore vecchio di %d e' %s\n",x,i,i,old[i].name);
-            strcpy(infoVertex[x].name,old[i].name);
-            printf("infoVertex[%d] NUOVO = %s\n\n",x,infoVertex[x].name);
-            infoVertex[x].key = old[i].key;
-            infoVertex[x].cityPopularPoints = old[i].cityPopularPoints;
-            x++;
-        }
+
+//Stampa il vettore con tutte le informazioni dei vertici del grafo
+void printGraphInfoVertex(Graph G){
+    puts("\n\nStampa VETTORE INFOVERTEX del Grafo.");
+    for(int i=0;i<G->nodes_count;i++){
+        int key = G->infoVertex[i].key;
+        char* name = G->infoVertex[i].name; //gli do' solo l'indirizzo
+        int points = G->infoVertex[i].cityPopularPoints;
+        int d = G->infoVertex[i].d;
+        int pi = G->infoVertex[i].pi;
+        printf("[i=%d] key=%d , name=%s , cityPopularPoints=%d , d=%d , pi=%d \n",i,key,name,points,d,pi);
     }
-    free(old);
-    return infoVertex;
 }
 
 //NON DIMENTICARE di usare lo strcpy altrimenti assegniamo l'indirizzo della variabile, NON AVVIENE LA COPIA del contenuto
@@ -781,6 +830,28 @@ int getNodeFromName(Graph G, char name[]) {
     }
     return result;
 }
+
+//stampa del grafo coi nomi
+void printGraphOnlyWithNames(Graph G) {
+    int ne = 0;//numero totale degli archi
+    if (G != NULL) {
+        printf("[INIZIO STAMPA GRAFO]\nIl grafo ha %d vertici\n\n", G->nodes_count);
+        for (int i = 0; i < G->nodes_count; i++) {
+            printf("Vertice: [%s] -> ", G->infoVertex[i].name);
+            List e = G->adj[i];
+            while (e != NULL) {//adesso qui scorriamo la lista puntata da 'e', cioe' una lista di Archi
+                printf("[V:%s  PREZZO:%d   KM:%d]; ",G->infoVertex[e->target].name, e->price, e->km);
+                ne = ne + 1; //Numero di elementi, cioe' numero totale di archi
+                e = e->next; //procediamo al prossimo puntatore nella lista
+            }
+            puts("\n");
+        }
+        printf("Il grafo ha %d archi\n[FINE STAMPA GRAFO]\n", ne);
+    } else {
+        puts("Il grafo e' vuoto");
+    }
+}
+
 
 //Setta i punti 'gettonati' al nodo dato in ingresso
 void setNodeCityPopularPoints(Graph G, int nVertex, int points) {
@@ -1037,9 +1108,10 @@ void addNode(Graph G) {
         G->adj = (List *) malloc((G->nodes_count + 1) * sizeof(List));
         for (i = 0; i < G->nodes_count; i++)
             G->adj[i] = old[i];
-        G->nodes_count += 1;
-        G->adj[G->nodes_count - 1] = NULL;
+
+        G->adj[G->nodes_count] = NULL;
         addInfoVertex(G); //aggiunta di un nuovo nodo nel vettore di informazioni
+        G->nodes_count += 1;
     }
 }
 

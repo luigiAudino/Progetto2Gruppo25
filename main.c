@@ -52,7 +52,24 @@ int main() {
 
     printGraphWithNames(g);
 
+/*
+ *   //Esempio 2.1
+    char p[50];
+    puts("\n\n\n\n\ninserisci la partenza");
+    gets(p);
+    int p1 = getNodeFromName(g,p);
+    int m = mostPopularCityFrom(g,p1);
+    printf("la meta piu' gettonata da %d e': %d",p1,m);
+    printf("Hai scelto la tratta piu' breve da %d a %d\n",p1,m);
+    dijkstraShortestDistance(g,p1);
+    City path = getSP(g,p1,m);
+    printf("\n\nIl costo del volo e' di %d, confermi l'acquisto?\n",getFlyCost(g,p1,m));
+    char ok[50];
+    gets(ok);
+    printf("\nStampa del viaggio prenotato da %s a %s :\n",getDepartureCity(path),getDestinationCity(path));
+    printBooking(path);
 
+ */
 
     //fine main grafi
 
@@ -99,8 +116,8 @@ int main() {
         List e = g->adj[i];
         printf("\nGiro sulla lista del vertice [%d]\n",i);
         while(e!=NULL){
-          relaxKm(g,i,e->target);
-          e = e->next;
+            relaxKm(g,i,e->target);
+            e = e->next;
         }
     }
 
@@ -116,10 +133,10 @@ int main() {
 
     Queue q = initQueue();
     for(int i=3;i<g->nodes_count;i++){ //parte da (source+1) poiche' il percorso non puo' andare indietro se non ripassandoci
-            enqueue(q,i); //inserisce nella coda il vertice del grafo di cui poi il d[] (infinito nell'algoritmo) della distanza iniziale di ogni vertice
-            g->infoVertex[i].d = i;
-            //distanzaEprecedenti[i][1] = 0; //come se fosse NULL;
-        }
+        enqueue(q,i); //inserisce nella coda il vertice del grafo di cui poi il d[] (infinito nell'algoritmo) della distanza iniziale di ogni vertice
+        g->infoVertex[i].d = i;
+        //distanzaEprecedenti[i][1] = 0; //come se fosse NULL;
+    }
 
     printf("Min coda %d\n\n\n\n",extractMinDijkstra(g,q));
 

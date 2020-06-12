@@ -3,7 +3,7 @@
 #include "stdbool.h"
 #include "../List/list.h"
 #include"../Queue/queue.h"
-#include "../Booking/booking.h"
+#include"../Booking/booking.h"
 
 struct vertex{
     int key;
@@ -49,14 +49,16 @@ Graph presetGraph(Graph G);//Inizializzazione del grafo pre-settato con 20 mete 
 
 //Aggiunto ultimo else alla meta piu' gettonata: caso in cui la citta' di partenza non ha destinazioni
 
-void dijkstraShortestDistance(Graph G,int s); //Tratta piu' breve
+int getFlyCost(Graph G,int s, int t);//Ritorna il costo totale del volo in base al percorso di cui sara' composto (calcolato da dijkstra in precedenza)
 
-void dijkstraCheaper(Graph G,int s); //Tratta piu' economica
+City getSP(Graph G,int s, int t);//Ritorna una Lista(Coda) di citta' che contiene il percorso piu' breve da 's' a 't' calcolato da dijkstra in precedenza
+
+void dijkstraShortestDistance(Graph G,int s); //[TRATTA PIU' BREVE]
+void dijkstraCheaper(Graph G,int s); //[TRATTA PIU' ECONOMICA]
 
 int extractMinDijkstra(Graph G,Queue Q);//Estrae il minimo d[] tra i vertici del grafo G , i quali sono contenuti nella coda di priorita' Q;
 
 void relaxPrice(Graph G, int u, int v);//Rilassa l'arco (u,v) usando come peso il prezzo dell'arco; u = vertice attuale, v = vertice da raggiungere da u
-
 void relaxKm(Graph G, int u, int v); //Rilassa l'arco (u,v) usando come peso i km dell'arco; u = vertice attuale, v = vertice da raggiungere da u
 
 void printSP(Graph G,int s, int t);//Stampa il percorso a ritroso dal vertice target 't', al vertice sorgente 's'
@@ -64,10 +66,9 @@ void printSP(Graph G,int s, int t);//Stampa il percorso a ritroso dal vertice ta
 /*FINE DIJKSTRA*/
 
 
-
 /*Algoritimi principali*/
 
-int destinationCheaper(Graph G, int nodeDeparture);//meta piu' economica
+int destinationCheaper(Graph G, int nodeDeparture);//[META PIU' ECONOMICA]Ritorna la citta' meta/nodo piu' economica per la citta' di partenza/nodo inserita
 
 int mostPopularCityFrom(Graph G,int nodeDepartureCity);//[META PIU' GETTONATA]Ritorna la citta' meta/nodo piu' gettonata per la citta' di partenza/nodo inserita
 /*void printCityPopularPoints(Graph G){//Stampa tutti i nodi/citta' coi punteggi gettonati associati*/
@@ -86,10 +87,12 @@ int listContainsVertex(Graph G,int v1,int v2);//Restituisce 1 se nella lista d'a
 /*funzioni (infoVertex) del vettore contenente le info dei vertici*/
 void addInfoVertex(Graph G); //aggiunge un rigo al vettore di informazioni sul vertice
 void removeInfoVertex(Graph G,int n); //rimuove le informazioni di un vertice dal vettore
+void printGraphInfoVertex(Graph G);//Stampa il vettore con tutte le informazioni dei vertici del grafo
 
 void setNodeName(Graph G,int nVertex, char name[]); //associa il nome al vertice dato in ingresso
 char* getNodeName(Graph G,int nVertex);//Ritorna il nome del nodo(vertice/citta') dato in input
 int getNodeFromName(Graph G,char name[]);//Ritorna il corrispettivo numerico del nodo(vertice/citta') dato in input come nome
+void printGraphOnlyWithNames(Graph G);//Stampa il grafo solo coi nominativi dei vertici
 
 void setNodeCityPopularPoints(Graph G,int nVertex,int points);//Assegna i punti 'gettonati' al nodo(vertice/citta') dato in input
 int getNodeCityPopularPoints(Graph G, int nVertex);//Ritorna i punti 'gettonati' del nodo(vertice/citta') dato in input
@@ -143,5 +146,4 @@ void graphEditorMenu(Graph);*/
 City getAllCityFromGraph(Graph G);
 
 int getKeyVertexFromGraph(Graph g, City city);
-
 #endif
