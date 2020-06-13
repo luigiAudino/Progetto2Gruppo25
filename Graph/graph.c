@@ -1187,9 +1187,10 @@ ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int dest
 
     if(listUserBooking == NULL)
         listUserBooking = createListUserBooking(userBookingTravel);
-    //listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
+    else
+        listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
 
-    printf("OK");
+    printf("\nFine bookingcheaper\n");
 
     return listUserBooking;
 }

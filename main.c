@@ -146,9 +146,9 @@ void menuUser() {
         }
         default: {
             printf("Scelta errata - riprova!\n");
-            menuUser();
         }
     }
+    menuUser();
 }
 
 void menuBooking() {
@@ -184,7 +184,7 @@ void menuBooking() {
         }
         else {
             listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-            printf("OK");
+            printf("\nFine menu booking 1\n");
         }
     }
     //Punto 2 traccia Progetto
@@ -198,6 +198,7 @@ void menuBooking() {
         }
 
         listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
+        printf("\nFine menu booking 2\n");
 
     }
 

@@ -64,7 +64,14 @@ Booking removeLastBooking(Booking booking, char *nameCity) {
 
 void printCity(City city) {
     if (city != NULL) {
-        printf("\nPrenotazione: %s\n", city->name);
+        printf("%s ", city->name);
+
+        if(city->next!=NULL){
+            printf(" - ");
+        }else{
+            printf("\n");
+        }
+
         printCity(city->next);
     }
 }
@@ -283,13 +290,15 @@ void printBooking(User user, ListUserBooking listUserBooking) {
 
         if (userBookingAssociato != NULL) {
             int i = 0;
-            while (userBookingAssociato->booking != NULL) {
-                City listaCityAssociataAlBooking = userBookingAssociato->booking->city;
-                printf("Stampa listUserBooking %d associata al booking dello userBooking", i);
-                printCity(listaCityAssociataAlBooking);
-                userBookingAssociato->booking = userBookingAssociato->booking->next;
+            Booking booking = userBookingAssociato->booking;
+
+            while (booking != NULL) {
+                City listaCityAssociataAlBooking = booking->city;
+                printf("Prenotazione %d - Da %s A %s\nTratta: ",i+1,getDepartureCity(listaCityAssociataAlBooking),getDestinationCity(listaCityAssociataAlBooking));                printCity(listaCityAssociataAlBooking);
+                booking = booking->next;
                 i++;
             }
+
         } else
             printf("L'utente non e' contenuto nella lista\n");
             
