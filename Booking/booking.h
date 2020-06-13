@@ -39,7 +39,7 @@ struct listUserBooking {
 typedef struct listUserBooking *ListUserBooking;
 
 //Istanzia struttura prenotazione (Un booking per ogni user)
-Booking createBooking(int price, char *nameCity);
+Booking createBooking(int price, City city);
 
 Booking enqueueBooking(Booking booking, int price, City city);
 

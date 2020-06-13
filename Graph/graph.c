@@ -100,7 +100,6 @@ Graph graphCreationMenu(int n) {
 //Inizializzazione del grafo pre-settato con 20 mete e tratte
 Graph presetGraph(Graph G){
     G = initGraph(20);
-    setGraph(G);
 
     //0 Napoli
     addEdgeWithoutPrints(G,0,1,43,775);
@@ -209,18 +208,14 @@ Graph initGraph(int nodes_count) { //crea un grafo vuoto
         } else {
             G->infoVertex = (Vertex *) calloc(nodes_count, sizeof(struct vertex));
             G->nodes_count = nodes_count;
+
+            for (int i = 0; i < G->nodes_count; i++) {
+                G->adj[i] = NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
+                G->infoVertex[i].cityPopularPoints = 0; //Inizializzo i punteggi gettonati per le citta'
+                G->infoVertex[i].key = i; //Memorizzo il corrispondente numerico del nodo
+                //i nomi del vettore dei vertici gia' sono inizializzati essendo statici 'name[50]'
+            }
         }
-    }
-    return G;
-}
-
-
-Graph setGraph(Graph G) { //settaggio a NULL della lista d'adiacenza e del vettore di nomi
-    for (int i = 0; i < G->nodes_count; i++) {
-        G->adj[i] = NULL;  //Inizializzo i puntatori di puntatori facendoli puntare a NULL
-        G->infoVertex[i].cityPopularPoints = 0; //Inizializzo i punteggi gettonati per le citta'
-        G->infoVertex[i].key = i; //Memorizzo il corrispondente numerico del nodo
-        //i nomi del vettore dei vertici gia' sono inizializzati essendo statici 'name[50]'
     }
     return G;
 }
@@ -304,14 +299,11 @@ City getSP(Graph G,int s, int t){
 
     if(s!=t){
             printf("t = %d == %s ; pi[%d]= %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
-
             inizioPercorso = getSP(G,s,G->infoVertex[t].pi);
-            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
-        }
-        else{
-            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
-            printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
-        }
+    }
+
+    inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
+    printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
 
     return inizioPercorso;
 }
@@ -1165,4 +1157,27 @@ int getKeyVertexFromGraph(Graph g, City city) {
     }
 
     return key;
+}
+
+//Punto 1 traccia Progetto
+void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking *listUserBooking, User user) {
+    City cityTravel = NULL;
+
+    if(choiceBetweenTwo("\nSeleziona:\n1 - Tratta piu' economica\n2 - Tratta piu' breve\n") == 1) {
+        dijkstraCheaper(g, departureKey);
+    } else {
+        dijkstraShortestDistance(g, departureKey);
+    }
+
+    cityTravel = getSP(g, departureKey, destinationKey);
+
+    int price = getFlyCost(g, departureKey, destinationKey);
+
+    //ToDO - Aggiungere metodi price di Piero
+
+    Booking bookingTravel = enqueueBooking(NULL, price, cityTravel);
+
+    UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
+    *listUserBooking = enqueueListUserBooking(*(listUserBooking), userBookingTravel);
+    printf("OK");
 }

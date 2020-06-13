@@ -4,13 +4,11 @@
 
 #include "booking.h"
 
-Booking createBooking(int price, char *nameCity) {
+Booking createBooking(int price, City city) {
     Booking booking = (Booking) malloc(sizeof(struct booking));
 
-    booking->city = (City) malloc(sizeof(struct city));
+    booking->city = city;
     booking->price = price;
-    strcpy(booking->city->name, nameCity);
-    booking->city->next = NULL;
 
     return booking;
 }
@@ -124,7 +122,7 @@ UserBooking createUserBooking(User user, Booking booking) {
 
 Booking enqueueBooking(Booking booking, int price, City city) {
     if(booking == NULL) {
-        return createBooking(price, city->name);
+        return createBooking(price, city);
     }
 
     Booking newBooking = (Booking) malloc(sizeof( struct booking));

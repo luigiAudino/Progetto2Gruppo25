@@ -30,8 +30,6 @@ typedef struct TGraph* Graph;
 
 Graph initGraph(int nodes_count);// Inizializza un nuovo grafo vuoto specificando in ingresso quanti nodi ci saranno nel grafo ed in contemporanea il vettore dei nomi delle città associate ai nodi
 
-Graph setGraph(Graph G); //inizializza null i puntatori del vettore delle liste d'adiacenza e del vettore parallelo che contiene i nomi dei vertici
-
 void freeGraph(Graph G); // Dealloca l'intero grafo
 
 void printGraph(Graph G);// Stampa il grafo
@@ -146,4 +144,7 @@ void graphEditorMenu(Graph);*/
 City getAllCityFromGraph(Graph G);
 
 int getKeyVertexFromGraph(Graph g, City city);
+
+void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking *listUserBooking, User user);
+
 #endif
