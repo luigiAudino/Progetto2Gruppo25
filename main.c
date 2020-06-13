@@ -51,8 +51,10 @@ int main() {
     
     //g = presetGraph(g);
     
-    userTree = uploadUsers(userTree);
+    userTree = uploadUsers(listUserBooking, userTree);
     userTree = uploadAdmins(userTree);
+
+    user = (User) malloc(sizeof(struct usr));
 
     menu();
 
@@ -61,6 +63,7 @@ int main() {
 
 void menu() {
     int choice;
+    bool loginSuccess = false;
     //roleChoised = -1;
     char newCity [MAX_WORDS];
     //UserTree userTree = NULL;
@@ -70,12 +73,15 @@ void menu() {
 
     switch (choice) {
         case 1: {
-            user = login(userTree);
+            loginSuccess = login(userTree, &user);
 
-            if(user == NULL || strcmp(user->name,"") == 0 || strcmp(user->surname,"") == 0) {
+            if(!loginSuccess) {
+                printf("Credenziali non corrette - perfavore riprova!\n");
                 menu();
                 break;
             }
+
+            printf("Bevenuto %s %s\n", user->name, user->surname);
 
             menuBooking();
 
@@ -167,7 +173,6 @@ void menuBooking() {
         bookingCheaperOrShortestPath(g, departureKey, destinationKey, &listUserBooking, user);
 
     }
-
 
 }
 

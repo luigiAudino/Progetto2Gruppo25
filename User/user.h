@@ -5,6 +5,7 @@
 #include "../BST/tree.h"
 
 
+
 #define MAX_WORDS 256
 #define USER "user"
 #define ADMIN "admin"
@@ -28,7 +29,7 @@ struct TTreeUser {
 typedef struct TTreeUser* UserTree;
 
 //Login
-User login(UserTree userTree);//, int *ptrRole);
+bool login(UserTree userTree, User *user);//, int *ptrRole);
 
 //Registrazione
 User signIn(UserTree userTree);
@@ -37,13 +38,13 @@ User signIn(UserTree userTree);
 void printUser(User user);
 
 //Controlla se lo user / admin è presente nella lista degli users / admins
-bool search(UserTree userTree, User user);
+bool search(UserTree userTree, User *user);
 
 //Controlla se due user o admin sono uguali
 bool userEquals(User u1, User u2);
 
 //Controlla se l'adimn è presente nella lista degli admins
-bool  searchAdmin(UserTree userTree, User *user);
+bool searchAdmin(UserTree userTree, User *user);
 
 //Controlla se lo user è presente nella lista degli users
 bool searchUser(UserTree userTree, User *user);
@@ -98,9 +99,6 @@ bool emailUserIsPresent(UserTree userTree, char * email);
 
 //Controlla se è già presente un admin con la mail inserita
 bool emailAdminIsPresent(UserTree userTree, char * email);
-
-//Carica una lista di users
-UserTree uploadUsers(UserTree userTree);
 
 //Carica una lista di admins
 UserTree uploadAdmins(UserTree userTree);

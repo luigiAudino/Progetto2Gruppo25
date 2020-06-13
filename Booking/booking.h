@@ -64,7 +64,7 @@ bool cityIsEqual(City city1, City city2);
 
 UserBooking createUserBooking(User user, Booking booking);
 
-void enqueueUserBooking(UserBooking userBooking, int price, City city);
+UserBooking enqueueUserBooking(UserBooking userBooking, Booking booking);
 
 ListUserBooking createListUserBooking(UserBooking userBooking);
 
@@ -75,3 +75,6 @@ char* getDepartureCity(City cities);
 
 //Ritorna l'ultima citta' della lista in ingresso
 char* getDestinationCity(City cities);
+
+//Carica una lista di users
+UserTree uploadUsers(ListUserBooking  listUserBooking, UserTree userTree);

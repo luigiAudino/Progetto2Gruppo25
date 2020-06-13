@@ -145,11 +145,20 @@ Booking enqueueBooking(Booking booking, int price, City city) {
     return head;
 }
 
-void enqueueUserBooking(UserBooking userBooking, int price, City city) {
-    if(city == NULL)
-        return;
+UserBooking enqueueUserBooking(UserBooking userBooking, Booking booking) {
+    UserBooking head = userBooking;
 
-    enqueueBooking(userBooking->booking, price, city);
+    if(userBooking == NULL) {
+        return createUserBooking(userBooking->user, booking);
+    }
+
+    while (userBooking->booking->next != NULL) {
+        userBooking->booking = userBooking->booking->next;
+    }
+
+    userBooking->booking->next = booking;
+
+    return head;
 }
 
 ListUserBooking createListUserBooking(UserBooking userBooking) {
@@ -182,6 +191,8 @@ char* getDepartureCity(City cities){
     if (cities!=NULL){
         return cities->name;
     }
+
+    return NULL;
 }
 
 char* getDestinationCity(City cities){
@@ -191,5 +202,32 @@ char* getDestinationCity(City cities){
         }
     }
     return cities->name;
+}
+
+
+UserTree uploadUsers(ListUserBooking  listUserBooking, UserTree userTree) {
+    char names[6][MAX_WORDS] = {"Luigi", "Piero Junior", "Giulio", "Annabella", "Andrea", "Silvia"};
+    char surnames[6][MAX_WORDS] = {"Audino", "Gaetani", "Galloppi", "Calabrese", "Audino", "Stranieri"};
+    char emails[6][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giulio@mail.it", "annabella@mail.it",
+                                 "andrea@mail.it", "silvia@mail.it"};
+
+    for (int i = 0; i < 6; i++) {
+        User user = (User) malloc(sizeof(struct usr));
+
+        strcpy(user->role, USER);
+        strcpy(user->name, names[i]);
+        strcpy(user->surname, surnames[i]);
+        strcpy(user->email, emails[i]);
+        strcpy(user->password, "123");
+
+        userTree = insertUserNodeTree(userTree, user);
+
+        createUserBooking(user, NULL);
+
+        UserBooking userBooking = createUserBooking(user, NULL);
+        listUserBooking = enqueueListUserBooking(listUserBooking, userBooking);
+    }
+
+    return userTree;
 }
 

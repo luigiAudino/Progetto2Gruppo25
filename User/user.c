@@ -82,10 +82,9 @@ void printUser(User user) {
     printf("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_\n");
 }
 
-User login(UserTree userTree) {//, int *ptrRole) {
-    bool isRight = true;
+bool login(UserTree userTree, User *user) {
+    bool isRight = true, foundIt = false;
     int roleChoised;
-    User user = NULL;
 
     do {
         if (!isRight)
@@ -98,42 +97,29 @@ User login(UserTree userTree) {//, int *ptrRole) {
         isRight = false;
     } while (roleChoised != 1 && roleChoised != 2);
 
-    user = (User) malloc(sizeof(struct usr));
-
     printf("Inserisci email\n");
     fflush(stdin);
-    scanf("%s", user->email);
+    scanf("%s", (*user)->email);
 
     printf("Inserisci password\n");
     fflush(stdin);
-    scanf("%s", user->password);
+    scanf("%s", (*user)->password);
 
-    if (roleChoised == 1) {
-        if (searchUser(userTree, &user) == true) {
-            printf("Login OK\n");
-            //*ptrRole = roleChoised;
-        }
-        else
-            printf("Login KO\n");
-    } else {
-        if (searchAdmin(userTree, &user) == true){
-            printf("Login OK\n");
-            //*ptrRole = roleChoised;
-        }
-        else
-            printf("Login KO\n");
-    }
+    if (roleChoised == 1)
+        foundIt = searchUser(userTree, &(*user)) == true;
+    else
+        foundIt = searchAdmin(userTree, &(*user)) == true;
 
-    return user;
+    return foundIt;
 }
 
-bool search(UserTree userTree, User user) {
+bool search(UserTree userTree, User *user) {
     bool foundIt = false;
 
     if (strcmp(userTree->user->role, USER) == 0)
-        foundIt = searchUser(userTree, user);
+        foundIt = searchUser(userTree, &(*user));
     else
-        foundIt = searchAdmin(userTree, user);
+        foundIt = searchAdmin(userTree, &(*user));
 
     return foundIt;
 }
@@ -157,7 +143,7 @@ bool searchAdmin(UserTree userTree, User *user) {
     bool isPresent = false;
 
     if (userTree != NULL) {
-        if (strcmp(userTree->user->role, ADMIN) == 0 && userEquals(userTree->user, user))
+        if (strcmp(userTree->user->role, ADMIN) == 0 && userEquals(userTree->user, *user))
             isPresent = true;
         else
             isPresent = searchAdmin(userTree->dx, &(*user));
@@ -337,27 +323,6 @@ bool emailAdminIsPresent(UserTree userTree, char *email) {
     }
 
     return isPresent;
-}
-
-UserTree uploadUsers(UserTree userTree) {
-    char names[6][MAX_WORDS] = {"Luigi", "Piero Junior", "Giulio", "Annabella", "Andrea", "Silvia"};
-    char surnames[6][MAX_WORDS] = {"Audino", "Gaetani", "Galloppi", "Calabrese", "Audino", "Stranieri"};
-    char emails[6][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giulio@mail.it", "annabella@mail.it",
-                                 "andrea@mail.it", "silvia@mail.it"};
-
-    for (int i = 0; i < 6; i++) {
-        User user = (User) malloc(sizeof(struct usr));
-
-        strcpy(user->role, USER);
-        strcpy(user->name, names[i]);
-        strcpy(user->surname, surnames[i]);
-        strcpy(user->email, emails[i]);
-        strcpy(user->password, "123");
-
-        userTree = insertUserNodeTree(userTree, user);
-    }
-
-    return userTree;
 }
 
 UserTree uploadAdmins(UserTree userTree) {
