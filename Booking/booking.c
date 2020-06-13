@@ -18,9 +18,11 @@ City enqueueCity(City cities, char *nameCity) {
     if (cities != NULL) {
         if (cities->next == NULL) {
             City newCity = (City) malloc(sizeof(struct city));
-            cities->next = newCity;
+
             strcpy(newCity->name, nameCity);
             newCity->next = NULL;
+
+            cities->next = newCity;
         } else
             enqueueCity(cities->next, nameCity);
     } else {
@@ -109,15 +111,10 @@ bool cityIsEqual(City city1, City city2) {
 
 UserBooking createUserBooking(User user, Booking booking) {
     UserBooking userBooking = (UserBooking) malloc(sizeof(struct userBooking));
-    if(user == NULL)
-        user = (User) malloc(sizeof( struct usr));
-
-    //if(booking == NULL)
-    //booking = (Booking) malloc(sizeof(struct booking));
 
     userBooking->user = user;
     userBooking->booking = booking;
-    userBooking->booking->next = NULL;
+    //userBooking->booking->next = NULL;
 
     return userBooking;
 }
@@ -132,7 +129,7 @@ Booking enqueueBooking(Booking booking, int price, City city) {
     if(city == NULL)
         return newBooking;
 
-    strcpy(newBooking->city->name, city->name);
+    newBooking->city = city;
     newBooking->price = price;
     newBooking->next = NULL;
 
@@ -147,18 +144,23 @@ Booking enqueueBooking(Booking booking, int price, City city) {
     return head;
 }
 
-UserBooking enqueueUserBooking(UserBooking userBooking, User user, Booking booking) {
+//Aggiunge all'utente delle prenotazioni
+UserBooking addBookingToUserBooking(UserBooking userBooking, User user, Booking booking) {
     UserBooking head = userBooking;
+    Booking prec;
 
     if(userBooking == NULL) {
         return createUserBooking(user, booking);
     }
 
-    while (userBooking->booking->next != NULL) {
-        userBooking->booking = userBooking->booking->next;
+    Booking b = userBooking->booking;
+
+    while (b != NULL) {
+        prec = b;
+        b = b->next;
     }
 
-    userBooking->booking->next = booking;
+    prec->next = booking;
 
     return head;
 }
@@ -194,7 +196,7 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
     ListUserBooking head = listUserBooking;
     ListUserBooking prec;
 
-    if(listUserBooking == NULL) {
+    if(listUserBooking == NULL) { // || listUserBooking->userBooking == NULL) {
         return createListUserBooking(userBooking);
     }
 
@@ -202,12 +204,15 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
         if(userEquals(listUserBooking->userBooking->user, userBooking->user) == true) {
             foundIt = true;
 
+            listUserBooking->userBooking = userBooking;
+            /*
             //Aggiungo in coda il Booking alla lista del Booking dello UserBooking della ListaUserBooking
             while (listUserBooking->userBooking->booking->next != NULL) {
                 listUserBooking->userBooking->booking = listUserBooking->userBooking->booking->next;
             }
 
             listUserBooking->userBooking->booking->next = userBooking->booking;
+             */
             break;
         }
         else {
@@ -247,7 +252,7 @@ char* getDestinationCity(City cities){
 }
 
 
-UserTree uploadUsers(ListUserBooking  listUserBooking, UserTree userTree) {
+UserTree uploadUsers(UserTree userTree) {
     char names[6][MAX_WORDS] = {"Luigi", "Piero Junior", "Giulio", "Annabella", "Andrea", "Silvia"};
     char surnames[6][MAX_WORDS] = {"Audino", "Gaetani", "Galloppi", "Calabrese", "Audino", "Stranieri"};
     char emails[6][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giulio@mail.it", "annabella@mail.it",

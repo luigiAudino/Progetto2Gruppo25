@@ -51,7 +51,7 @@ int main() {
     
     //g = presetGraph(g);
     
-    userTree = uploadUsers(listUserBooking, userTree);
+    userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
 
     user = (User) malloc(sizeof(struct usr));
@@ -156,7 +156,7 @@ void menuBooking() {
             //esco ed esce menu da stabilire
         }
         else {
-            bookingCheaperOrShortestPath(g, departureKey, destinationKey, &listUserBooking, user);
+            listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
             printf("OK");
         }
     }
@@ -170,7 +170,7 @@ void menuBooking() {
             destinationKey = destinationMostPopular(g, departureKey);
         }
 
-        bookingCheaperOrShortestPath(g, departureKey, destinationKey, &listUserBooking, user);
+        listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
 
     }
 

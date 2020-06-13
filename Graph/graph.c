@@ -1160,7 +1160,7 @@ int getKeyVertexFromGraph(Graph g, City city) {
 }
 
 //Punto 1 traccia Progetto
-void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking *listUserBooking, User user) {
+ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking listUserBooking, User user) {
     City cityTravel = NULL;
 
     if(choiceBetweenTwo("\nSeleziona:\n1 - Tratta piu' economica\n2 - Tratta piu' breve\n") == 1) {
@@ -1181,10 +1181,15 @@ void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey,
 
     //La prima volta che un utente effettua una prenotazione, non è presente nella listaUserBooking e ritorna NULL
     //Le volte successive, mi ritorna l'utente con le sue prenotazioni
-    UserBooking userBooking = getUserBookingFromUser(*listUserBooking, user);
+    UserBooking userBooking = getUserBookingFromUser(listUserBooking, user);
 
-    userBooking = enqueueUserBooking(userBooking, user, bookingTravel);
-    *listUserBooking = enqueueListUserBooking(*(listUserBooking), userBooking);
+    UserBooking userBookingTravel = addBookingToUserBooking(userBooking, user, bookingTravel);
+
+    if(listUserBooking == NULL)
+        listUserBooking = createListUserBooking(userBookingTravel);
+    //listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
 
     printf("OK");
+
+    return listUserBooking;
 }

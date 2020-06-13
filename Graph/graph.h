@@ -145,6 +145,6 @@ City getAllCityFromGraph(Graph G);
 
 int getKeyVertexFromGraph(Graph g, City city);
 
-void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking *listUserBooking, User user);
+ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking listUserBooking, User user);
 
 #endif
