@@ -64,7 +64,7 @@ bool cityIsEqual(City city1, City city2);
 
 UserBooking createUserBooking(User user, Booking booking);
 
-UserBooking enqueueUserBooking(UserBooking userBooking, Booking booking);
+UserBooking enqueueUserBooking(UserBooking userBooking, User user, Booking booking);
 
 ListUserBooking createListUserBooking(UserBooking userBooking);
 
@@ -78,3 +78,6 @@ char* getDestinationCity(City cities);
 
 //Carica una lista di users
 UserTree uploadUsers(ListUserBooking  listUserBooking, UserTree userTree);
+
+//Otteniamo lo userBooking che desideriamo dallo user cercando nella lista contenente tutti gli userBooking, altrimenti null
+UserBooking getUserBookingFromUser(ListUserBooking listUserBooking, User user);

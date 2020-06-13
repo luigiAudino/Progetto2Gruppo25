@@ -1177,7 +1177,14 @@ void bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey,
 
     Booking bookingTravel = enqueueBooking(NULL, price, cityTravel);
 
-    UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
-    *listUserBooking = enqueueListUserBooking(*(listUserBooking), userBookingTravel);
+    //UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
+
+    //La prima volta che un utente effettua una prenotazione, non è presente nella listaUserBooking e ritorna NULL
+    //Le volte successive, mi ritorna l'utente con le sue prenotazioni
+    UserBooking userBooking = getUserBookingFromUser(*listUserBooking, user);
+
+    userBooking = enqueueUserBooking(userBooking, user, bookingTravel);
+    *listUserBooking = enqueueListUserBooking(*(listUserBooking), userBooking);
+
     printf("OK");
 }

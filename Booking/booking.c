@@ -9,6 +9,7 @@ Booking createBooking(int price, City city) {
 
     booking->city = city;
     booking->price = price;
+    booking->next = NULL;
 
     return booking;
 }
@@ -116,6 +117,7 @@ UserBooking createUserBooking(User user, Booking booking) {
 
     userBooking->user = user;
     userBooking->booking = booking;
+    userBooking->booking->next = NULL;
 
     return userBooking;
 }
@@ -145,11 +147,11 @@ Booking enqueueBooking(Booking booking, int price, City city) {
     return head;
 }
 
-UserBooking enqueueUserBooking(UserBooking userBooking, Booking booking) {
+UserBooking enqueueUserBooking(UserBooking userBooking, User user, Booking booking) {
     UserBooking head = userBooking;
 
     if(userBooking == NULL) {
-        return createUserBooking(userBooking->user, booking);
+        return createUserBooking(user, booking);
     }
 
     while (userBooking->booking->next != NULL) {
@@ -161,28 +163,68 @@ UserBooking enqueueUserBooking(UserBooking userBooking, Booking booking) {
     return head;
 }
 
+UserBooking getUserBookingFromUser(ListUserBooking listUserBooking, User user) {
+    UserBooking userBooking = NULL;
+    if(listUserBooking != NULL) {
+        while (listUserBooking->userBooking != NULL) {
+            if(userEquals(listUserBooking->userBooking->user, user)) {
+                userBooking = listUserBooking->userBooking;
+                break;
+            }
+
+            listUserBooking = listUserBooking->next;
+        }
+    }
+
+    return userBooking;
+}
+
 ListUserBooking createListUserBooking(UserBooking userBooking) {
     ListUserBooking listUserBooking = (ListUserBooking) malloc(sizeof(struct listUserBooking));
+
     listUserBooking->userBooking = userBooking;
+    listUserBooking->next = NULL;
 
     return listUserBooking;
 }
 
 ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBooking userBooking) {
+    bool foundIt = false;
+
     ListUserBooking head = listUserBooking;
+    ListUserBooking prec;
 
     if(listUserBooking == NULL) {
         return createListUserBooking(userBooking);
     }
 
-    while (listUserBooking->next != NULL) {
-        listUserBooking = listUserBooking->next;
+    while (listUserBooking != NULL) {
+        if(userEquals(listUserBooking->userBooking->user, userBooking->user) == true) {
+            foundIt = true;
+
+            //Aggiungo in coda il Booking alla lista del Booking dello UserBooking della ListaUserBooking
+            while (listUserBooking->userBooking->booking->next != NULL) {
+                listUserBooking->userBooking->booking = listUserBooking->userBooking->booking->next;
+            }
+
+            listUserBooking->userBooking->booking->next = userBooking->booking;
+            break;
+        }
+        else {
+
+            //Scorro lo UserBooking perché non è il mio UserBooking
+            prec = listUserBooking;
+            listUserBooking = listUserBooking->next;
+        }
     }
 
-    ListUserBooking listUserBookingNew = (ListUserBooking)malloc(sizeof(struct listUserBooking));
-    listUserBookingNew->userBooking = userBooking;
+    if(!foundIt) {
+        ListUserBooking listUserBookingNew = (ListUserBooking) malloc(sizeof(struct listUserBooking));
+        listUserBookingNew->userBooking = userBooking;
+        listUserBookingNew->next = NULL;
 
-    listUserBooking->next = listUserBookingNew;
+        prec->next = listUserBookingNew;
+    }
 
     return head;
 }
@@ -222,10 +264,10 @@ UserTree uploadUsers(ListUserBooking  listUserBooking, UserTree userTree) {
 
         userTree = insertUserNodeTree(userTree, user);
 
-        createUserBooking(user, NULL);
+        //createUserBooking(user, NULL);
 
-        UserBooking userBooking = createUserBooking(user, NULL);
-        listUserBooking = enqueueListUserBooking(listUserBooking, userBooking);
+        //UserBooking userBooking = createUserBooking(user, NULL);
+        //listUserBooking = enqueueListUserBooking(listUserBooking, userBooking);
     }
 
     return userTree;

@@ -90,7 +90,7 @@ void menu() {
 
         case 2: {
             user = signIn(userTree);
-            enqueueListUserBooking(listUserBooking, createUserBooking(user, NULL));
+            //enqueueListUserBooking(listUserBooking, createUserBooking(user, NULL));
             userTree = insertUserNodeTree(userTree, user);
 
             menuBooking();
@@ -174,5 +174,6 @@ void menuBooking() {
 
     }
 
+    menuBooking();
 }
 
