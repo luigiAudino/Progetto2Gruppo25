@@ -271,21 +271,11 @@ int getFlyCostByBooking(Graph G, Booking B){
 int getFlyCost(Graph G,int s, int t){//Ritorna il costo totale del volo in base al percorso di cui sara' composto
 
     int cost = 0; //puntatore a city
-    printf("\ns = %d, t=%d\n",s,t);
 
     if(s!=t){
             cost = getPrice(G,G->infoVertex[t].pi,t);
-            printf("t = %d == %s ; pi[%d] = %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
-            printf("costo arco (%d,%d) = %d",G->infoVertex[t].pi,t,cost);
-
             cost = cost + getFlyCost(G,s,G->infoVertex[t].pi);
-            //inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
-        }/*
-        else{
-            inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
-            printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
-        }*/
-
+        }
     return cost;
 }
 
@@ -295,15 +285,15 @@ int getFlyCost(Graph G,int s, int t){//Ritorna il costo totale del volo in base 
 City getSP(Graph G,int s, int t){
 
     City inizioPercorso = NULL; //puntatore a city
-    printf("\ns = %d, t=%d\n",s,t);
+    //printf("\ns = %d, t=%d\n",s,t);
 
     if(s!=t){
-            printf("t = %d == %s ; pi[%d]= %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
+            //printf("t = %d == %s ; pi[%d]= %d \n",t,G->infoVertex[t].name,t,G->infoVertex[t].pi);
             inizioPercorso = getSP(G,s,G->infoVertex[t].pi);
     }
 
     inizioPercorso = enqueueCity(inizioPercorso,G->infoVertex[t].name);
-    printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
+    //printf("s = t = %d == %s \n",t,G->infoVertex[t].name);
 
     return inizioPercorso;
 }
@@ -312,7 +302,7 @@ City getSP(Graph G,int s, int t){
 
 
 void dijkstraCheaper(Graph G,int s){
-    puts("Esecuzione di dijkstra per la tratta piu' economica");
+    //puts("Esecuzione di dijkstra per la tratta piu' economica");
     Queue S = initQueue();
     Queue Q = initQueue();
     int min; //vertice minimo estratto dalla coda Q
@@ -340,7 +330,7 @@ void dijkstraCheaper(Graph G,int s){
 }
 
 void dijkstraShortestDistance(Graph G,int s){
-    puts("Esecuzione di dijkstra per la tratta piu' breve");
+    //puts("Esecuzione di dijkstra per la tratta piu' breve");
     Queue S = initQueue();
     Queue Q = initQueue();
     int min; //vertice minimo estratto dalla coda Q
@@ -405,7 +395,6 @@ int extractMinDijkstra(Graph G,Queue Q){
 void relaxPrice(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso il prezzo dell'arco; u = vertice attuale, v = vertice da raggiungere da u
         if(!isEmpty(G)){
             if(containsEdge(G,u,v)==1){
-                puts("----INIZIO RILASSAMENTO CON PRICE---\n");
                 //G->infoVertex[v].d == d[v] == distanza del vertice v dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'v'
                 //G->infoVertex[u].d == d[u] == distanza del vertice u dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'u'
                 int pesoArco = getPrice(G,u,v); //peso dell'arco da 'u' a 'v'
@@ -415,15 +404,11 @@ void relaxPrice(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso i
                 printf("d[%d] = %d > (d[%d] = %d + pesoArco = %d) ?\n",v,G->infoVertex[v].d,u,G->infoVertex[u].d,pesoArco);*/
                 //Se d[v] ATTUALE > d[u] + pesoArco(u,v) allora RILASSO, poiche' posso raggiungere il vertice v passando da u con un peso/distanza minore
                 if(G->infoVertex[v].d > ((G->infoVertex[u].d)+ pesoArco) ){
-                    printf("\n[VIA]rilassamento dal vertice attuale %d al vertice di destinazione %d \n",u,v);
+                    //printf("\n[VIA]rilassamento dal vertice attuale %d al vertice di destinazione %d \n",u,v);
                     G->infoVertex[v].d = G->infoVertex[u].d + pesoArco; //distanza di v = dis U + peso (u,v)
                     G->infoVertex[v].pi = u; // precedente di v = u
-                    printf("d[%d] = %d ; pi[%d] = %d\n\n",v,G->infoVertex[v].d,v,G->infoVertex[v].pi);
+                   // printf("d[%d] = %d ; pi[%d] = %d\n\n",v,G->infoVertex[v].d,v,G->infoVertex[v].pi);
                 }
-                else{
-                    printf("rilassamento da %d a %d non necessario\n",u,v);
-                }
-            puts("\n----fine RILASSAMENTO---");
             }
             else{//nel caso in cui (u,v) non appartenga al grafo
                 printf("L'arco non e' contenuto nel grafo.");
@@ -434,7 +419,6 @@ void relaxPrice(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso i
 void relaxKm(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso i km dell'arco; u = vertice attuale, v = vertice da raggiungere da u
         if(!isEmpty(G)){
             if(containsEdge(G,u,v)==1){
-                puts("----INIZIO RILASSAMENTO CON KM---\n");
                 //G->infoVertex[v].d == d[v] == distanza del vertice v dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'v'
                 //G->infoVertex[u].d == d[u] == distanza del vertice u dall'origine == somma dei pesi degli archi dall'origine 's' al nodo 'u'
                 int pesoArco = getKm(G,u,v); //peso dell'arco da 'u' a 'v'
@@ -444,15 +428,11 @@ void relaxKm(Graph G, int u, int v){//Rilassa l'arco (u,v) usando come peso i km
                 printf("d[%d] = %d > (d[%d] = %d + pesoArco = %d) ?\n",v,G->infoVertex[v].d,u,G->infoVertex[u].d,pesoArco);*/
                 //Se d[v] ATTUALE > d[u] + pesoArco(u,v) allora RILASSO, poiche' posso raggiungere il vertice v passando da u con un peso/distanza minore
                 if(G->infoVertex[v].d > ((G->infoVertex[u].d)+ pesoArco) ){
-                    printf("\n[VIA]rilassamento dal vertice attuale %d al vertice di destinazione %d \n",u,v);
+                    //printf("\n[VIA]rilassamento dal vertice attuale %d al vertice di destinazione %d \n",u,v);
                     G->infoVertex[v].d = G->infoVertex[u].d + pesoArco; //distanza di v = dis U + peso (u,v)
                     G->infoVertex[v].pi = u; // precedente di v = u
-                    printf("d[%d] = %d ; pi[%d] = %d\n\n",v,G->infoVertex[v].d,v,G->infoVertex[v].pi);
+                    //printf("d[%d] = %d ; pi[%d] = %d\n\n",v,G->infoVertex[v].d,v,G->infoVertex[v].pi);
                 }
-                else{
-                    printf("rilassamento da %d a %d non necessario\n",u,v);
-                }
-            puts("\n----fine RILASSAMENTO---");
             }
             else{//nel caso in cui (u,v) non appartenga al grafo
                 printf("L'arco non e' contenuto nel grafo.");
@@ -493,7 +473,7 @@ il prezzo minimo possibile, siccome con degli scali, i prezzi degli archi sarebb
 la meta successiva avra' un prezzo sempre superiore.*/
 
 int destinationCheaper(Graph G, int nodeDeparture){
-    printf("Inizio calcolo meta piu' economica da %d/%s\n",nodeDeparture,G->infoVertex[nodeDeparture].name);
+    printf("Inizio calcolo meta piu' economica da %s\n",G->infoVertex[nodeDeparture].name);
     int node = -1;
     int min = INT_MAX;
     if(G!=NULL){
@@ -511,6 +491,7 @@ int destinationCheaper(Graph G, int nodeDeparture){
                 e = e->next;
           }
         }
+        printf("La meta piu' economica da %s e' : %s",G->infoVertex[nodeDeparture].name,G->infoVertex[node].name);
     }
     return node;
 }
@@ -532,7 +513,7 @@ int destinationCheaper(Graph G, int nodeDeparture){
 //La citta' di partenza e' esclusa dalle possibili destinazioni
 
 int destinationMostPopular(Graph G, int nodeDepartureCity){
-    printf("Inizio calcolo della citta'/nodo di destinazione PIU' GETTONATA per il nodo %d/%s\n",nodeDepartureCity,G->infoVertex[nodeDepartureCity].name);
+    printf("Inizio calcolo della citta' di destinazione piu' gettonata per la citta' %s\n",G->infoVertex[nodeDepartureCity].name);
     int max = 0;
     int result = -1; //Nel caso in cui la citta' di partenza non avesse destinazioni
     //trovo la citta' con punteggio massimo tra quelle che hanno un collegamento col nodo di partenza
@@ -562,23 +543,28 @@ int destinationMostPopular(Graph G, int nodeDepartureCity){
         }
     }
 
+
+    //printf("INDEX TROVATI %d", indexTrovati);
     if(indexTrovati>1){
-        printf("Sono stati trovati %d citta' con lo stesso punteggio di gettonate = %d  per il nodo in ingresso = %d \n",indexTrovati,G->infoVertex[result].cityPopularPoints,nodeDepartureCity);
+        printf("Sono state trovate %d citta' con lo stesso punteggio di gettonate = %d  per il nodo in ingresso = %d \n",indexTrovati,G->infoVertex[result].cityPopularPoints,nodeDepartureCity);
+        printf("\nSeleziona: \n");
         for(int i=0;i<indexTrovati;i++){
             int key = nodiTrovati[i];
-            printf("scelta[%d] = %d/%s con %d punti\n",i,nodiTrovati[i],G->infoVertex[key].name,G->infoVertex[key].cityPopularPoints);
+            //printf("\nSeleziona: %d = %d/%s con %d punti\n",i,nodiTrovati[i],G->infoVertex[key].name,G->infoVertex[key].cityPopularPoints);
+            printf("%d = %s con %d punti\n",(i+1),G->infoVertex[key].name,G->infoVertex[key].cityPopularPoints);
         }
         int scelta;
         puts("Inserisci il numero del vertice che vuoi tra quelli visualizzati:");
         scanf("%d",&scelta);
         getchar();
-        while((scelta<0)||(scelta>indexTrovati)){//controllo sulla scelta in input
+        while((scelta<1)||(scelta>indexTrovati)){//controllo sulla scelta in input
             puts("SCELTA NON CONSENTITA,Inserisci il numero del vertice che vuoi tra quelli visualizzati:");
             scanf("%d",&scelta);
             getchar();
         }
-        result = nodiTrovati[scelta];
-        printf("Scelto nodo  %d come destinazione piu' gettonata\n",result);
+        //scelta va' -1 perche' sono visualizzati i numeri da 1 a indexTrovati che possono essere selezionati
+        result = nodiTrovati[scelta-1];
+        printf("Scelto nodo  %d = %s come destinazione piu' gettonata\n",result,G->infoVertex[result].name);
 
     }else if(indexTrovati==1){
         printf("Scelto nodo  %d come destinazione piu' gettonata, esso e' l'unico nodo con punteggio gettonate massimo per la citta'di partenza %d\n",result,nodeDepartureCity);
@@ -1189,8 +1175,6 @@ ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int dest
         listUserBooking = createListUserBooking(userBookingTravel);
     else
         listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
-
-    printf("\nFine bookingcheaper\n");
 
     return listUserBooking;
 }

@@ -27,15 +27,15 @@ int main() {
     //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
-    
+
     addEdge(g,1,2,3,100);
-    
+
     addEdge(g,2,5,4,100);
-    
+
     addEdge(g,3,0,5,100);
     addEdge(g,3,2,6,100);
     addEdge(g,3,4,7,100);
-    
+
     addEdge(g,4,2,8,100);
 
     printGraph(g); //stampa del grafo numerico
@@ -49,9 +49,9 @@ int main() {
 
     printGraphWithNames(g);
     //Grafo test fine
-    
+
     //g = presetGraph(g);
-    
+
     userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
 
@@ -108,7 +108,7 @@ void menu() {
             menu();
         }
     }
-    
+
 }
 
 void backToMenu() {
@@ -127,6 +127,9 @@ void backToMenu() {
 
 void menuUser() {
     int choice = choiceBetweenN("\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
+
+    while(choice!=4){
+
     switch (choice) {
         case 1: {
             menuBooking();
@@ -141,14 +144,15 @@ void menuUser() {
             break;
         }
         case 4: {
-            printf("\nArrivederci!");
             return;
         }
         default: {
             printf("Scelta errata - riprova!\n");
+            }
         }
+        choice = choiceBetweenN("\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
     }
-    menuUser();
+    printf("\nArrivederci!");
 }
 
 void menuBooking() {
@@ -179,12 +183,12 @@ void menuBooking() {
 
         //controllo se esiste la tratta
         if(existLinkDfs(g, departureKey, destinationKey) != 1) {
-            printf("Errore");
+            printf("ERRORE: La tratta non esiste\n");
             //esco ed esce menu da stabilire
         }
         else {
             listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-            printf("\nFine menu booking 1\n");
+            //printf("\nFine menu booking 1\n");
         }
     }
     //Punto 2 traccia Progetto
@@ -198,10 +202,10 @@ void menuBooking() {
         }
 
         listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-        printf("\nFine menu booking 2\n");
+        //printf("\nFine menu booking 2\n");
 
     }
 
-    menuUser();
+
 }
 

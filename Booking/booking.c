@@ -300,9 +300,10 @@ void printBooking(User user, ListUserBooking listUserBooking) {
             }
 
         } else
-            printf("L'utente non e' contenuto nella lista\n");
-            
+            puts("Non hai effettuato alcuna prenotazione\n");
+            //printf("L'utente non e' contenuto nella lista\n");
     } else {
-        puts("La listUserBooking e' null, nessun user presente");
+        puts("Non hai effettuato alcuna prenotazione\n");
+        //la listUserBooing e' NULL
     }
 }
