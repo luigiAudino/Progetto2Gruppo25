@@ -62,10 +62,10 @@ Booking removeLastBooking(Booking booking, char *nameCity) {
     return booking;
 }
 
-void printBooking(City city) {
+void printCity(City city) {
     if (city != NULL) {
         printf("\nPrenotazione: %s\n", city->name);
-        printBooking(city->next);
+        printCity(city->next);
     }
 }
 
@@ -94,7 +94,7 @@ City choiceCity(City city, char *message) {
 
     i = 1;
     while (head != NULL) {
-        if(i == choice) {
+        if (i == choice) {
             cityReturned = head;
             break;
         }
@@ -120,13 +120,13 @@ UserBooking createUserBooking(User user, Booking booking) {
 }
 
 Booking enqueueBooking(Booking booking, int price, City city) {
-    if(booking == NULL) {
+    if (booking == NULL) {
         return createBooking(price, city);
     }
 
-    Booking newBooking = (Booking) malloc(sizeof( struct booking));
+    Booking newBooking = (Booking) malloc(sizeof(struct booking));
 
-    if(city == NULL)
+    if (city == NULL)
         return newBooking;
 
     newBooking->city = city;
@@ -149,7 +149,7 @@ UserBooking addBookingToUserBooking(UserBooking userBooking, User user, Booking 
     UserBooking head = userBooking;
     Booking prec;
 
-    if(userBooking == NULL) {
+    if (userBooking == NULL) {
         return createUserBooking(user, booking);
     }
 
@@ -165,11 +165,11 @@ UserBooking addBookingToUserBooking(UserBooking userBooking, User user, Booking 
     return head;
 }
 
-UserBooking getUserBookingFromUser(ListUserBooking listUserBooking, User user) {
+UserBooking getUserBookingFromListUserBooking(ListUserBooking listUserBooking, User user) {
     UserBooking userBooking = NULL;
-    if(listUserBooking != NULL) {
+    if (listUserBooking != NULL) {
         while (listUserBooking->userBooking != NULL) {
-            if(userEquals(listUserBooking->userBooking->user, user)) {
+            if (userEquals(listUserBooking->userBooking->user, user)) {
                 userBooking = listUserBooking->userBooking;
                 break;
             }
@@ -196,12 +196,12 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
     ListUserBooking head = listUserBooking;
     ListUserBooking prec;
 
-    if(listUserBooking == NULL) { // || listUserBooking->userBooking == NULL) {
+    if (listUserBooking == NULL) { // || listUserBooking->userBooking == NULL) {
         return createListUserBooking(userBooking);
     }
 
     while (listUserBooking != NULL) {
-        if(userEquals(listUserBooking->userBooking->user, userBooking->user) == true) {
+        if (userEquals(listUserBooking->userBooking->user, userBooking->user) == true) {
             foundIt = true;
 
             listUserBooking->userBooking = userBooking;
@@ -214,8 +214,7 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
             listUserBooking->userBooking->booking->next = userBooking->booking;
              */
             break;
-        }
-        else {
+        } else {
 
             //Scorro lo UserBooking perché non è il mio UserBooking
             prec = listUserBooking;
@@ -223,7 +222,7 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
         }
     }
 
-    if(!foundIt) {
+    if (!foundIt) {
         ListUserBooking listUserBookingNew = (ListUserBooking) malloc(sizeof(struct listUserBooking));
         listUserBookingNew->userBooking = userBooking;
         listUserBookingNew->next = NULL;
@@ -234,17 +233,17 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
     return head;
 }
 
-char* getDepartureCity(City cities){
-    if (cities!=NULL){
+char *getDepartureCity(City cities) {
+    if (cities != NULL) {
         return cities->name;
     }
 
     return NULL;
 }
 
-char* getDestinationCity(City cities){
-    if (cities!=NULL){
-        while(cities->next!=NULL){
+char *getDestinationCity(City cities) {
+    if (cities != NULL) {
+        while (cities->next != NULL) {
             cities = cities->next;
         }
     }
@@ -278,3 +277,23 @@ UserTree uploadUsers(UserTree userTree) {
     return userTree;
 }
 
+void printBooking(User user, ListUserBooking listUserBooking) {
+    if (listUserBooking != NULL) {
+        UserBooking userBookingAssociato = getUserBookingFromListUserBooking(listUserBooking, user);
+
+        if (userBookingAssociato != NULL) {
+            int i = 0;
+            while (userBookingAssociato->booking != NULL) {
+                City listaCityAssociataAlBooking = userBookingAssociato->booking->city;
+                printf("Stampa listUserBooking %d associata al booking dello userBooking", i);
+                printCity(listaCityAssociataAlBooking);
+                userBookingAssociato->booking = userBookingAssociato->booking->next;
+                i++;
+            }
+        } else
+            printf("L'utente non e' contenuto nella lista\n");
+            
+    } else {
+        puts("La listUserBooking e' null, nessun user presente");
+    }
+}

@@ -1181,7 +1181,7 @@ ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int dest
 
     //La prima volta che un utente effettua una prenotazione, non è presente nella listaUserBooking e ritorna NULL
     //Le volte successive, mi ritorna l'utente con le sue prenotazioni
-    UserBooking userBooking = getUserBookingFromUser(listUserBooking, user);
+    UserBooking userBooking = getUserBookingFromListUserBooking(listUserBooking, user);
 
     UserBooking userBookingTravel = addBookingToUserBooking(userBooking, user, bookingTravel);
 

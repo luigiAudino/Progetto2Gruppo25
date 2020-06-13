@@ -29,3 +29,19 @@ int choiceBetweenTwo(char *message) {
 
     return choice;
 }
+
+int choiceBetweenN(char *message, int num) {
+    bool isRight = true;
+    int choice;
+    do {
+        if (!isRight)
+            printf("Scelta errata, per favore riprova!\n");
+
+        printf("%s\n", message);
+        scanf("%d", &choice);
+
+        isRight = false;
+    } while (choice < 1 || choice > num);
+
+    return choice;
+}

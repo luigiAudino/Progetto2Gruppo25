@@ -56,7 +56,7 @@ Booking addBooking(Booking booking, char *nameCity);
 Booking removeLastBooking(Booking booking, char *nameCity);
 
 //Stampa tutte le citta'
-void printBooking(City city);
+void printCity(City city);
 
 City choiceCity(City city, char *message);
 
@@ -80,4 +80,6 @@ char* getDestinationCity(City cities);
 UserTree uploadUsers(UserTree userTree);
 
 //Otteniamo lo userBooking che desideriamo dallo user cercando nella lista contenente tutti gli userBooking, altrimenti null
-UserBooking getUserBookingFromUser(ListUserBooking listUserBooking, User user);
+UserBooking getUserBookingFromListUserBooking(ListUserBooking listUserBooking, User user);
+
+void printBooking(User user, ListUserBooking listUserBooking);

@@ -6,5 +6,6 @@ void strtolower(char input[] , char output[]);
 
 int choiceBetweenTwo(char *message);
 
+int choiceBetweenN(char *message, int num);
 
 #endif //PROGETTO2GRUPPO25_UTIL_H

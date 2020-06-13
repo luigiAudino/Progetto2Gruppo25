@@ -10,6 +10,7 @@
 
 void menu();
 void menuBooking();
+void menuUser();
 void backToMenu();
 
 UserTree userTree = NULL;
@@ -68,7 +69,7 @@ void menu() {
     char newCity [MAX_WORDS];
     //UserTree userTree = NULL;
 
-    printf("\nSeleziona:\n1 - Login\n2 - Registrazione\n7 - Exit\n");
+    printf("\nSeleziona:\n1 - Login\n2 - Registrazione\n3 - Exit\n");
     scanf("%d", &choice);
 
     switch (choice) {
@@ -81,9 +82,9 @@ void menu() {
                 break;
             }
 
-            printf("Bevenuto %s %s\n", user->name, user->surname);
+            printf("\nBenvenuto %s %s\n", user->name, user->surname);
 
-            menuBooking();
+            menuUser();
 
             break;
         }
@@ -93,11 +94,11 @@ void menu() {
             //enqueueListUserBooking(listUserBooking, createUserBooking(user, NULL));
             userTree = insertUserNodeTree(userTree, user);
 
-            menuBooking();
+            menuUser();
 
             break;
         }
-        case 7: {
+        case 3: {
             printf("\nArrivederci!");
             return;
         }
@@ -122,6 +123,32 @@ void backToMenu() {
         menu();
 
     //printf("\nArrivederci!");
+}
+
+void menuUser() {
+    int choice = choiceBetweenN("\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
+    switch (choice) {
+        case 1: {
+            menuBooking();
+            break;
+        }
+        case 2: {
+            printBooking(user, listUserBooking);
+            break;
+        }
+        case 3: {
+            printf("%d punti accumulati\n", user->points);
+            break;
+        }
+        case 4: {
+            printf("\nArrivederci!");
+            return;
+        }
+        default: {
+            printf("Scelta errata - riprova!\n");
+            menuUser();
+        }
+    }
 }
 
 void menuBooking() {
@@ -174,6 +201,6 @@ void menuBooking() {
 
     }
 
-    menuBooking();
+    menuUser();
 }
 

@@ -16,6 +16,7 @@ struct usr {
     char email[MAX_WORDS];
     char password[MAX_WORDS];
     char role[MAX_WORDS];
+    int points;
 };
 
 typedef struct usr* User;
