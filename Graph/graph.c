@@ -531,7 +531,7 @@ int destinationCheaper(Graph G, int nodeDeparture){
 //Ovvero due o piu' possibili mete hanno lo stesso punteggio, allora l'utente decide
 //La citta' di partenza e' esclusa dalle possibili destinazioni
 
-int mostPopularCityFrom(Graph G,int nodeDepartureCity){
+int destinationMostPopular(Graph G, int nodeDepartureCity){
     printf("Inizio calcolo della citta'/nodo di destinazione PIU' GETTONATA per il nodo %d/%s\n",nodeDepartureCity,G->infoVertex[nodeDepartureCity].name);
     int max = 0;
     int result = -1; //Nel caso in cui la citta' di partenza non avesse destinazioni

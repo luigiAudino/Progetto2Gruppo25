@@ -119,7 +119,7 @@ void backToMenu() {
 }
 
 void menuBooking() {
-    int choice, choiceDestination;
+    int choice, choiceDestination, departureKey, destinationKey;
 
     City city = getAllCityFromGraph(g);
     City departure, destination;
@@ -129,6 +129,8 @@ void menuBooking() {
     printf("Hai scelto %s\n", departure->name);
 
     choiceDestination = choiceBetweenTwo("Vuoi inserire la citta' di destinazione?\nSI = 1\nNO = 2\n");
+
+    departureKey = getKeyVertexFromGraph(g, departure);
 
     //Punto 1 traccia Progetto
     if(choiceDestination == 1) {
@@ -140,8 +142,7 @@ void menuBooking() {
             destination = choiceCity(city, "Seleziona la citta' di destinazione");
         }
 
-        int departureKey = getKeyVertexFromGraph(g, departure);
-        int destinationKey = getKeyVertexFromGraph(g, destination);
+        destinationKey = getKeyVertexFromGraph(g, destination);
 
         //controllo se esiste la tratta
         if(existLinkDfs(g, departureKey, destinationKey) != 1) {
@@ -155,6 +156,15 @@ void menuBooking() {
     }
     //Punto 2 traccia Progetto
     else {
+        choiceDestination = choiceBetweenTwo("\nSeleziona:\n1 - Meta piu' economica\n2 - Meta piu' gettonata\n");
+
+        if(choiceDestination == 1) {
+            destinationKey = destinationCheaper(g, departureKey);
+        } else {
+            destinationKey = destinationMostPopular(g, departureKey);
+        }
+
+        bookingCheaperOrShortestPath(g, departureKey, destinationKey, &listUserBooking, user);
 
     }
 

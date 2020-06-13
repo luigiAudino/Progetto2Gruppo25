@@ -68,7 +68,7 @@ void printSP(Graph G,int s, int t);//Stampa il percorso a ritroso dal vertice ta
 
 int destinationCheaper(Graph G, int nodeDeparture);//[META PIU' ECONOMICA]Ritorna la citta' meta/nodo piu' economica per la citta' di partenza/nodo inserita
 
-int mostPopularCityFrom(Graph G,int nodeDepartureCity);//[META PIU' GETTONATA]Ritorna la citta' meta/nodo piu' gettonata per la citta' di partenza/nodo inserita
+int destinationMostPopular(Graph G, int nodeDepartureCity);//[META PIU' GETTONATA]Ritorna la citta' meta/nodo piu' gettonata per la citta' di partenza/nodo inserita
 /*void printCityPopularPoints(Graph G){//Stampa tutti i nodi/citta' coi punteggi gettonati associati*/
 /*void addEdgeWithoutPrints*/
 
