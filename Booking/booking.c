@@ -243,9 +243,9 @@ char *getDestinationCity(City cities) {
 
 
 UserTree uploadUsers(UserTree userTree) {
-    char names[6][MAX_WORDS] = {"Luigi", "Piero Junior", "Giulio", "Annabella", "Andrea", "Silvia"};
+    char names[6][MAX_WORDS] = {"Luigi", "Piero Junior", "Giuliano", "Annabella", "Andrea", "Silvia"};
     char surnames[6][MAX_WORDS] = {"Audino", "Gaetani", "Galloppi", "Calabrese", "Audino", "Stranieri"};
-    char emails[6][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giulio@mail.it", "annabella@mail.it",
+    char emails[6][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giuliano@mail.it", "annabella@mail.it",
                                  "andrea@mail.it", "silvia@mail.it"};
 
     for (int i = 0; i < 6; i++) {

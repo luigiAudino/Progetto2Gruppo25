@@ -935,6 +935,9 @@ ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int dest
     return listUserBooking;
 }
 
+//Gestisce la parte conclusiva della prenotazione , permettendo all'utente di spendere i propri punti per completare la prenotazoine
+//gestisce il metodo di acquisizione dei nuovi punti che guadagnera' dalla nuova prenotzione
+//mostra a schermo il costo della prenotazione comprensiva dello sconto eventuale
 int summaryPurchase(int priceOfPurchase, char departureName [], char destinationName [], User user){
 
     int  confirmOperation, confirmUseOfPoints, addNewPoints, initialPoints;

@@ -326,9 +326,9 @@ bool emailAdminIsPresent(UserTree userTree, char *email) {
 }
 
 UserTree uploadAdmins(UserTree userTree) {
-    char names[3][MAX_WORDS] = {"Luigi", "Piero Junior", "Giulio"};
+    char names[3][MAX_WORDS] = {"Luigi", "Piero Junior", "Giuliano"};
     char surnames[3][MAX_WORDS] = {"Audino", "Gaetani", "Galloppi"};
-    char emails[3][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giulio@mail.it"};
+    char emails[3][MAX_WORDS] = {"luigi@mail.it", "piero@mail.it", "giuliano@mail.it"};
 
     for (int i = 0; i < 3; i++) {
         User user = (User) malloc(sizeof(struct usr));
