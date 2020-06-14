@@ -830,6 +830,15 @@ void printGraphOnlyWithNames(Graph G) {
     }
 }
 
+//Stampa il grafo solo con gli indici uguali che sono i vertici numerici ed i nomi ad esso associato
+void printGraphIndexNameAndPoints(Graph G) {
+    puts("\n\nStampa Citta'.");
+    for (int i = 0; i < G->nodes_count; i++) {
+        char *name = G->infoVertex[i].name; //gli do' solo l'indirizzo
+        int point = G->infoVertex[i].cityPopularPoints;//
+        printf("[%d] Nome=%s - Punteggio citta' gettonata =%d\n", i,name,point);
+    }
+}
 
 //Setta i punti 'gettonati' al nodo dato in ingresso
 void setNodeCityPopularPoints(Graph G, int nVertex, int points) {
@@ -1166,20 +1175,92 @@ bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, List
 
     //ToDO - Aggiungere metodi price di Piero
 
-    Booking bookingTravel = enqueueBooking(NULL, price, cityTravel);
+    char departureName [50];
+    char destinationName [50];
 
-    //UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
+    strcpy(departureName , getNodeName(g,departureKey));
+    strcpy(destinationName , getNodeName(g,destinationKey));
 
-    //La prima volta che un utente effettua una prenotazione, non è presente nella listaUserBooking e ritorna NULL
-    //Le volte successive, mi ritorna l'utente con le sue prenotazioni
-    UserBooking userBooking = getUserBookingFromListUserBooking(listUserBooking, user);
+    int confirmPurchase = summaryPurchase(price,departureName,destinationName, user);
 
-    UserBooking userBookingTravel = addBookingToUserBooking(userBooking, user, bookingTravel);
+    if (confirmPurchase == 1){
+        Booking bookingTravel = enqueueBooking(NULL, price, cityTravel);
 
-    if (listUserBooking == NULL)
-        listUserBooking = createListUserBooking(userBookingTravel);
-    else
-        listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
+        //UserBooking  userBookingTravel = createUserBooking(user, bookingTravel);
+
+        //La prima volta che un utente effettua una prenotazione, non è presente nella listaUserBooking e ritorna NULL
+        //Le volte successive, mi ritorna l'utente con le sue prenotazioni
+        UserBooking userBooking = getUserBookingFromListUserBooking(listUserBooking, user);
+
+        UserBooking userBookingTravel = addBookingToUserBooking(userBooking, user, bookingTravel);
+
+        if (listUserBooking == NULL)
+            listUserBooking = createListUserBooking(userBookingTravel);
+        else
+            listUserBooking = enqueueListUserBooking(listUserBooking, userBookingTravel);
+
+        printf ("\nPrenotazione effetuata con successo\nGrazie %s\n",user->name);
+
+    }else{
+        printf ("\nPrenotazione ANNULLATA\n");
+    }
+
 
     return listUserBooking;
 }
+
+int summaryPurchase(int priceOfPurchase, char departureName [], char destinationName [], User user){
+
+    int  confirmOperation, confirmUseOfPoints, addNewPoints, initialPoints;
+    printf("\nRiepilogo prenotazione: Da %s  A  %s\n", departureName, destinationName);
+
+
+    printf("Il prezzo di listino della prenotazione e' %d €\n",priceOfPurchase);
+    if (user->points > 0){
+
+        printf("\nHai attualmente %d punti equivalenti a %d €\n",user->points, user->points);
+        printf("desideri utilizzarli per l'acquisto del biglietto?\n");
+        printf("\n1 - Si\n2 - No\n");
+        scanf("%d", &confirmUseOfPoints);
+
+        while (confirmUseOfPoints != 1 && confirmUseOfPoints != 2) {
+
+            printf("\nHai attualmente %d punti equivalenti a %d €\n ",user->points, user->points);
+            printf("desideri utilizzarli per l'acquisto del biglietto?\n");
+            scanf("%d", &confirmUseOfPoints);
+        }
+             initialPoints =  user->points;
+        if (confirmUseOfPoints == 1){
+            if (priceOfPurchase < user->points){
+                user->points = user->points - priceOfPurchase;
+                priceOfPurchase = 0;
+            }
+
+            if (priceOfPurchase >= user->points){
+                priceOfPurchase = priceOfPurchase - user->points;
+                user->points = 0;
+            }
+        }
+    }
+
+    addNewPoints = priceOfPurchase / 2;
+
+    printf("Prezzo totale prenotazione:  %d €\n", priceOfPurchase);
+    printf("Acquistando questo viaggio guadagnerai: %d punti\n", addNewPoints);
+    while (confirmOperation != 1 && confirmOperation != 2) {
+        printf("\nCosa desideri fare :\n1 - Conferma ed acquista il biglietto\n2 - Annulla operazione\n\n");
+        scanf("%d", &confirmOperation);
+        getchar();
+    }
+    if (confirmOperation == 1){
+
+        user->points = user->points + addNewPoints;
+
+    }
+    if (confirmOperation == 2){
+        user->points = initialPoints;
+
+    }
+    return  confirmOperation;
+}
+

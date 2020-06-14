@@ -12,6 +12,7 @@ void menu();
 void menuBooking();
 void menuUser();
 void backToMenu();
+void menuAdmin();
 
 UserTree userTree = NULL;
 ListUserBooking listUserBooking = NULL;
@@ -24,6 +25,7 @@ int main() {
     //Grafo test inizio
     g = initGraph(6); //allochiamo la memoria per le variabili del grafo
 
+    /*
     //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
     addEdge(g,0,1,1,100);
     addEdge(g,0,3,2,100);
@@ -49,8 +51,8 @@ int main() {
 
     printGraphWithNames(g);
     //Grafo test fine
-
-    //g = presetGraph(g);
+    */
+    g = presetGraph(g);
 
     userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
@@ -84,7 +86,11 @@ void menu() {
 
             printf("\nBenvenuto %s %s\n", user->name, user->surname);
 
-            menuUser();
+            if (strcmp(user->role, USER) == 0) {
+                menuUser();
+            }else {
+                menuAdmin();
+            }
 
             break;
         }
@@ -126,7 +132,7 @@ void backToMenu() {
 }
 
 void menuUser() {
-    int choice = choiceBetweenN("\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
+    int choice = choiceBetweenN("\nMENU' UTENTE:\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
 
     while(choice!=4){
 
@@ -156,7 +162,7 @@ void menuUser() {
 }
 
 void menuBooking() {
-    int choice, choiceDestination, departureKey, destinationKey;
+    int choice, choiceDestination, departureKey, destinationKey, priceOfPurchase, confirmOperation, confirmUseOfPoints, addNewPoints;
 
     City city = getAllCityFromGraph(g);
     City departure, destination;
@@ -188,7 +194,7 @@ void menuBooking() {
         }
         else {
             listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-            //printf("\nFine menu booking 1\n");
+
         }
     }
     //Punto 2 traccia Progetto
@@ -200,12 +206,123 @@ void menuBooking() {
         } else {
             destinationKey = destinationMostPopular(g, departureKey);
         }
-
-        listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-        //printf("\nFine menu booking 2\n");
-
+            listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);}
     }
 
 
-}
+void menuAdmin() {
 
+    //ADMIN
+    int choice;
+    char newCity[MAX_WORDS];
+    printf("\nMENU' ADMIN\nSeleziona:\n1 - Aggiungi Citta'\n2 - Rimuovi Citta'\n3 - Aggiungi tratta\n4 - Rimuovi tratta tra due Citta'\n5 - Stampa grafo\n---opzionali---\n6 - Visualizza Utenti\n7 - Visualizza Admin\n8 - Exit\n");
+    scanf("%d", &choice);
+
+    switch (choice) {
+
+        case 1: {
+
+            addNode(g);
+            printf("\nInserisci il nome della nuova citta' da aggiungere -> ");
+            //fgets(newCity, MAX_WORDS, stdin);
+            scanf("%s", newCity);
+            setNodeName(g, g->nodes_count - 1, newCity);
+            printf("\n\n- - - -\n - - - -\n");
+            printGraphWithNames(g);
+
+            break;
+        }
+
+        case 2: {
+            int nodeToBeDeleted;
+            printGraphIndexNameAndPoints(g);
+
+            printf("\nInserisci il numero corrispondente della citta' da rimuovere: ");
+            scanf("%d", &nodeToBeDeleted);
+            removeNode(g, nodeToBeDeleted);
+
+            printf("\nNuovo grafo attuale:\n");
+            printGraphIndexNameAndPoints(g);
+
+            break;
+        }
+
+        case 3: {
+            //appositamente nomi differenti
+            int departure;
+            int destination;
+            int distance;
+            int rate;
+
+            printGraphIndexNameAndPoints(g);
+            printf("Inserisci il numero relativo alla citta' di PARTENZA \n-> ");
+            scanf("%d", &departure);
+            printf("\nInserisci il numero relativo alla citta' di ARRIVO \n-> ");
+            scanf("%d", &destination);
+            printf("Inserisci la distanza in km della tratta tra le due citta' \n-> ");
+            scanf("%d", &distance);
+            printf("\nInserisci il prezzo di tale tratta \n-> ");
+            scanf("%d", &rate);
+            addEdge(g, departure, destination, distance, rate);
+
+            printf("\nNuovo grafo attuale:\n");
+            printGraphWithNames(g);
+
+            break;
+        }
+
+        case 4: {
+            int archDepartureToBeDeleted;
+            int archDestinationToBeDeleted;
+
+            printGraphWithNames(g);
+            printf("\nInserisci il numero corrispondente della citta' di PARTENZA della tratta da rimuovere -> ");
+            scanf("%d", &archDepartureToBeDeleted);
+            printf("\n");
+            printf("\nInserisci il numero corrispondente della citta' di ARRIVO della tratta da rimuovere -> ");
+            scanf("%d", &archDestinationToBeDeleted);
+            printf("\n");
+            removeEdge(g, archDepartureToBeDeleted, archDestinationToBeDeleted);
+
+            printf("\nNuovo grafo attuale:\n");
+            printGraphWithNames(g);
+
+            break;
+        }
+
+        case 5: {
+            printGraphWithNames(g);
+            break;
+        }
+
+        case 6: {
+            if (countUser(userTree) == 0)
+                printf("Non e' presente alcun user!\n");
+            else
+                getAllUserPrint(userTree);
+
+            break;
+        }
+
+        case 7: {
+            if (countAdmin(userTree) == 0)
+                printf("Non e' presente alcun admin!\n");
+            else
+                getAllAdminPrint(userTree);
+
+            break;
+        }
+
+
+        case 8: {
+            printf("\nArrivederci!");
+            return;
+        }
+
+        default: {
+            printf("Scelta errata - riprova!\n");
+            break;
+        }
+    }
+    backToMenu();
+}

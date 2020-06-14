@@ -352,5 +352,6 @@ void copyUser(User source, User *target) {
         strcpy((*target)->role, source->role);
         strcpy((*target)->email, source->email);
         strcpy((*target)->password, source->password);
+        (*target)->points = source->points;
     }
 }

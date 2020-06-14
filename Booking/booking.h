@@ -1,5 +1,5 @@
 //
-// Created by Luigi Audino on 06/06/2020.
+// Created by Piero Junior Gaetani on 14/06/2020.
 //
 
 #ifndef PROGETTO2GRUPPO25_BOOKING_H

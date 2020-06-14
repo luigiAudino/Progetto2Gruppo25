@@ -1,5 +1,5 @@
 //
-// Created by Luigi Audino on 06/06/2020.
+// Created by Piero Junior Gaetani on 14/06/2020.
 //
 
 #include "booking.h"
@@ -272,6 +272,7 @@ UserTree uploadUsers(UserTree userTree) {
         strcpy(user->surname, surnames[i]);
         strcpy(user->email, emails[i]);
         strcpy(user->password, "123");
+        user->points = 10;
 
         userTree = insertUserNodeTree(userTree, user);
 
@@ -301,7 +302,7 @@ void printBooking(User user, ListUserBooking listUserBooking) {
 
         } else
             puts("Non hai effettuato alcuna prenotazione\n");
-            //printf("L'utente non e' contenuto nella lista\n");
+        //printf("L'utente non e' contenuto nella lista\n");
     } else {
         puts("Non hai effettuato alcuna prenotazione\n");
         //la listUserBooing e' NULL

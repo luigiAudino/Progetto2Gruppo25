@@ -83,6 +83,7 @@ int listContainsVertex(Graph G,int v1,int v2);//Restituisce 1 se nella lista d'a
 
 
 /*funzioni (infoVertex) del vettore contenente le info dei vertici*/
+
 void addInfoVertex(Graph G); //aggiunge un rigo al vettore di informazioni sul vertice
 void removeInfoVertex(Graph G,int n); //rimuove le informazioni di un vertice dal vettore
 void printGraphInfoVertex(Graph G);//Stampa il vettore con tutte le informazioni dei vertici del grafo
@@ -91,6 +92,7 @@ void setNodeName(Graph G,int nVertex, char name[]); //associa il nome al vertice
 char* getNodeName(Graph G,int nVertex);//Ritorna il nome del nodo(vertice/citta') dato in input
 int getNodeFromName(Graph G,char name[]);//Ritorna il corrispettivo numerico del nodo(vertice/citta') dato in input come nome
 void printGraphOnlyWithNames(Graph G);//Stampa il grafo solo coi nominativi dei vertici
+void printGraphIndexNameAndPoints(Graph G);// Stampa il grafo con gli indici relativi ed i nomi delle citta' presenti con il punteggio di gettonamento associato
 
 void setNodeCityPopularPoints(Graph G,int nVertex,int points);//Assegna i punti 'gettonati' al nodo(vertice/citta') dato in input
 int getNodeCityPopularPoints(Graph G, int nVertex);//Ritorna i punti 'gettonati' del nodo(vertice/citta') dato in input
@@ -146,5 +148,8 @@ City getAllCityFromGraph(Graph G);
 int getKeyVertexFromGraph(Graph g, City city);
 
 ListUserBooking bookingCheaperOrShortestPath(Graph g, int departureKey, int destinationKey, ListUserBooking listUserBooking, User user);
+
+
+int summaryPurchase(int priceOfPurchase, char departureName [], char destinationName [], User user);
 
 #endif
