@@ -2,9 +2,8 @@
 #include "string.h"
 #include "stdbool.h"
 #include "stdio.h"
-#include "../BST/tree.h"
 
-
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
 
 #define MAX_WORDS 256
 #define USER "user"

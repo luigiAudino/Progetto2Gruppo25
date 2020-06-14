@@ -9,6 +9,8 @@
 #include "../Input/inputReader.h"
 #include <limits.h>
 
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
+
 //#define EDGE_SUCC 0.33 //indica la percentuale di successo di creazione di un arco
 
 //Inizializzazione del grafo pre-settato con 20 mete e tratte

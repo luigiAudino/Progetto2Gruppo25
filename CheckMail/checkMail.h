@@ -2,7 +2,9 @@
 
 #define EMAILVALIDATOR_H
 
-/* The pupblic interface to the email_validator */
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
+
+
 int isEmail(char *str);
 
-#endif /* end of include guard: EMAILVALIDATOR_H */
+#endif

@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "Graph/graph.h"
 #include "List/list.h"
-#include "User/user.h"
+
 #include "CheckMail/checkMail.h"
 #include "Util/util.h"
 
@@ -13,6 +13,7 @@ void menuBooking();
 void menuUser();
 void backToMenu();
 void menuAdmin();
+void wowEffect();
 
 UserTree userTree = NULL;
 ListUserBooking listUserBooking = NULL;
@@ -20,6 +21,14 @@ Graph g = NULL ;
 User user = NULL;
 
 int main() {
+
+
+    printf("** Gruppo 25 ** Progetto 2 **\n");
+    printf("- - - - - - - - - - - - - - -\n");
+    printf("** Giuliano Galloppi - N86001508 **\n");
+    printf("** Piero Junior Gaetani - N86002210 **\n");
+    printf("** Luigi Audino - N86001513 **\n");
+    printf("- - - - - - - - - - - - - - -\n");
 
     g = presetGraph(g);//Pre-caricamento del grafo coi nodi e con gli archi.
 
@@ -76,6 +85,7 @@ void menu() {
             break;
         }
         case 3: {
+            wowEffect();
             printf("\nArrivederci!");
             return;
         }
@@ -198,11 +208,15 @@ void menuAdmin() {
     switch (choice) {
 
         case 1: {
+            int pointOfCity;
 
             addNode(g);
             printf("\nInserisci il nome della nuova citta' da aggiungere -> ");
             scanf("%s", newCity);
             setNodeName(g, g->nodes_count - 1, newCity);
+            printf("inserisci punteggio citta' gettonata: ");
+            scanf("%d",&pointOfCity);
+            setNodeCityPopularPoints(g,g->nodes_count-1,pointOfCity);
             printf("\nNuovo grafo attuale:\n");
             printGraphWithNames(g);
 
@@ -301,4 +315,101 @@ void menuAdmin() {
         }
     }
     backToMenu();
+}
+
+
+void wowEffect(){
+    printf("                   ()\n"
+           "                 __/\\__         \n"
+           "        |\\   .-\"`      `\"-.   /|\n"
+           "        | \\.'( ') (' ) (. )`./ |\n"
+           "         \\_                  _/\n"
+           "           \\  `~\"'=::='\"~`  /\n"
+           "    ,       `-.__      __.-'       ,\n"
+           ".---'\\________( `\"\"~~\"\"` )________/'---.\n"
+           " >   )       / `\"\"~~~~\"\"` \\       (   <\n"
+           "'----`--..__/        -(-)- \\__..--`----'\n"
+           "            |_____ __ _____|\n"
+           "            [_____[##]_____]  I HAVE BEEN CHOSEN...\n"
+           "            |              |    FAREWELL MY FRIENDS...\n"
+           "            \\      ||      /     I GO ONTO A BETTER PLACE!\n"
+           "             \\     ||     /\n"
+           "          .-\"~`--._||_.--'~\"-.\n"
+           "         (_____,.--\"\"--.,_____)\n\n");
+
+    printf("            _._                           _._\n"
+           "           ||||                           ||||\n"
+           "           ||||_           ___           _||||\n"
+           "           |  ||        .-'___`-.        ||  |\n"
+           "           \\   /      .' .'_ _'. '.      \\   /\n"
+           "           /~~|       | (| b d |) |       |~~\\\n"
+           "          /'  |       |  |  '  |  |       |  `\\\n"
+           ",        /__.-:      ,|  | `-' |  |,      :-.__\\       ,\n"
+           "|'-------(    \\-''\"\"/.|  /\\___/\\  |.\\\"\"''-/    )------'|\n"
+           "|         \\_.-'\\   /   '-._____.-'   \\   /'-._/        |\n"
+           "|.---------\\   /'._| _    .---. ===  |_.'\\   /--------.|\n"
+           "'           \\ /  | |\\_\\ _ \\=v=/  _   | |  \\ /          '\n"
+           "             `.  | | \\_\\_\\ ~~~  (_)  | |  .'\n"
+           "               `'\"'|`'--.__.^.__.--'`|'\"'`\n"
+           "                   \\                 /\n"
+           "                    `,..---'\"'---..,'\n"
+           "                      :--..___..--:    TO INFINITY...\n"
+           "                       \\         /  \n"
+           "                       |`.     .'|       AND BEYOND!\n"
+           "                       |  :___:  |\n"
+           "                       |   | |   |\n"
+           "                       |   | |   |\n"
+           "                       |.-.| |.-.|\n"
+           "                       |`-'| |`-'|\n"
+           "                       |   | |   |\n"
+           "                      /    | |    \\\n"
+           "                     |_____| |_____|\n"
+           "                     ':---:-'-:---:'\n"
+           "                     /    |   |    \\\n"
+           "                    /.---.|   |.---.\\\n"
+           "                    `.____;   :____.'\n\n");
+
+    printf("           .-'\"\"\"'-.\n"
+           "      ,____|_______|____,\n"
+           "       '._____________.'  REACH FOR\n"
+           "           |.-- --.|      THE SKY!\n"
+           "           |(o) (o)|\n"
+           "          (|       |)\n"
+           "           |   U   |\n"
+           " __        | .___. |    YOU'RE MY \n"
+           "/|||       |       |     FAVORITE\n"
+           "||||       :       :      DEPUTY!\n"
+           "|  |/)      `.___.'\n"
+           " \\  /       __) (__\n"
+           "  \\/\\      /\\ \\ / /\\\n"
+           "   \\ \\    /\\ \\ ^ / /\\    THERE'S A\n"
+           "    \\ \\  / |  |0_/\\_ \\    SNAKE IN\n"
+           "     \\ \\/ /|  | \\  /\\ \\    MY BOOT!\n"
+           "      \\  / |  |0//\\\\ \\ \\\n"
+           "       \\/  | /   \\ |  \\ \\\n"
+           "           |/ .-. \\|  / /\n"
+           "        .-'|-( ~ )-| / /   HI!\n"
+           "        \\  |--`-'--|/ /   MY NAME'S WOODY!\n"
+           "         \\ |       | /\n"
+           "          \\|   |   |/\n"
+           "           |   |   |\n"
+           "           |   |   |     HOWDY PARDNER!\n"
+           "           |   |   |\n"
+           "           |   |   |\n"
+           "           |   |   |\n"
+           "           |___|___|     YEEEHAH COWBOY!\n"
+           "          `|---|---|'\n"
+           "          *|   |   |*\n"
+           "           |_._|_._|\n"
+           "          /'  /|\\  '\\    SOMEONE POISONED\n"
+           "         /   /^ ^\\   \\    THE WATERHOLE!\n"
+           "        /__.'     `.__\\\n\n");
+
+    printf("- - - - - - - - - - - - - - -\n");
+    printf("** Gruppo 25 ** Progetto 2 **\n");
+    printf("- - - - - - - - - - - - - - -\n");
+    printf("** Giuliano Galloppi - N86001508 **\n");
+    printf("** Piero Junior Gaetani - N86002210 **\n");
+    printf("** Luigi Audino - N86001513 **\n");
+    printf("- - - - - - - - - - - - - - -\n");
 }

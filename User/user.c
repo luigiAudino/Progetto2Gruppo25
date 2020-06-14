@@ -1,6 +1,8 @@
 #include "user.h"
 #include "../CheckMail/checkMail.h"
 
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
+
 User signIn(UserTree userTree) {
     int roleChoised;
     bool isRight = true, isPresent = false;
@@ -41,7 +43,7 @@ User signIn(UserTree userTree) {
             if (checkMailRes == 1) {
                 printf("Esiste già un %s registrato con %s\n", user->role, user->email);
             } if (checkMailRes == 0){
-            printf("La mail inserita non è accettabile a causa di caratteri non idonei\n");
+            printf("La mail inserita non e' accettabile a causa di caratteri non idonei\n");
         }
 
         printf("Inserisci email\n");

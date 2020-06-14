@@ -1,7 +1,8 @@
 #ifndef Graph_List_h
 #define Graph_List_h
 
-//Lista = Arco = Edge
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
+
 struct TList {
     int target; //città del nodo
     int price; //peso1

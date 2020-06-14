@@ -1,6 +1,6 @@
-//
-// Created by Piero Junior Gaetani on 14/06/2020.
-//
+
+
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
 
 #include "booking.h"
 

@@ -7,6 +7,8 @@
 #define ERR_EMPTY 1
 #define ERR_FULL 2
 
+/*Gruppo 25 - Progetto 2 - Giuliano Galloppi N86001508; Piero Junior Gaetani N86002210; Luigi Audino N86001513*/
+
 void checkQueueError(int *err) {
     if (*err != 0) {
         //Manage the error here
