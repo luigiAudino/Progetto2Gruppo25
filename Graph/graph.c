@@ -1215,17 +1215,17 @@ int summaryPurchase(int priceOfPurchase, char departureName [], char destination
     printf("\nRiepilogo prenotazione: Da %s  A  %s\n", departureName, destinationName);
 
 
-    printf("Il prezzo di listino della prenotazione e' %d €\n",priceOfPurchase);
+    printf("Il prezzo di listino della prenotazione e' %d Euro\n",priceOfPurchase);
     if (user->points > 0){
 
-        printf("\nHai attualmente %d punti equivalenti a %d €\n",user->points, user->points);
+        printf("\nHai attualmente %d punti equivalenti a %d Euro\n",user->points, user->points);
         printf("desideri utilizzarli per l'acquisto del biglietto?\n");
         printf("\n1 - Si\n2 - No\n");
         scanf("%d", &confirmUseOfPoints);
 
         while (confirmUseOfPoints != 1 && confirmUseOfPoints != 2) {
 
-            printf("\nHai attualmente %d punti equivalenti a %d €\n ",user->points, user->points);
+            printf("\nHai attualmente %d punti equivalenti a %d Euro\n ",user->points, user->points);
             printf("desideri utilizzarli per l'acquisto del biglietto?\n");
             scanf("%d", &confirmUseOfPoints);
         }
@@ -1245,7 +1245,7 @@ int summaryPurchase(int priceOfPurchase, char departureName [], char destination
 
     addNewPoints = priceOfPurchase / 2;
 
-    printf("Prezzo totale prenotazione:  %d €\n", priceOfPurchase);
+    printf("Prezzo totale prenotazione:  %d Euro\n", priceOfPurchase);
     printf("Acquistando questo viaggio guadagnerai: %d punti\n", addNewPoints);
     while (confirmOperation != 1 && confirmOperation != 2) {
         printf("\nCosa desideri fare :\n1 - Conferma ed acquista il biglietto\n2 - Annulla operazione\n\n");
