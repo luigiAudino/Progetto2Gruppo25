@@ -6,7 +6,7 @@
 #include "User/user.h"
 #include "CheckMail/checkMail.h"
 #include "Util/util.h"
-//#include "Booking/booking.h"
+
 
 void menu();
 void menuBooking();
@@ -16,60 +16,35 @@ void menuAdmin();
 
 UserTree userTree = NULL;
 ListUserBooking listUserBooking = NULL;
-Graph g = NULL ; //allochiamo la memoria per le variabili del grafo
+Graph g = NULL ;
 User user = NULL;
 
 int main() {
-    char cities[7][50] = {"napoli","milano","berlino","roma","palermo","londra","Catania"};
 
-    //Grafo test inizio
-    g = initGraph(6); //allochiamo la memoria per le variabili del grafo
+    g = presetGraph(g);//Pre-caricamento del grafo coi nodi e con gli archi.
 
-    /*
-    //(GRAFO,NODO ORIGINE, NODO DESTINAZIONE, PREZZO ARCO, KM );
-    addEdge(g,0,1,1,100);
-    addEdge(g,0,3,2,100);
-
-    addEdge(g,1,2,3,100);
-
-    addEdge(g,2,5,4,100);
-
-    addEdge(g,3,0,5,100);
-    addEdge(g,3,2,6,100);
-    addEdge(g,3,4,7,100);
-
-    addEdge(g,4,2,8,100);
-
-    printGraph(g); //stampa del grafo numerico
-
-    //Assegnazione dei nomi ai vertici del grafo
-    for(int i=0;i<g->nodes_count;i++) {
-        //printf("valore di i=%d\n",i);
-        setNodeName(g, i, cities[i]);
-        //printf("Nome aggiunto al vertice %d = %s\n\n",i,g->infoVertex[i].name);
-    }
-
-    printGraphWithNames(g);
-    //Grafo test fine
-    */
-    g = presetGraph(g);
-
+    //Presettaggio di utenti ed amministratori
     userTree = uploadUsers(userTree);
     userTree = uploadAdmins(userTree);
 
     user = (User) malloc(sizeof(struct usr));
 
     menu();
-
     return 0;
 }
+
+
+
+
+
+
+
+
 
 void menu() {
     int choice;
     bool loginSuccess = false;
-    //roleChoised = -1;
     char newCity [MAX_WORDS];
-    //UserTree userTree = NULL;
 
     printf("\nSeleziona:\n1 - Login\n2 - Registrazione\n3 - Exit\n");
     scanf("%d", &choice);
@@ -77,14 +52,13 @@ void menu() {
     switch (choice) {
         case 1: {
             loginSuccess = login(userTree, &user);
-
             if(!loginSuccess) {
                 printf("Credenziali non corrette - perfavore riprova!\n");
                 menu();
                 break;
             }
 
-            printf("\nBenvenuto %s %s\n", user->name, user->surname);
+            printf("\nBenvenuto\n");
 
             if (strcmp(user->role, USER) == 0) {
                 menuUser();
@@ -97,11 +71,8 @@ void menu() {
 
         case 2: {
             user = signIn(userTree);
-            //enqueueListUserBooking(listUserBooking, createUserBooking(user, NULL));
             userTree = insertUserNodeTree(userTree, user);
-
             menuUser();
-
             break;
         }
         case 3: {
@@ -117,6 +88,9 @@ void menu() {
 
 }
 
+
+
+
 void backToMenu() {
     int choice;
 
@@ -127,9 +101,9 @@ void backToMenu() {
 
     if (choice == 0)
         menu();
-
-    //printf("\nArrivederci!");
 }
+
+
 
 void menuUser() {
     int choice = choiceBetweenN("\nMENU' UTENTE:\nSeleziona:\n1 - Effettua nuova prenotazione\n2 - Visualizza prenotazioni\n3 - Visualizza punti sconto accumulati\n4 - Exit\n", 4);
@@ -161,6 +135,9 @@ void menuUser() {
     printf("\nArrivederci!");
 }
 
+
+
+
 void menuBooking() {
     int choice, choiceDestination, departureKey, destinationKey, priceOfPurchase, confirmOperation, confirmUseOfPoints, addNewPoints;
 
@@ -190,11 +167,10 @@ void menuBooking() {
         //controllo se esiste la tratta
         if(existLinkDfs(g, departureKey, destinationKey) != 1) {
             printf("ERRORE: La tratta non esiste\n");
-            //esco ed esce menu da stabilire
         }
         else {
+            //Qui avviene il procedimento di scelta delle tratte e eventuale conferma della prenotazione
             listUserBooking = bookingCheaperOrShortestPath(g, departureKey, destinationKey, listUserBooking, user);
-
         }
     }
     //Punto 2 traccia Progetto
@@ -210,8 +186,9 @@ void menuBooking() {
     }
 
 
-void menuAdmin() {
 
+
+void menuAdmin() {
     //ADMIN
     int choice;
     char newCity[MAX_WORDS];
@@ -224,10 +201,9 @@ void menuAdmin() {
 
             addNode(g);
             printf("\nInserisci il nome della nuova citta' da aggiungere -> ");
-            //fgets(newCity, MAX_WORDS, stdin);
             scanf("%s", newCity);
             setNodeName(g, g->nodes_count - 1, newCity);
-            printf("\n\n- - - -\n - - - -\n");
+            printf("\nNuovo grafo attuale:\n");
             printGraphWithNames(g);
 
             break;
@@ -248,7 +224,7 @@ void menuAdmin() {
         }
 
         case 3: {
-            //appositamente nomi differenti
+
             int departure;
             int destination;
             int distance;
