@@ -8,38 +8,38 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
+				<Option working_dir="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
+				<Option working_dir="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
+				<Option working_dir="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Progetto2Gruppo25">
-				<Option output="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Progetto2Gruppo25" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
+				<Option output="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Progetto2Gruppo25" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -51,15 +51,15 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 Progetto2Gruppo25"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 Progetto2Gruppo25"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="Progetto2Gruppo25/fast">
-				<Option output="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Progetto2Gruppo25" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
+				<Option output="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Progetto2Gruppo25" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -71,77 +71,83 @@
 					<Add directory="/Library/Frameworks"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 Progetto2Gruppo25/fast"/>
-					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 Progetto2Gruppo25/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/BST/tree.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/BST/tree.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/BST/tree.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/BST/tree.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/CheckMail/checkMail.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Booking/booking.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/CheckMail/checkMail.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Booking/booking.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/CheckMail/checkMail.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/CheckMail/checkMail.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Graph/graph.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Graph/graph.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/DoubleList/doubleList.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Input/inputReader.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Graph/graph.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Input/inputReader.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Graph/graph.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/List/list.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Input/inputReader.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/List/list.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Input/inputReader.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Queue/queue.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/List/list.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Queue/queue.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/List/list.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Stack/stack.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Queue/queue.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Stack/stack.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Queue/queue.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Stack/stack.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/User/user.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Stack/stack.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/User/user.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/Util/util.h">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/User/user.h">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/main.c">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Util/util.c">
 			<Option target="Progetto2Gruppo25"/>
 		</Unit>
-		<Unit filename="/Users/luigiaudino/CLionProjects/Progetto2Gruppo25/CMakeLists.txt">
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/Util/util.h">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/main.c">
+			<Option target="Progetto2Gruppo25"/>
+		</Unit>
+		<Unit filename="/Users/juniorinho/CLionProjects/Progetto2Gruppo25/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

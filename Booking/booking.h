@@ -60,6 +60,7 @@ void printCity(City city);
 
 City choiceCity(City city, char *message);
 
+//Confronta due citta' ed in base al fatto che siano uguali o meno restituiisce un valore booleano
 bool cityIsEqual(City city1, City city2);
 
 UserBooking createUserBooking(User user, Booking booking);

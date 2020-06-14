@@ -44,16 +44,6 @@ City dequeueCity(City city) {
     return city;
 }
 
-/*
-Booking addBooking(Booking booking, char *nameCity) {
-    if (booking != NULL) {
-        enqueueCity(booking->city, nameCity);
-    } else
-        booking = createBooking(nameCity);
-
-    return booking;
-}*/
-
 Booking removeLastBooking(Booking booking, char *nameCity) {
     if (booking != NULL) {
         booking->city = dequeueCity(booking->city);
@@ -62,6 +52,7 @@ Booking removeLastBooking(Booking booking, char *nameCity) {
     return booking;
 }
 
+// Stampa nomi citta'
 void printCity(City city) {
     if (city != NULL) {
         printf("%s ", city->name);
@@ -112,6 +103,7 @@ City choiceCity(City city, char *message) {
     return cityReturned;
 }
 
+//Confronta due citta' ed in base al fatto che siano uguali o meno restituiisce un valore booleano
 bool cityIsEqual(City city1, City city2) {
     return city1->name == city2->name;
 }
@@ -212,18 +204,10 @@ ListUserBooking enqueueListUserBooking(ListUserBooking listUserBooking, UserBook
             foundIt = true;
 
             listUserBooking->userBooking = userBooking;
-            /*
-            //Aggiungo in coda il Booking alla lista del Booking dello UserBooking della ListaUserBooking
-            while (listUserBooking->userBooking->booking->next != NULL) {
-                listUserBooking->userBooking->booking = listUserBooking->userBooking->booking->next;
-            }
 
-            listUserBooking->userBooking->booking->next = userBooking->booking;
-             */
             break;
         } else {
 
-            //Scorro lo UserBooking perché non è il mio UserBooking
             prec = listUserBooking;
             listUserBooking = listUserBooking->next;
         }
@@ -275,11 +259,6 @@ UserTree uploadUsers(UserTree userTree) {
         user->points = 10;
 
         userTree = insertUserNodeTree(userTree, user);
-
-        //createUserBooking(user, NULL);
-
-        //UserBooking userBooking = createUserBooking(user, NULL);
-        //listUserBooking = enqueueListUserBooking(listUserBooking, userBooking);
     }
 
     return userTree;
@@ -302,7 +281,6 @@ void printBooking(User user, ListUserBooking listUserBooking) {
 
         } else
             puts("Non hai effettuato alcuna prenotazione\n");
-        //printf("L'utente non e' contenuto nella lista\n");
     } else {
         puts("Non hai effettuato alcuna prenotazione\n");
         //la listUserBooing e' NULL

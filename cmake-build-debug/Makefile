@@ -48,10 +48,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/luigiaudino/CLionProjects/Progetto2Gruppo25
+CMAKE_SOURCE_DIR = /Users/juniorinho/CLionProjects/Progetto2Gruppo25
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug
+CMAKE_BINARY_DIR = /Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles /Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/luigiaudino/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/juniorinho/CLionProjects/Progetto2Gruppo25/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -149,6 +149,33 @@ BST/tree.s: BST/tree.c.s
 BST/tree.c.s:
 	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.s
 .PHONY : BST/tree.c.s
+
+Booking/booking.o: Booking/booking.c.o
+
+.PHONY : Booking/booking.o
+
+# target to build an object file
+Booking/booking.c.o:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Booking/booking.c.o
+.PHONY : Booking/booking.c.o
+
+Booking/booking.i: Booking/booking.c.i
+
+.PHONY : Booking/booking.i
+
+# target to preprocess a source file
+Booking/booking.c.i:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Booking/booking.c.i
+.PHONY : Booking/booking.c.i
+
+Booking/booking.s: Booking/booking.c.s
+
+.PHONY : Booking/booking.s
+
+# target to generate assembly for a file
+Booking/booking.c.s:
+	$(MAKE) -f CMakeFiles/Progetto2Gruppo25.dir/build.make CMakeFiles/Progetto2Gruppo25.dir/Booking/booking.c.s
+.PHONY : Booking/booking.c.s
 
 CheckMail/checkMail.o: CheckMail/checkMail.c.o
 
@@ -432,6 +459,9 @@ help:
 	@echo "... BST/tree.o"
 	@echo "... BST/tree.i"
 	@echo "... BST/tree.s"
+	@echo "... Booking/booking.o"
+	@echo "... Booking/booking.i"
+	@echo "... Booking/booking.s"
 	@echo "... CheckMail/checkMail.o"
 	@echo "... CheckMail/checkMail.i"
 	@echo "... CheckMail/checkMail.s"

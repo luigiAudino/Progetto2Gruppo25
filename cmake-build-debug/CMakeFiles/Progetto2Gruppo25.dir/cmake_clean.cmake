@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/Progetto2Gruppo25.dir/BST/tree.c.o"
+  "CMakeFiles/Progetto2Gruppo25.dir/Booking/booking.c.o"
   "CMakeFiles/Progetto2Gruppo25.dir/CheckMail/checkMail.c.o"
   "CMakeFiles/Progetto2Gruppo25.dir/DoubleList/doubleList.c.o"
   "CMakeFiles/Progetto2Gruppo25.dir/Graph/graph.c.o"
